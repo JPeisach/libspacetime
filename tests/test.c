@@ -11,4 +11,8 @@ int main() {
 
 	mars_time_t mt = mars_time();
 	printf("current mars epoch: %ld\n", mt);
+
+    time_t mt_reconv = mars_time_to_earth_time(mt);
+    printf("converted mars time to earth time: %ld\n", mt_reconv);
+    return 0;
 }
