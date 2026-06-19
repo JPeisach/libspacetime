@@ -1,0 +1,9 @@
+AT_INIT("libspacetime")
+AT_PACKAGE_NAME("libspacetime")
+AT_PACKAGE_BUGREPORT("jpeisach@ubuntu.com")
+
+AT_COLOR_TESTS
+AT_SETUP("Mars time")
+AT_CHECK([mars_time], [0], [TODO: conversion is off by about one earth second], [])
+
+AT_CLEANUP

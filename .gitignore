@@ -52,3 +52,22 @@ m4/lt~obsolete.m4
 # can automatically generate from config.status script
 # (which is called by configure script))
 Makefile
+
+
+# object files
+*.o
+*.la
+*.pc
+*.lo
+
+# Tests
+testsuite
+atconfig
+atlocal
+testsuite.log
+
+# hopefully i'm right about this
+test/package.m4
+
+# old configure file
+configure~

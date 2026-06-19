@@ -11,11 +11,11 @@ AC_PROG_CC
 PKG_PROG_PKG_CONFIG
 
 AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_FILES([src/libspacetime.pc])
 
-
+# Testing
 AC_CONFIG_TESTDIR([tests])
-AC_CONFIG_FILES([src/libspacetime.pc], [tests/atlocal])
-
+AC_CONFIG_FILES([tests/Makefile tests/atlocal])
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_OUTPUT
