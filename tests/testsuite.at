@@ -3,7 +3,11 @@ AT_PACKAGE_NAME("libspacetime")
 AT_PACKAGE_BUGREPORT("jpeisach@ubuntu.com")
 
 AT_COLOR_TESTS
-AT_SETUP("Mars time")
+AT_SETUP(Earth to Mars conversion (current time))
 AT_CHECK([mars_time], [0], [TODO: conversion is off by about one earth second], [])
+AT_CLEANUP
+
+AT_SETUP(Mariner 9 entered orbit on MSD 34790)
+AT_CHECK([mars_important_dates_mariner9_enter_orbit], [0], [Mariner 9 entered orbit - MSD 34790], [])
 
 AT_CLEANUP

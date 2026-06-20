@@ -1,6 +1,9 @@
-check_PROGRAMS = mars_time
+# TODO: subfolders for tests
+check_PROGRAMS = mars_time mars_important_dates_mariner9_enter_orbit
 mars_time_SOURCES = mars/time.c
-mars_time_LDADD = $(top_srcdir)/src/libspacetime.la
+mars_important_dates_mariner9_enter_orbit_SOURCES = mars/important_dates/mariner9_enter_orbit.c
+
+LDADD = $(top_srcdir)/src/libspacetime.la
 
 # Below is taken from the autotools docs
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac
@@ -38,7 +41,3 @@ AUTOTEST = $(AUTOM4TE) --language=autotest
 $(TESTSUITE): $(srcdir)/testsuite.at $(srcdir)/package.m4
 	$(AUTOTEST) -I '$(srcdir)' -o $@.tmp $@.at
 	mv $@.tmp $@
-
-hi:
-	@echo h
-	@echo $(AM_CFLAGS)
