@@ -34,3 +34,15 @@ AT_CLEANUP
 AT_SETUP(2004 Gregorian Leap Day from Vrishika 24 209 at 11:09:27 Airy)
 AT_CHECK([mars_mkmarstime_gregorian_leap_day_2004], [0], [leap_day: 1078012800], [])
 AT_CLEANUP
+
+AT_SETUP(Pre-Y2038 conversion: Sagittarius 8 228 at 09:56:08 Airy)
+AT_CHECK([mars_mkmarstime_y2038_pre], [0], [Pre Y2038: 2147483646], [])
+AT_CLEANUP
+
+AT_SETUP(Y2038 conversion: Sagittarius 8 228 at 09:56:09 Airy)
+AT_CHECK([mars_mkmarstime_y2038], [0], [Y2038: 2147483647], [])
+AT_CLEANUP
+
+AT_SETUP(Post-Y2038 conversion: Sagittarius 8 228 at 09:56:09 Airy)
+AT_CHECK([mars_mkmarstime_y2038_post], [0], [Post Y2038: 2147483648], [])
+AT_CLEANUP
