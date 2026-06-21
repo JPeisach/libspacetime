@@ -19,3 +19,5 @@ struct mars_tm
 mars_time_t mars_time();
 time_t mars_time_to_earth_time(mars_time_t);
 mars_time_t earth_time_to_mars_time(time_t);
+
+mars_time_t mkmarstime(struct mars_tm*);

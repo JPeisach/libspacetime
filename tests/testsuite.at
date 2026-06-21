@@ -9,5 +9,15 @@ AT_CLEANUP
 
 AT_SETUP(Mariner 9 entered orbit on MSD 34790)
 AT_CHECK([mars_important_dates_mariner9_enter_orbit], [0], [Mariner 9 entered orbit - MSD 34790], [])
+AT_CLEANUP
 
+
+// mkmarstime
+
+AT_SETUP(MSD 0 conversion: Virgo 25 140 at 23:59:56 Airy)
+AT_CHECK([mars_mkmarstime_msd0], [0], [MSD 0: 0], [])
+AT_CLEANUP
+
+AT_SETUP(Unix timestamp 0 conversion: Kanya 26 191 at 07:05:57 Airy)
+AT_CHECK([mars_mkmarstime_unixepoch], [0], [], ["Epoch is not equivalent"])
 AT_CLEANUP
