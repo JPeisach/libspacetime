@@ -3,6 +3,8 @@ AT_PACKAGE_NAME("libspacetime")
 AT_PACKAGE_BUGREPORT("jpeisach@ubuntu.com")
 
 AT_COLOR_TESTS
+
+AT_BANNER(mars_time)
 AT_SETUP(Earth to Mars conversion (current time))
 AT_CHECK([mars_time], [0], [TODO: conversion is off by about one earth second], [])
 AT_CLEANUP
@@ -11,13 +13,24 @@ AT_SETUP(Mariner 9 entered orbit on MSD 34790)
 AT_CHECK([mars_important_dates_mariner9_enter_orbit], [0], [Mariner 9 entered orbit - MSD 34790], [])
 AT_CLEANUP
 
+AT_SETUP(Perseverance landed on MSD 52304)
+AT_CHECK([mars_important_dates_perseverance_landing], [0], [Perseverance landed - MSD 52304], [])
+AT_CLEANUP
 
-// mkmarstime
 
+AT_BANNER(mkmarstime)
 AT_SETUP(MSD 0 conversion: Virgo 25 140 at 23:59:56 Airy)
 AT_CHECK([mars_mkmarstime_msd0], [0], [MSD 0: 0], [])
 AT_CLEANUP
 
 AT_SETUP(Unix timestamp 0 conversion: Kanya 26 191 at 07:05:57 Airy)
-AT_CHECK([mars_mkmarstime_unixepoch], [0], [], ["Epoch is not equivalent"])
+AT_CHECK([mars_mkmarstime_unixepoch], [0], [Epoch: 0], [])
+AT_CLEANUP
+
+AT_SETUP(Y2K conversion: Virgo 22 207 at 03:12:30 Airy)
+AT_CHECK([mars_mkmarstime_y2k], [0], [Y2K: 946684800], [])
+AT_CLEANUP
+
+AT_SETUP(2004 Gregorian Leap Day from Vrishika 24 209 at 11:09:27 Airy)
+AT_CHECK([mars_mkmarstime_gregorian_leap_day_2004], [0], [leap_day: 1078012800], [])
 AT_CLEANUP

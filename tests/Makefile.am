@@ -1,9 +1,19 @@
 # TODO: subfolders for tests
-check_PROGRAMS = mars_time mars_important_dates_mariner9_enter_orbit mars_mkmarstime_msd0 mars_mkmarstime_unixepoch
+check_PROGRAMS = mars_time \
+    mars_important_dates_mariner9_enter_orbit \
+    mars_important_dates_perseverance_landing \
+    mars_mkmarstime_gregorian_leap_day_2004 \
+    mars_mkmarstime_msd0 \
+    mars_mkmarstime_unixepoch \
+    mars_mkmarstime_y2k
+
 mars_time_SOURCES = mars/time.c
 mars_important_dates_mariner9_enter_orbit_SOURCES = mars/important_dates/mariner9_enter_orbit.c
+mars_important_dates_perseverance_landing_SOURCES = mars/important_dates/perseverance_landing.c
+mars_mkmarstime_gregorian_leap_day_2004_SOURCES = mars/mkmarstime/gregorian_leap_day_2004.c
 mars_mkmarstime_msd0_SOURCES = mars/mkmarstime/msd0.c
 mars_mkmarstime_unixepoch_SOURCES = mars/mkmarstime/unixepoch.c
+mars_mkmarstime_y2k_SOURCES = mars/mkmarstime/y2k.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 

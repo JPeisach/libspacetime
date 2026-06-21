@@ -15,8 +15,6 @@ int main() {
     mars_time_t converted = mkmarstime(&mt);
     time_t epoch = mars_time_to_earth_time(converted);
 
-    if(epoch == 0) return 0;
-
-    printf("Epoch is not equivalent");
-    return -1;
+    printf("Epoch: %ld", epoch);
+    return 0;
 }

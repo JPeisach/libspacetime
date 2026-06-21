@@ -1,7 +1,6 @@
 #include "mars.h"
 
 #include "earth.h"
-#include <stdio.h>
 
 inline double __do_earth_time_to_msd(time_t et)
 {
