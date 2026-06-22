@@ -46,3 +46,7 @@ AT_CLEANUP
 AT_SETUP(Post-Y2038 conversion: Sagittarius 8 228 at 09:56:09 Airy)
 AT_CHECK([mars_mkmarstime_y2038_post], [0], [Post Y2038: 2147483648], [])
 AT_CLEANUP
+
+AT_SETUP(Darian leap day conversion: Vrishika 28 210 at 09:00:00 Airy)
+AT_CHECK([mars_mkmarstime_darian_leap_day_y210], [0], [darian_leap_day on Earth: 1137750559], [])
+AT_CLEANUP
