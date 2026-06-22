@@ -27,8 +27,8 @@ time_t mars_time_to_earth_time(mars_time_t mars_time)
     // Same steps in reverse
     double earth_time = (msd - 34127.2954262) * 88775.244147;
 
-    // FIXME: we appear to lose about one second of earth time
-    return (time_t) earth_time - 37.0;
+    // Subtract leap-second correction and cast to time_t (subtract first to match test expectations)
+    return (time_t) (earth_time - 37.0);
 }
 
 mars_time_t earth_time_to_mars_time(time_t et)
@@ -41,12 +41,12 @@ mars_time_t earth_time_to_mars_time(time_t et)
 // sols before the current month
 // You can actually calculate this by doing (28*0, 28*1, 28*2...) and then adding 27*(m/4) for months
 // but I just took values from first day of https://ops-alaska.com/time/gangale_converter/calendar_clock.htm
-const int __mon_ysol[23] =
-        // Normal years
+// sols before months 0..23 for a normal (non-leap) year
+const int __mon_ysol[24] =
         {0, 28, 56, 84, 112, 140, 167, 195,
-        251, 279, 307, 334, 362, 390, 418,
-        446, 474, 501, 529, 557, 585, 613,
-        641};
+         223, 251, 279, 307, 334, 362, 390,
+         418, 446, 474, 501, 529, 557, 585,
+         613, 641};
 
 
 mars_time_t mkmarstime(struct mars_tm* tm)
@@ -66,8 +66,13 @@ mars_time_t mkmarstime(struct mars_tm* tm)
     // only even years are leap, and its only half of it - then add together for 1000
     // int odd_num_years = (tm->mars_tm_year - 1)
     //
-    // and then the 1000, well, we won't be at 1000 for another 800 martian years
-    mars_time_t leap_years = ((tm->mars_tm_year - 1) / 2) + (tm->mars_tm_year / 10) - (tm->mars_tm_year / 100) + (tm->mars_tm_year / 1000);
+    // This was later revised by review with AI - we are doing years since, not current year, so we need Y-1
+    //
+    // Count leap years before the given year using Darian intercalation rules.
+    //
+    // Closed-form equivalent: odd years + decades - centuries (all counts are for 1..Y-1)
+    // L(Y) = floor(Y/2) + floor((Y-1)/10) - floor((Y-1)/100)
+    mars_time_t leap_years = (mars_time_t) ((tm->mars_tm_year / 2) + ((tm->mars_tm_year - 1) / 10) - ((tm->mars_tm_year - 1) / 100) + ((tm->mars_tm_year - 1) / 1000));
 
     // 669 sols in a leap year, each sol has 86400 seconds
     ret += (leap_years * 669 * 86400);
@@ -104,5 +109,6 @@ mars_time_t mkmarstime(struct mars_tm* tm)
     // Darian Date: 23:59:56 Airy, Virgo 25 140
     // It's possible this calculation could be incorrect due to conversion error
     // but it seems to match.
-    return ret - 8135164797;
+    // Epoch calibrated so MSD0 maps to 0
+    return ret - 8132745597;
 }
