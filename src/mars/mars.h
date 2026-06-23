@@ -16,7 +16,7 @@ struct mars_tm
     int mars_tm_ysol; /* Sol of year, 0-668 */
 };
 
-mars_time_t mars_time();
+mars_time_t mars_time(mars_time_t*);
 time_t mars_time_to_earth_time(mars_time_t);
 mars_time_t earth_time_to_mars_time(time_t);
 

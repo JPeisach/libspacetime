@@ -16,8 +16,13 @@ inline mars_time_t __do_earth_time_to_mars_time(time_t et)
 
 
 
-mars_time_t mars_time() {
-    return __do_earth_time_to_mars_time(earth_time());
+mars_time_t mars_time(mars_time_t *timer)
+{
+    mars_time_t time = __do_earth_time_to_mars_time(earth_time());
+    if(timer)
+        *timer = time;
+
+    return time;
 }
 
 time_t mars_time_to_earth_time(mars_time_t mars_time)

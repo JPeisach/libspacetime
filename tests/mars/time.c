@@ -6,7 +6,8 @@
 int main() {
     time_t time = earth_time();
 
-	mars_time_t mt = mars_time();
+    mars_time_t mt;
+	mars_time(&mt);
 
     time_t mt_reconv = mars_time_to_earth_time(mt);
 
