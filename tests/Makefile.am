@@ -1,5 +1,6 @@
 # TODO: subfolders for tests
 check_PROGRAMS = mars_time \
+    mars_diffmarstime_onesol \
     mars_important_dates_mariner9_enter_orbit \
     mars_important_dates_perseverance_landing \
     mars_mkmarstime_darian_leap_day_y210 \
@@ -12,6 +13,8 @@ check_PROGRAMS = mars_time \
     mars_mkmarstime_y2038_pre
 
 mars_time_SOURCES = mars/time.c
+
+mars_diffmarstime_onesol_SOURCES = mars/diffmarstime/onesol.c
 
 mars_important_dates_mariner9_enter_orbit_SOURCES = mars/important_dates/mariner9_enter_orbit.c
 mars_important_dates_perseverance_landing_SOURCES = mars/important_dates/perseverance_landing.c

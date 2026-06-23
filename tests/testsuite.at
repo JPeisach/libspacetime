@@ -50,3 +50,8 @@ AT_CLEANUP
 AT_SETUP(Darian leap day conversion: Vrishika 28 210 at 09:00:00 Airy)
 AT_CHECK([mars_mkmarstime_darian_leap_day_y210], [0], [darian_leap_day on Earth: 1137750559], [])
 AT_CLEANUP
+
+AT_BANNER(diffmarstime)
+AT_SETUP(Length of one sol: 86400 seconds)
+AT_CHECK([mars_diffmarstime_onesol], [0], [Length of one sol: 86400.000000], [])
+AT_CLEANUP

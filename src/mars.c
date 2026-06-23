@@ -40,6 +40,12 @@ mars_time_t earth_time_to_mars_time(time_t et)
 }
 
 
+// Glibc and Musl return double.. not sure how it would help us in this situation since difference is in seconds
+double diffmarstime(mars_time_t time_end, mars_time_t time_start)
+{
+    return (double) (time_end - time_start);
+}
+
 
 // sols before the current month
 // You can actually calculate this by doing (28*0, 28*1, 28*2...) and then adding 27*(m/4) for months
