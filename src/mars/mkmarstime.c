@@ -1,51 +1,6 @@
 #include "mars.h"
 
-#include "earth.h"
-
-#define TAI_OFFSET 37.0
-#define SECONDS_PER_DAY 86400
-
-inline double __do_earth_time_to_msd(time_t et)
-{
-    return ((et + TAI_OFFSET) / 88775.244147) + 34127.2954262;
-}
-
-inline mars_time_t __do_earth_time_to_mars_time(time_t et)
-{
-    // martian seconds
-    return (mars_time_t) (__do_earth_time_to_msd(et) * SECONDS_PER_DAY);
-}
-
-
-
-mars_time_t mars_time() {
-    return __do_earth_time_to_mars_time(earth_time());
-}
-
-time_t mars_time_to_earth_time(mars_time_t mars_time)
-{
-    // Martian Days. Try to keep precision
-    double msd = mars_time / 86400.0;
-
-    // Same steps in reverse
-    double earth_time = (msd - 34127.2954262) * 88775.244147;
-
-    // Subtract leap-second correction and cast to time_t (subtract first to match test expectations)
-    return (time_t) (earth_time - TAI_OFFSET);
-}
-
-mars_time_t earth_time_to_mars_time(time_t et)
-{
-    return __do_earth_time_to_mars_time(et);
-}
-
-
-// Glibc and Musl return double.. not sure how it would help us in this situation since difference is in seconds
-double diffmarstime(mars_time_t time_end, mars_time_t time_start)
-{
-    return (double) (time_end - time_start);
-}
-
+#include "../const.h"
 
 // sols before the current month
 // You can actually calculate this by doing (28*0, 28*1, 28*2...) and then adding 27*(m/4) for months
@@ -56,7 +11,6 @@ const int __mon_ysol[24] =
          223, 251, 279, 307, 334, 362, 390,
          418, 446, 474, 501, 529, 557, 585,
          613, 641};
-
 
 mars_time_t mkmarstime(struct mars_tm* tm)
 {

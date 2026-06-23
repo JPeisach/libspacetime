@@ -1,0 +1,2 @@
+#define TAI_OFFSET 37.0
+#define SECONDS_PER_DAY 86400
