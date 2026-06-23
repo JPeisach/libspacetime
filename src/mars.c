@@ -2,15 +2,18 @@
 
 #include "earth.h"
 
+#define TAI_OFFSET 37.0
+#define SECONDS_PER_DAY 86400
+
 inline double __do_earth_time_to_msd(time_t et)
 {
-    return ((et + (37.0)) / 88775.244147) + 34127.2954262;
+    return ((et + TAI_OFFSET) / 88775.244147) + 34127.2954262;
 }
 
 inline mars_time_t __do_earth_time_to_mars_time(time_t et)
 {
     // martian seconds
-    return (mars_time_t) (__do_earth_time_to_msd(et) * 86400);
+    return (mars_time_t) (__do_earth_time_to_msd(et) * SECONDS_PER_DAY);
 }
 
 
@@ -28,7 +31,7 @@ time_t mars_time_to_earth_time(mars_time_t mars_time)
     double earth_time = (msd - 34127.2954262) * 88775.244147;
 
     // Subtract leap-second correction and cast to time_t (subtract first to match test expectations)
-    return (time_t) (earth_time - 37.0);
+    return (time_t) (earth_time - TAI_OFFSET);
 }
 
 mars_time_t earth_time_to_mars_time(time_t et)
@@ -75,19 +78,19 @@ mars_time_t mkmarstime(struct mars_tm* tm)
     mars_time_t leap_years = (mars_time_t) ((tm->mars_tm_year / 2) + ((tm->mars_tm_year - 1) / 10) - ((tm->mars_tm_year - 1) / 100) + ((tm->mars_tm_year - 1) / 1000));
 
     // 669 sols in a leap year, each sol has 86400 seconds
-    ret += (leap_years * 669 * 86400);
+    ret += (leap_years * 669 * SECONDS_PER_DAY);
 
     // and the non-leap years
-    ret += (tm->mars_tm_year - leap_years) * 668 * 86400;
+    ret += (tm->mars_tm_year - leap_years) * 668 * SECONDS_PER_DAY;
 
     // Months
     // So glibc has this thing where it looks up the amount of days before a month
     // and that is probably the strat.
-    ret += (__mon_ysol[tm->mars_tm_mon] * 86400);
+    ret += (__mon_ysol[tm->mars_tm_mon] * SECONDS_PER_DAY);
 
     // leap days are just the last day of the year if its a leap year which is actually convenient
     // so we don't have to worry about it here
-    ret += (tm->mars_tm_msol * 86400);
+    ret += (tm->mars_tm_msol * SECONDS_PER_DAY);
 
     // Hours: 1hr*60min*60sec
     ret += (tm->mars_tm_hour * 3600);
