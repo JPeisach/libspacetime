@@ -1,4 +1,7 @@
 #include <time.h>
+#include "../gettext.h"
+#include <libintl.h>
+#include <locale.h>
 
 typedef time_t mars_time_t;
 
@@ -14,6 +17,12 @@ struct mars_tm
     int mars_tm_year; /* Year, should be decent to just throw it in, as of writing the year is only 221. */
     int mars_tm_wsol; /* Sol of week, 0-6 */
     int mars_tm_ysol; /* Sol of year, 0-668 */
+};
+
+#define N_(STRING) gettext_noop(STRING)
+
+static const char* month_names[][24] = {
+    N_("Sagittarius"), N_("Dhanus"), N_("Capricornus"), N_("Makara"), N_("Aquarius"), N_("Kumbha"), N_("Pisces"), N_("Mina"), N_("Aries"), N_("Mesha"), N_("Taurus"), N_("Rishabha"), N_("Gemini"), N_("Mithuna"), N_("Cancer"), N_("Karka"), N_("Leo"), N_("Simha"), N_("Virgo"), N_("Kanya"), N_("Libra"), N_("Tula"), N_("Scorpius"), N_("Vrishika")
 };
 
 mars_time_t mars_time(mars_time_t*);

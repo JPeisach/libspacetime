@@ -1,0 +1,114 @@
+# English translations for libspacetime package.
+# Copyright (C) 2026 Free Software Foundation, Inc.
+# This file is distributed under the same license as the libspacetime package.
+# Joshua Peisach <jpeisach@ubuntu.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libspacetime 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-26 08:58-0400\n"
+"PO-Revision-Date: 2026-06-26 08:47-0400\n"
+"Last-Translator: Joshua Peisach <jpeisach@ubuntu.com>\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/mars/mars.h:25
+msgid "Sagittarius"
+msgstr "Sagittarius"
+
+#: src/mars/mars.h:25
+msgid "Dhanus"
+msgstr "Dhanus"
+
+#: src/mars/mars.h:25
+msgid "Capricornus"
+msgstr "Capricornus"
+
+#: src/mars/mars.h:25
+msgid "Makara"
+msgstr "Makara"
+
+#: src/mars/mars.h:25
+msgid "Aquarius"
+msgstr "Aquarius"
+
+#: src/mars/mars.h:25
+msgid "Kumbha"
+msgstr "Kumbha"
+
+#: src/mars/mars.h:25
+msgid "Pisces"
+msgstr "Pisces"
+
+#: src/mars/mars.h:25
+msgid "Mina"
+msgstr "Mina"
+
+#: src/mars/mars.h:25
+msgid "Aries"
+msgstr "Aries"
+
+#: src/mars/mars.h:25
+msgid "Mesha"
+msgstr "Mesha"
+
+#: src/mars/mars.h:25
+msgid "Taurus"
+msgstr "Taurus"
+
+#: src/mars/mars.h:25
+msgid "Rishabha"
+msgstr "Rishabha"
+
+#: src/mars/mars.h:25
+msgid "Gemini"
+msgstr "Gemini"
+
+#: src/mars/mars.h:25
+msgid "Mithuna"
+msgstr "Mithuna"
+
+#: src/mars/mars.h:25
+msgid "Cancer"
+msgstr "Cancer"
+
+#: src/mars/mars.h:25
+msgid "Karka"
+msgstr "Karka"
+
+#: src/mars/mars.h:25
+msgid "Leo"
+msgstr "Leo"
+
+#: src/mars/mars.h:25
+msgid "Simha"
+msgstr "Simha"
+
+#: src/mars/mars.h:25
+msgid "Virgo"
+msgstr "Virgo"
+
+#: src/mars/mars.h:25
+msgid "Kanya"
+msgstr "Kanya"
+
+#: src/mars/mars.h:25
+msgid "Libra"
+msgstr "Libra"
+
+#: src/mars/mars.h:25
+msgid "Tula"
+msgstr "Tula"
+
+#: src/mars/mars.h:25
+msgid "Scorpius"
+msgstr "Scorpius"
+
+#: src/mars/mars.h:25
+msgid "Vrishika"
+msgstr "Vrishika"

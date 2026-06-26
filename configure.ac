@@ -6,11 +6,17 @@ PACKAGE=libspacetime
 VERSION=0.0.0
 
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_PROG_CC
 PKG_PROG_PKG_CONFIG
 
-AC_CONFIG_FILES([Makefile src/Makefile])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.23.2])
+
+AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in])
 AC_CONFIG_FILES([src/libspacetime.pc])
 
 # Testing
