@@ -151,7 +151,7 @@ size_t __strfmarstime(char* restrict s, size_t count, const char* restrict forma
         if(outlen > count - i) outlen = count - i;
 
         // Copy the item to the string
-        memcpy(s + i, item, count);
+        memcpy(s + i, item, outlen);
 
         // Increase char index?
         i += outlen;
