@@ -1,0 +1,144 @@
+#include "mars.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// This will use musl's strftime, but with commented explanations so I can learn about what is happening.
+
+// Format an individual item
+// musl uses 100 for first argument length.
+const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const struct mars_tm *tm, int pad)
+{
+    int item;
+    const char *fmt = "-"; // musl defines this here.
+
+    // TODO: Continue
+    switch(op) {
+        // Abbreviated name of day
+        case 'a':
+            if (tm->mars_tm_wsol > 6) goto stringlen; // validity check?
+            fmt = abbreviated_day_names[tm->mars_tm_wsol];
+            goto stringlen;
+    }
+
+stringlen:
+    *len = strlen(fmt);
+    return fmt;
+
+    // TODO: It seems some operations go to strfmarstime again
+    return *str;
+}
+
+size_t strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm)
+{
+    int padding, plus;
+    char buf[100]; // we have our own buffer for some reason
+    char *p; // used as an "endpointer" in strtoul
+    unsigned long width; // musl uses an unsigned long for this type.
+    const char *item;
+    size_t outlen;
+    size_t i; // ???
+
+    // count -> Length of string object
+    // format++ -> goes to the next character of the string object (I learned this!) - in other language terms, its .substring(1, format.length())
+    for(i = 0; i < count; format++) {
+        // NULL check (format != NULL)
+        if(!*format) {
+            s[i] = 0;
+            return i; // number of bytes
+        }
+
+        if(*format != '%') {
+            // Non-operator character, copy it over.
+            s[i++] = *format;
+            continue;
+        }
+
+        // Move to next character (we have a %)
+        format++;
+
+        // Reset padding
+        padding = 0;
+
+        // Take the length of the separator character and add to padding?
+        if (*format == '-' || *format == '_' || *format == '0') padding = *format++;
+
+        // Zero padding (+) character
+        if ((plus = (*format == '+'))) format++;
+
+        // If given digit, determine how long the string will need to be (I'm assuming this is with the +)
+        if (isdigit(*format)) {
+            width = strtoul(format, &p, 10);
+        } else {
+            width = 0;
+            p = (void*)format; // this will be *some* character
+        }
+
+        // We only need two chars for these formats
+        if(*p == 'C' || *p == 'F' || *p == 'G' || *p == 'Y') {
+            // I'm guessing !width checks we don't already have something waiting (e.g. %GG)
+            if(!width && p != format) width = 1;
+        } else {
+            width = 0;
+        }
+
+        // Not sure what purpose of this is..
+        format = p;
+
+        // Two characters
+        if(*format == 'E' || *format == 'O') format++;
+
+        // Format an item
+        item = __strfmarstime_fmt_item(&buf, &outlen, *format, tm, padding);
+        if(!item) break; // if nothing, move on.
+
+        if(width) {
+            // From comment in musl code: "Trim off any sign and leading zeroes, then count remaining digits to determine behavior fot the + flag."
+
+            // Go through next characters of item - remove it from final len
+            if(*item == '+' || *item == '-') item++, outlen--;
+
+            // Count zeroes?
+            for(; *item == '0' && item[1] - '0' < 10U; item++, outlen--);
+
+            if(width < outlen) width = outlen;
+
+            // Count digits
+            size_t d;
+            for(d = 0; item[d] - '0' < 10U; d++);
+            if(tm->mars_tm_year < 0) {
+                // TODO: Is this needed? In musl this checks if < -1900 (should always be false.)
+                // My guess is that this inserts negative year values
+                s[i++] = '-';
+                width--;
+            } else if(plus && d + (width - outlen) >= (*p == 'C' ? 3 : 5)) {  // Century number is a two digit number, if that's what this is?
+                s[i++] = '+';
+                width--;
+            }
+            for(; width > outlen && i < count; width--) {
+                // Add zeroes?
+                s[i++] = '0';
+            }
+        }
+
+        // i'm guessing another length fix?
+        if(outlen > count - i) outlen = count - i;
+
+        // Copy the item to the string
+        memcpy(s + i, item, count);
+
+        // Increase char index?
+        i += outlen;
+    }
+
+    if(count) {
+        // Determine final str length
+        if(i == count) i = count - 1;
+
+        // Terminating char
+        s[i] = 0;
+    }
+
+    return 0;
+}

@@ -22,12 +22,23 @@ struct mars_tm
 #include <locale.h>
 
 #define N_(STRING) gettext_noop(STRING)
+#else
+#define N_(STRING) STRING
+#endif
 
-static const char* month_names[][24] = {
+// TODO: Gettext strings will have this as an array for accessing the different locales, maybe?
+static const char* month_names[][11] = {
     N_("Sagittarius"), N_("Dhanus"), N_("Capricornus"), N_("Makara"), N_("Aquarius"), N_("Kumbha"), N_("Pisces"), N_("Mina"), N_("Aries"), N_("Mesha"), N_("Taurus"), N_("Rishabha"), N_("Gemini"), N_("Mithuna"), N_("Cancer"), N_("Karka"), N_("Leo"), N_("Simha"), N_("Virgo"), N_("Kanya"), N_("Libra"), N_("Tula"), N_("Scorpius"), N_("Vrishika")
 };
 
-#endif
+static const char* day_names[][8] = {
+    N_("Solis"), N_("Lunae"), N_("Martis"), N_("Mercurii"), N_("Jovis"), N_("Veneris"), N_("Saturni")
+};
+
+static const char* abbreviated_day_names[7] = {
+    N_("So"), N_("Lu"), N_("Ma"), N_("Me"), N_("Jo"), N_("Ve"), N_("Sa")
+};
+
 
 mars_time_t mars_time(mars_time_t*);
 time_t mars_time_to_earth_time(mars_time_t);
@@ -39,3 +50,5 @@ double diffmarstime(mars_time_t, mars_time_t);
 struct mars_tm* ammarstime(const mars_time_t*);
 
 mars_time_t mkmarstime(struct mars_tm*);
+
+size_t strfmarstime(char* restrict, size_t, const char* restrict, const struct mars_tm* restrict);
