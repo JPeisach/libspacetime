@@ -18,7 +18,9 @@ size_t __strfmarstime(char* restrict s, size_t count, const char* restrict forma
 const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const struct mars_tm *tm, locale_t locale, int pad)
 {
     int item;
+    long long val;
     const char *fmt = "-"; // musl defines this here.
+    int width = 2, def_pad = '0';
 
     // TODO: Continue
     switch(op) {
@@ -53,7 +55,25 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             // fmt will go a strfmarstime call (think of c as an alias for other formats)
             fmt = nl_langinfo_l(D_T_FMT, locale);
             goto to_strfmarstime;
+
+        // Current century as 2-digit integers
+        case 'C':
+            val = (tm->mars_tm_year / 100);
+            goto number;
     }
+
+number:
+    // Handle padding
+    switch(pad ? pad : def_pad) {
+        case '-':
+            *len = snprintf(*str, sizeof *str, "%lld", val); break;
+        case '_':
+            *len = snprintf(*str, sizeof *str, "%*lld", width, val); break;  // Padding by the width variable
+        case '0':
+        default:
+            *len = snprintf(*str, sizeof *str, "%0*lld", width, val); break;  // Zero padding
+    }
+    return *str;
 
 stringlen:
     *len = strlen(fmt);
