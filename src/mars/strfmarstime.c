@@ -47,11 +47,22 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             if(tm->mars_tm_mon > 23) goto stringlen;
             fmt = month_names[tm->mars_tm_mon];
             goto stringlen;
+
+        // Preferred date and time from locale
+        case 'c':
+            // fmt will go a strfmarstime call (think of c as an alias for other formats)
+            fmt = nl_langinfo_l(D_T_FMT, locale);
+            goto to_strfmarstime;
     }
 
 stringlen:
     *len = strlen(fmt);
     return fmt;
+
+to_strfmarstime:
+    *len = __strfmarstime(*str, sizeof(*str), fmt, tm, locale);
+    if(!*len) return 0;
+    return *str;
 }
 
 size_t __strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm, locale_t locale)
@@ -172,7 +183,7 @@ size_t strfmarstime(char* restrict s, size_t count, const char* restrict format,
 {
     // Use this to get the locale
     // TODO: Is there a better way to do this?
-    locale_t locale = newlocale(LC_ALL, NULL, NULL);
+    locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, NULL), NULL);
     size_t ret = __strfmarstime(s, count, format, tm, locale);
     freelocale(locale);
     return ret;
