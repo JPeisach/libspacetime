@@ -1,14 +1,21 @@
 #include "mars.h"
 #include <ctype.h>
+#include <langinfo.h>
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// Implicit function declaration fix
+size_t __strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm, locale_t locale);
+
 // This will use musl's strftime, but with commented explanations so I can learn about what is happening.
+
 
 // Format an individual item
 // musl uses 100 for first argument length.
-const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const struct mars_tm *tm, int pad)
+// TODO: do we need to call nl_langinfo for each?
+const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const struct mars_tm *tm, locale_t locale, int pad)
 {
     int item;
     const char *fmt = "-"; // musl defines this here.
@@ -45,12 +52,9 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 stringlen:
     *len = strlen(fmt);
     return fmt;
-
-    // TODO: It seems some operations go to strfmarstime again
-    return *str;
 }
 
-size_t strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm)
+size_t __strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm, locale_t locale)
 {
     int padding, plus;
     char buf[100]; // we have our own buffer for some reason
@@ -111,7 +115,7 @@ size_t strfmarstime(char* restrict s, size_t count, const char* restrict format,
         if(*format == 'E' || *format == 'O') format++;
 
         // Format an item
-        item = __strfmarstime_fmt_item(&buf, &outlen, *format, tm, padding);
+        item = __strfmarstime_fmt_item(&buf, &outlen, *format, tm, locale, padding);
         if(!item) break; // if nothing, move on.
 
         if(width) {
@@ -162,4 +166,14 @@ size_t strfmarstime(char* restrict s, size_t count, const char* restrict format,
     }
 
     return 0;
+}
+
+size_t strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm)
+{
+    // Use this to get the locale
+    // TODO: Is there a better way to do this?
+    locale_t locale = newlocale(LC_ALL, NULL, NULL);
+    size_t ret = __strfmarstime(s, count, format, tm, locale);
+    freelocale(locale);
+    return ret;
 }
