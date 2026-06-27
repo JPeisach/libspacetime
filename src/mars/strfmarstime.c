@@ -20,6 +20,26 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             if (tm->mars_tm_wsol > 6) goto stringlen; // validity check?
             fmt = abbreviated_day_names[tm->mars_tm_wsol];
             goto stringlen;
+
+        // Full name of day
+        case 'A':
+            if (tm->mars_tm_wsol > 6) goto stringlen;
+            fmt = day_names[tm->mars_tm_wsol];
+            goto stringlen;
+
+
+        // Abbreviated month name
+        case 'h': // Equal to b
+        case 'b':
+            if(tm->mars_tm_mon > 23) goto stringlen;
+            fmt = abbreviated_month_names[tm->mars_tm_mon];
+            goto stringlen;
+
+        // Full name of month
+        case 'B':
+            if(tm->mars_tm_mon > 23) goto stringlen;
+            fmt = month_names[tm->mars_tm_mon];
+            goto stringlen;
     }
 
 stringlen:
@@ -40,6 +60,7 @@ size_t strfmarstime(char* restrict s, size_t count, const char* restrict format,
     size_t outlen;
     size_t i; // ???
 
+    // TODO: If count is too high (like, much higher than end length of str), we are SIGABRT'ing
     // count -> Length of string object
     // format++ -> goes to the next character of the string object (I learned this!) - in other language terms, its .substring(1, format.length())
     for(i = 0; i < count; format++) {
