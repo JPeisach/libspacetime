@@ -84,7 +84,12 @@ AT_CLEANUP
 
 AT_SETUP(%c: date and time formatted according to locale: Year-Month-Day style)
 AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Oh, it turns out there are many different versions of this format. Great.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [205. Mak. 4., Mercurii, 09:06:07 MTC], [])
+AT_CLEANUP
 
-# TODO: Figure out the appropriate response
-AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [Me 205 04 205 09:06:07], [])
+# I say "Freedom format" in a satirical way
+# TODO: Failing until week number specifier is fixed and I can find the proper value.
+AT_SETUP(%c: date and time formatted according to locale: Freedom format style)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [], [])
 AT_CLEANUP
