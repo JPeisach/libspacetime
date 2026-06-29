@@ -4,6 +4,7 @@ libspacetime_la_SOURCES = earth.c \
     earth.h \
     mars/mars.h \
     mars/mars_time.c \
+    mars/__mars_tm_to_secs.c \
     mars/diffmarstime.c \
     mars/mkmarstime.c \
     mars/ammarstime.c \
