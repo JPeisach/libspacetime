@@ -93,3 +93,17 @@ AT_SETUP(%c: date and time formatted according to locale: Freedom format style)
 AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
 AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [], [])
 AT_CLEANUP
+
+
+
+AT_SETUP(%C: century: year 0)
+AT_CHECK([mars_strfmarstime_century_y0], [0], [00], [])
+AT_CLEANUP
+
+AT_SETUP(%C: century: year 100)
+AT_CHECK([mars_strfmarstime_century_y100], [0], [01], [])
+AT_CLEANUP
+
+AT_SETUP(%C: century: year 1000)
+AT_CHECK([mars_strfmarstime_century_y1000], [0], [10], [])
+AT_CLEANUP

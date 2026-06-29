@@ -11,6 +11,9 @@ check_PROGRAMS = mars_time \
     mars_mkmarstime_y2038 \
     mars_mkmarstime_y2038_post \
     mars_mkmarstime_y2038_pre \
+    mars_strfmarstime_century_y0 \
+    mars_strfmarstime_century_y100 \
+    mars_strfmarstime_century_y1000 \
     mars_strfmarstime_solnames_abbreviated \
     mars_strfmarstime_solnames \
     mars_strfmarstime_monthnames_abbreviated \
@@ -35,7 +38,9 @@ mars_mkmarstime_y2038_SOURCES = mars/mkmarstime/y2038.c
 mars_mkmarstime_y2038_post_SOURCES = mars/mkmarstime/y2038_post.c
 mars_mkmarstime_y2038_pre_SOURCES = mars/mkmarstime/y2038_pre.c
 
-
+mars_strfmarstime_century_y0_SOURCES = mars/strfmarstime/century_y0.c
+mars_strfmarstime_century_y100_SOURCES = mars/strfmarstime/century_y100.c
+mars_strfmarstime_century_y1000_SOURCES = mars/strfmarstime/century_y1000.c
 
 mars_strfmarstime_solnames_abbreviated_SOURCES = mars/strfmarstime/solnames_abbreviated.c
 mars_strfmarstime_solnames_SOURCES = mars/strfmarstime/solnames.c
