@@ -122,6 +122,23 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 
         // TODO: %O modifier
 
+        // %p - AM or PM
+        // TODO: %P, which is the same but in lowercase (need to find a way to do it with const char*)
+        case 'p':
+            fmt = nl_langinfo_l(tm->mars_tm_hour >= 12 ? PM_STR : AM_STR, locale);
+            goto stringlen;
+
+        // %r - "a.m. or p.m. notation"
+        case 'r':
+            // Also goes to strfmarstime call
+            fmt = nl_langinfo_l(T_FMT_AMPM, locale);
+            goto to_strfmarstime;
+
+        // Time in 24hr notation (%H:%M)
+        case 'R':
+            fmt = "%H:%M";
+            goto to_strfmarstime;
+
     }
 
 number:
