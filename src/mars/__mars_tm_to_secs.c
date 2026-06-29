@@ -12,7 +12,7 @@ const int __mon_ysol[24] =
          418, 446, 474, 501, 529, 557, 585,
          613, 641};
 
-mars_time_t __mars_tm_to_secs(struct mars_tm* tm)
+mars_time_t __mars_tm_to_secs(const struct mars_tm* tm)
 {
     mars_time_t ret = 0;
 

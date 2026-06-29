@@ -1,4 +1,4 @@
-#include "mars.h"
+#include "mars_time_impl.h"
 #include <ctype.h>
 #include <langinfo.h>
 #include <locale.h>
@@ -166,6 +166,15 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             fmt = "%H:%M";
             goto to_strfmarstime;
 
+        // Martian Seconds since the Unix epoch.
+        // FIXME: For now, will do time since the 1970-01-01 epoch, but in the future.. who knows. MSD 0 may be more relevant?
+        case 's':
+            // Says internally calculated from mk(mars)time.. do this for now
+            // TODO: Timezones
+            val = __mars_tm_to_secs(tm) - 2948598360;
+            // Set width
+            width = 1;
+            goto number;
     }
 
 number:
