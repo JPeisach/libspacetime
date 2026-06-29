@@ -388,8 +388,8 @@ size_t __strfmarstime(char* restrict s, size_t count, const char* restrict forma
 size_t strfmarstime(char* restrict s, size_t count, const char* restrict format, const struct mars_tm* restrict tm)
 {
     // Use this to get the locale
-    // TODO: Is there a better way to do this?
-    locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, NULL), NULL);
+    locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, ""), NULL);
+
     size_t ret = __strfmarstime(s, count, format, tm, locale);
     freelocale(locale);
     return ret;
