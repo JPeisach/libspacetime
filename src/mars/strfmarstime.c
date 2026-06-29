@@ -76,6 +76,52 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
         case 'F':
             fmt = "%Y-%m-%d";
             goto to_strfmarstime;
+
+        // ISO 8601 week-based year with century as a decimal number ("g" -> 2 digits).
+        case 'g':
+        case 'G':
+            // TODO: Unimplemented for now.
+            goto stringlen;
+
+        // Hour using a 24 hr clock
+        // TODO: %k
+        case 'H':
+            val = tm->mars_tm_hour;
+            goto number;
+
+        // Hour using 12 hr clock
+        // TODO: %l
+        case 'I':
+            // AI suggested using modulus.. would be fine except 12:00 would go to 0
+            val = tm->mars_tm_hour;
+            if(val == 0) val = 12;
+            else if(val > 12) val -= 12;
+            goto number;
+
+        // Sol of year
+        case 'j':
+            // TODO: musl adds +1 to this counter. Figure out if we need to do the same.
+            val = tm->mars_tm_ysol;
+            goto number;
+
+        // Month
+        case 'm':
+            val = tm->mars_tm_mon;
+            goto number;
+
+        // Minute
+        case 'M':
+            val = tm->mars_tm_min;
+            goto number;
+
+        // Newline
+        case 'n':
+            // musl sets the length to 1 and just returns "\n". After all, we are done formatting.
+            *len = 1;
+            return "\n";
+
+        // TODO: %O modifier
+
     }
 
 number:
