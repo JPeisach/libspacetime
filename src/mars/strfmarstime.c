@@ -60,6 +60,22 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
         case 'C':
             val = (tm->mars_tm_year / 100);
             goto number;
+
+        case 'e': // same but with space leading 0
+        case 'd': // Day of month
+            val = tm->mars_tm_msol;
+            goto number;
+
+        // %m/%d/%y
+        case 'D':
+            fmt = "%m/%d/%y";
+            goto to_strfmarstime;
+
+        // TODO: %E
+        // %Y-%m-%d
+        case 'F':
+            fmt = "%Y-%m-%d";
+            goto to_strfmarstime;
     }
 
 number:
