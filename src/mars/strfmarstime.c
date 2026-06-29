@@ -175,6 +175,77 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             // Set width
             width = 1;
             goto number;
+
+        // Martian seconds as decimal number
+        case 'S':
+            val = tm->mars_tm_sec;
+            goto number;
+
+        // Tab character
+        case 't':
+            // Same idea as \n
+            *len = 1;
+            return "\t";
+
+        // Hour:Minute:Seconds format!
+        case 'T':
+            fmt = "%H:%M:%S";
+            goto to_strfmarstime;
+
+        // Day of week as decimal - Monday (Lunae) being 1
+        case 'u':
+            // Range from 1 to 7, not 0 to 6
+            // Monday (Lunae) is 1, Sunday (Solis) is 7
+            // Taking musl's strategy
+            val = tm->mars_tm_wsol ? tm->mars_tm_wsol : 7;
+            width = 1;
+            goto number;
+
+        // FIXME: Testing needed. These all have similar specifiers.
+        // TODO: Meet these weird implementations
+        // U: Week number of current year as a decimal - Sunday (in this case, Solis) is first day
+        // V: ISO 8601 week number, where week 1 is first week of year with at least 4 days? (TODO: Find this edge case)
+        // W: Week number of current year as a decimal - where Monday is first day (Sol Lunae)
+        case 'U':
+        case 'V':
+        case 'W':
+            val = tm->mars_tm_ysol / 7;
+            goto number;
+
+        // Day of week, with Sunday (Solis) being 0 (see %u)
+        case 'w':
+            val = tm->mars_tm_wsol;
+            width = 1;
+            goto number;
+
+        // Preferred date for current locale without time
+        case 'x':
+            fmt = nl_langinfo_l(D_FMT, locale);
+            goto to_strfmarstime;
+
+        // Preferred time for current locale without date
+        case 'X':
+            fmt = nl_langinfo_l(T_FMT, locale);
+            goto to_strfmarstime;
+
+        // Year as decimal without century
+        case 'y':
+            val = tm->mars_tm_year % 100;
+            goto number;
+
+        // Year as decimal including century
+        case 'Y':
+            // FIXME: handle years above 999
+            val = tm->mars_tm_year;
+            width = 3; // for now.. :)
+            goto number;
+
+        // TODO: %z, %Z modifier (timezones)
+
+        // Your good old % character.
+        case '%':
+            *len = 1;
+            return "%";
     }
 
 number:
