@@ -11,7 +11,10 @@ check_PROGRAMS = mars_time \
     mars_mkmarstime_y2038 \
     mars_mkmarstime_y2038_post \
     mars_mkmarstime_y2038_pre \
-    mars_strfmarstime_solnames_abbreviated
+    mars_strfmarstime_solnames_abbreviated \
+    mars_strfmarstime_solnames \
+    mars_strfmarstime_monthnames_abbreviated \
+    mars_strfmarstime_monthnames
 
 mars_time_SOURCES = mars/time.c
 
@@ -34,6 +37,10 @@ mars_mkmarstime_y2038_pre_SOURCES = mars/mkmarstime/y2038_pre.c
 
 
 mars_strfmarstime_solnames_abbreviated_SOURCES = mars/strfmarstime/solnames_abbreviated.c
+mars_strfmarstime_solnames_SOURCES = mars/strfmarstime/solnames.c
+
+mars_strfmarstime_monthnames_abbreviated_SOURCES = mars/strfmarstime/monthnames_abbreviated.c
+mars_strfmarstime_monthnames_SOURCES = mars/strfmarstime/monthnames.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 
