@@ -55,3 +55,8 @@ AT_BANNER(diffmarstime)
 AT_SETUP(Length of one sol: 86400 seconds)
 AT_CHECK([mars_diffmarstime_onesol], [0], [Length of one sol: 86400.000000], [])
 AT_CLEANUP
+
+AT_BANNER(strfmarstime)
+AT_SETUP(%a: abbreviated weekday name)
+AT_CHECK([mars_strfmarstime_solnames_abbreviated], [0], [So Lu Ma Me Jo Ve Sa ], [])
+AT_CLEANUP
