@@ -88,7 +88,8 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             val = (tm->mars_tm_year / 100);
             goto number;
 
-        case 'e': // same but with space leading 0
+        case 'e': // same but with space instead of leading 0
+            def_pad = '_';
         case 'd': // Day of month
             val = tm->mars_tm_msol;
             goto number;

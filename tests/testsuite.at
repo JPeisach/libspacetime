@@ -107,3 +107,11 @@ AT_CLEANUP
 AT_SETUP(%C: century: year 1000)
 AT_CHECK([mars_strfmarstime_century_y1000], [0], [10], [])
 AT_CLEANUP
+
+AT_SETUP(%d: sol of month)
+AT_CHECK([mars_strfmarstime_sol_of_month], [0], [03 20], [])
+AT_CLEANUP
+
+AT_SETUP(%e: sol of month)
+AT_CHECK([mars_strfmarstime_sol_of_month_spacelz], [0], [ 3 20], [])
+AT_CLEANUP
