@@ -132,8 +132,9 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 
         // Sol of year
         case 'j':
-            // TODO: musl adds +1 to this counter. Figure out if we need to do the same.
-            val = tm->mars_tm_ysol;
+            // +1 seems to always be added.
+            val = tm->mars_tm_ysol + 1;
+            width = 3;
             goto number;
 
         // Month
