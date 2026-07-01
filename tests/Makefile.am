@@ -31,6 +31,8 @@ check_PROGRAMS = mars_time \
     mars_strfmarstime_month_padding \
     mars_strfmarstime_seconds_padding \
     mars_strfmarstime_newline \
+    mars_strfmarstime_weeknumbers_U \
+    mars_strfmarstime_weeknumbers_W \
     mars_strfmarstime_tab \
     mars_strfmarstime_percent
 
@@ -80,6 +82,9 @@ mars_strfmarstime_12hours_SOURCES = mars/strfmarstime/12hours.c
 mars_strfmarstime_sol_of_year_padding_SOURCES = mars/strfmarstime/sol_of_year_padding.c
 mars_strfmarstime_month_padding_SOURCES = mars/strfmarstime/month_padding.c
 mars_strfmarstime_seconds_padding_SOURCES = mars/strfmarstime/seconds_padding.c
+
+mars_strfmarstime_weeknumbers_U_SOURCES = mars/strfmarstime/weeknumbers_U.c
+mars_strfmarstime_weeknumbers_W_SOURCES = mars/strfmarstime/weeknumbers_W.c
 
 mars_strfmarstime_newline_SOURCES = mars/strfmarstime/newline.c
 mars_strfmarstime_tab_SOURCES = mars/strfmarstime/tab.c

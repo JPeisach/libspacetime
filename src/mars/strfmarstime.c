@@ -52,6 +52,8 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
     long long val;
     const char *fmt = "-"; // musl defines this here.
     int width = 2, def_pad = '0';
+    int realigned_ysol;
+    int seasons_passed;
 
     // TODO: Continue
     switch(op) {
@@ -207,15 +209,39 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             width = 1;
             goto number;
 
-        // FIXME: Testing needed. These all have similar specifiers.
-        // TODO: Meet these weird implementations
-        // U: Week number of current year as a decimal - Sunday (in this case, Solis) is first day
-        // V: ISO 8601 week number, where week 1 is first week of year with at least 4 days? (TODO: Find this edge case)
-        // W: Week number of current year as a decimal - where Monday is first day (Sol Lunae)
+        // Week number calculations
+        // U: Week number of current year as a decimal - Sunday (in this case, Solis) is first day of week 1. Range 01 to 95
+        // V: ISO 8601 week number, where week 1 is first week of year with at least 4 days. Range 01 to 95, but we don't need to wait for first week of Gregorian year so it's the same
+        // The week is restarted at the first sol of the month, so these are the same.
         case 'U':
         case 'V':
+            // At the end of each season, we actually loose a day.
+            // The spec says to calculate from ysol.
+            // So we need to modulo the year by the amount of days in a season
+            // to just align to one season. Also make sure we add amt of weeks per season.
+
+            // With that in mind, on leap days: 668 divides into 4 and 167, which gets us to 96. This will be constant
+            if(tm->mars_tm_ysol == 668) {
+                val = 96; goto number;
+            }
+
+            realigned_ysol = tm->mars_tm_ysol % 167;
+            seasons_passed = tm->mars_tm_ysol / 167;
+            // so if you are at day 167, that would be 1 Pisces.
+
+            val = (seasons_passed * 24) + (realigned_ysol / 7) + 1;
+            goto number;
+
+        // W: Week number of current year as a decimal - where Monday is first day of week 1 (Sol Lunae)
+        // Same as above, but shift one day over. First day of Sagittarius is Solis - week after that will still be "1" and should switch to "2" on the 8th
+        // FIXME: May still be incorrect.. do more checking
         case 'W':
-            val = tm->mars_tm_ysol / 7;
+            if(tm->mars_tm_ysol == 668) {
+                val = 96; goto number;
+            }
+            realigned_ysol = tm->mars_tm_ysol % 167;
+            seasons_passed = tm->mars_tm_ysol / 167;
+            val = (seasons_passed * 24) + ((realigned_ysol - 1) / 7) + 1;
             goto number;
 
         // Day of week, with Sunday (Solis) being 0 (see %u)
