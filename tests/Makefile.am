@@ -19,12 +19,17 @@ check_PROGRAMS = mars_time \
     mars_strfmarstime_monthnames_abbreviated \
     mars_strfmarstime_monthnames \
     mars_strfmarstime_locale_d_t_fmt \
+    mars_strfmarstime_locale_am_pm \
+    mars_strfmarstime_locale_ampm_fmt \
     mars_strfmarstime_sol_of_month \
     mars_strfmarstime_sol_of_month_spacelz \
     mars_strfmarstime_24hours \
     mars_strfmarstime_12hours \
     mars_strfmarstime_sol_of_year_padding \
-    mars_strfmarstime_month_padding
+    mars_strfmarstime_month_padding \
+    mars_strfmarstime_seconds_padding \
+    mars_strfmarstime_newline \
+    mars_strfmarstime_tab
 
 mars_time_SOURCES = mars/time.c
 
@@ -55,6 +60,9 @@ mars_strfmarstime_monthnames_abbreviated_SOURCES = mars/strfmarstime/monthnames_
 mars_strfmarstime_monthnames_SOURCES = mars/strfmarstime/monthnames.c
 
 mars_strfmarstime_locale_d_t_fmt_SOURCES = mars/strfmarstime/locale_d_t_fmt.c
+mars_strfmarstime_locale_am_pm_SOURCES = mars/strfmarstime/locale_am_pm.c
+mars_strfmarstime_locale_ampm_fmt_SOURCES = mars/strfmarstime/locale_ampm_fmt.c
+
 
 mars_strfmarstime_sol_of_month_SOURCES = mars/strfmarstime/sol_of_month.c
 mars_strfmarstime_sol_of_month_spacelz_SOURCES = mars/strfmarstime/sol_of_month_spacelz.c
@@ -62,8 +70,13 @@ mars_strfmarstime_sol_of_month_spacelz_SOURCES = mars/strfmarstime/sol_of_month_
 mars_strfmarstime_24hours_SOURCES = mars/strfmarstime/24hours.c
 mars_strfmarstime_12hours_SOURCES = mars/strfmarstime/12hours.c
 
+# hour padding is included in 24hours test
 mars_strfmarstime_sol_of_year_padding_SOURCES = mars/strfmarstime/sol_of_year_padding.c
 mars_strfmarstime_month_padding_SOURCES = mars/strfmarstime/month_padding.c
+mars_strfmarstime_seconds_padding_SOURCES = mars/strfmarstime/seconds_padding.c
+
+mars_strfmarstime_newline_SOURCES = mars/strfmarstime/newline.c
+mars_strfmarstime_tab_SOURCES = mars/strfmarstime/tab.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 

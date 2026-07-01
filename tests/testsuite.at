@@ -112,7 +112,7 @@ AT_SETUP(%d: sol of month)
 AT_CHECK([mars_strfmarstime_sol_of_month], [0], [03 20], [])
 AT_CLEANUP
 
-AT_SETUP(%e: sol of month)
+AT_SETUP(%e: sol of month (no leading zero))
 AT_CHECK([mars_strfmarstime_sol_of_month_spacelz], [0], [ 3 20], [])
 AT_CLEANUP
 
@@ -130,4 +130,54 @@ AT_CLEANUP
 
 AT_SETUP(%m: Month padding)
 AT_CHECK([mars_strfmarstime_month_padding], [0], [01 10], [])
+AT_CLEANUP
+
+
+
+AT_SETUP(%p: AM/PM formatting according to locale: All caps version)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_strfmarstime_locale_am_pm], [0], [AM PM], [])
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: All lowercase version)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_GB.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_GB.utf8" mars_strfmarstime_locale_am_pm], [0], [am pm], [])
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: Punctuated version)
+AT_SKIP_IF([if locale -a | grep -Fxq "es_ES.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_strfmarstime_locale_am_pm], [0], [a. m. p. m.], []) # FIXME: What's with this weird space character?
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: None)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strfmarstime_locale_am_pm], [0], [ ], [])
+AT_CLEANUP
+
+
+
+AT_SETUP(%r: Time formatting according to locale: 12-hr)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_strfmarstime_locale_ampm_fmt], [0], [12:00:00 AM 12:00:00 PM], [])
+AT_CLEANUP
+
+AT_SETUP(%r: Time formatting according to locale: 24-hr)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strfmarstime_locale_ampm_fmt], [0], [00:00:00 12:00:00], [])
+AT_CLEANUP
+
+
+AT_SETUP(%S: Seconds padding)
+AT_CHECK([mars_strfmarstime_seconds_padding], [0], [00 10], [])
+AT_CLEANUP
+
+# If %H, %M, %S are correct, %T will be correct.
+
+AT_SETUP(%n: Newline character)
+AT_CHECK([mars_strfmarstime_newline], [0], [
+], [])
+AT_CLEANUP
+
+AT_SETUP(%t: Tab character)
+AT_CHECK([mars_strfmarstime_tab], [0], [	], [])
 AT_CLEANUP
