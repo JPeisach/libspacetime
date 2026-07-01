@@ -139,7 +139,7 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 
         // Month
         case 'm':
-            val = tm->mars_tm_mon;
+            val = tm->mars_tm_mon + 1;
             goto number;
 
         // Minute

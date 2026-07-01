@@ -125,5 +125,9 @@ AT_CHECK([mars_strfmarstime_12hours], [0], [12 01], [])
 AT_CLEANUP
 
 AT_SETUP(%j: Sol of year padding)
-AT_CHECK([mars_strfmarstime_sol_of_year_padding], [0], [000 010 100], [])
+AT_CHECK([mars_strfmarstime_sol_of_year_padding], [0], [001 010 100], [])
+AT_CLEANUP
+
+AT_SETUP(%m: Month padding)
+AT_CHECK([mars_strfmarstime_month_padding], [0], [01 10], [])
 AT_CLEANUP
