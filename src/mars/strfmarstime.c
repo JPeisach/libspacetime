@@ -6,6 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef MACOS
+#include <xlocale.h>
+#endif
+
 #ifdef ENABLE_NLS
 #include "../gettext.h"
 #include <libintl.h>

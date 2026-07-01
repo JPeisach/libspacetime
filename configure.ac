@@ -16,6 +16,12 @@ PKG_PROG_PKG_CONFIG
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.23.2])
 
+case "$host_os" in
+  darwin*)
+    AC_DEFINE([MACOS], [1], [Define if building on macOS])
+    ;;
+esac
+
 AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in])
 AC_CONFIG_FILES([src/libspacetime.pc])
 
