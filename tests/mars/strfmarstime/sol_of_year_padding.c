@@ -4,13 +4,13 @@
 int main()
 {
     struct mars_tm tm_day1;
-    tm_day1.mars_tm_msol = 0;
+    tm_day1.mars_tm_ysol = 0;
 
     struct mars_tm tm_day10;
-    tm_day10.mars_tm_msol = 9;
+    tm_day10.mars_tm_ysol = 9;
 
     struct mars_tm tm_day100;
-    tm_day100.mars_tm_msol = 99;
+    tm_day100.mars_tm_ysol = 99;
 
     char str[10];
     strfmarstime(str, sizeof(str), "%j", &tm_day1);
