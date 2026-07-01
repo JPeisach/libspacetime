@@ -190,7 +190,7 @@ AT_CHECK([mars_strfmarstime_weeknumbers_U], [0], [01 01 02 02 24 25 49 96], [])
 AT_CLEANUP
 
 AT_SETUP(%W: Week number)
-AT_CHECK([mars_strfmarstime_weeknumbers_W], [0], [00 01 01 01 23 24 48 96], [])
+AT_CHECK([mars_strfmarstime_weeknumbers_W], [0], [00 01 01 02 24 24 48 96], [])
 AT_CLEANUP
 
 

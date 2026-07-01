@@ -43,6 +43,7 @@ int main()
     printf("%s ", str);
 
     // Ensure we can modulate once...
+    // For %W we are still in the 24th week
     struct mars_tm firstPisces;
     firstPisces.mars_tm_ysol = 167;
     firstPisces.mars_tm_wsol = 0;

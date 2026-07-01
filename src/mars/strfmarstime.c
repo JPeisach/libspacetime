@@ -234,13 +234,25 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 
         // W: Week number of current year as a decimal - where Monday is first day of week 1 (Sol Lunae)
         // Same as above, but shift one day over. First day of Sagittarius is Solis - week after that will still be "1" and should switch to "2" on the 8th
-        // FIXME: May still be incorrect.. do more checking
+        // TODO: Optimize
         case 'W':
+            // Elbow cases
+            if(tm->mars_tm_ysol == 0) {
+                // Not Monday (Lunae)
+                val = 0; goto number;
+            }
             if(tm->mars_tm_ysol == 668) {
                 val = 96; goto number;
             }
+
             realigned_ysol = tm->mars_tm_ysol % 167;
             seasons_passed = tm->mars_tm_ysol / 167;
+            if(realigned_ysol == 0) {
+                // First day of the season, which is always Lunae
+                val = (seasons_passed * 24);
+                goto number;
+            }
+
             val = (seasons_passed * 24) + ((realigned_ysol - 1) / 7) + 1;
             goto number;
 
