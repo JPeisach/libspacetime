@@ -274,6 +274,7 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
 
         // Year as decimal without century
         case 'y':
+            // FIXME: handle negatives???
             val = tm->mars_tm_year % 100;
             goto number;
 

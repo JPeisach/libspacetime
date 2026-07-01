@@ -241,6 +241,14 @@ AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_strfmarstime_locale_t_fmt_24h], [0],
 AT_CLEANUP
 
 
+AT_SETUP(%y: Year without century)
+AT_CHECK([mars_strfmarstime_year_without_century], [0], [03 34 45], [])
+AT_CLEANUP
+
+AT_SETUP(%Y: Year with century)
+AT_CHECK([mars_strfmarstime_year_with_century], [0], [003 034 345], [])
+AT_CLEANUP
+
 AT_SETUP(%n: Newline character)
 AT_CHECK([mars_strfmarstime_newline], [0], [
 ], [])
