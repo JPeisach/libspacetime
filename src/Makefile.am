@@ -8,7 +8,8 @@ libspacetime_la_SOURCES = earth.c \
     mars/diffmarstime.c \
     mars/mkmarstime.c \
     mars/ammarstime.c \
-    mars/strfmarstime.c
+    mars/strfmarstime.c \
+    mars/strpmarstime.c
 
 libspacetime_la_includedir=$(includedir)/libspacetime
 libspacetime_la_include_HEADERS = earth.h \

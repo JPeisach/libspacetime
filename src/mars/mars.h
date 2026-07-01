@@ -28,3 +28,4 @@ struct mars_tm* ammarstime(const mars_time_t*);
 mars_time_t mkmarstime(struct mars_tm*);
 
 size_t strfmarstime(char* restrict, size_t, const char* restrict, const struct mars_tm* restrict);
+char* strpmarstime(const char *restrict, const char *restrict, struct mars_tm *restrict);
