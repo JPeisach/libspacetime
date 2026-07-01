@@ -173,6 +173,18 @@ AT_CLEANUP
 
 # If %H, %M, %S are correct, %T will be correct.
 
+
+
+AT_SETUP(%u: Sol name numbers: Lunae being 1)
+AT_CHECK([mars_strfmarstime_solnames_numbers_u], [0], [7 1 2 3 4 5 6 ], [])
+AT_CLEANUP
+
+AT_SETUP(%w: Sol name numbers: Solis being 0)
+AT_CHECK([mars_strfmarstime_solnames_numbers_w], [0], [0 1 2 3 4 5 6 ], [])
+AT_CLEANUP
+
+
+
 AT_SETUP(%n: Newline character)
 AT_CHECK([mars_strfmarstime_newline], [0], [
 ], [])
@@ -180,4 +192,8 @@ AT_CLEANUP
 
 AT_SETUP(%t: Tab character)
 AT_CHECK([mars_strfmarstime_tab], [0], [	], [])
+AT_CLEANUP
+
+AT_SETUP(%%: Percent character)
+AT_CHECK([mars_strfmarstime_percent], [0], [%], [])
 AT_CLEANUP
