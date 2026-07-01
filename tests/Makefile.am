@@ -20,6 +20,9 @@ check_PROGRAMS = mars_time \
     mars_strfmarstime_solnames_numbers_w \
     mars_strfmarstime_monthnames_abbreviated \
     mars_strfmarstime_monthnames \
+    mars_strfmarstime_locale_d_fmt \
+    mars_strfmarstime_locale_t_fmt_12h \
+    mars_strfmarstime_locale_t_fmt_24h \
     mars_strfmarstime_locale_d_t_fmt \
     mars_strfmarstime_locale_am_pm \
     mars_strfmarstime_locale_ampm_fmt \
@@ -67,6 +70,9 @@ mars_strfmarstime_solnames_numbers_w_SOURCES = mars/strfmarstime/solnames_number
 mars_strfmarstime_monthnames_abbreviated_SOURCES = mars/strfmarstime/monthnames_abbreviated.c
 mars_strfmarstime_monthnames_SOURCES = mars/strfmarstime/monthnames.c
 
+mars_strfmarstime_locale_d_fmt_SOURCES = mars/strfmarstime/locale_d_fmt.c
+mars_strfmarstime_locale_t_fmt_12h_SOURCES = mars/strfmarstime/locale_t_fmt_12h.c
+mars_strfmarstime_locale_t_fmt_24h_SOURCES = mars/strfmarstime/locale_t_fmt_24h.c
 mars_strfmarstime_locale_d_t_fmt_SOURCES = mars/strfmarstime/locale_d_t_fmt.c
 mars_strfmarstime_locale_am_pm_SOURCES = mars/strfmarstime/locale_am_pm.c
 mars_strfmarstime_locale_ampm_fmt_SOURCES = mars/strfmarstime/locale_ampm_fmt.c
