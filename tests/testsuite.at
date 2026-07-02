@@ -261,3 +261,25 @@ AT_CLEANUP
 AT_SETUP(%%: Percent character)
 AT_CHECK([mars_strfmarstime_percent], [0], [%], [])
 AT_CLEANUP
+
+
+
+
+
+AT_BANNER(strpmarstime)
+
+AT_SETUP(%a: Sol names abbreviated)
+AT_CHECK([mars_strpmarstime_strpmarstime_solnames_abbreviated], [0], [0 1 2 3 4 5 6], [])
+AT_CLEANUP
+
+AT_SETUP(%A: Sol names)
+AT_CHECK([mars_strpmarstime_strpmarstime_solnames], [0], [0 1 2 3 4 5 6], [])
+AT_CLEANUP
+
+AT_SETUP(%b: Month names abbreviated)
+AT_CHECK([mars_strpmarstime_strpmarstime_monthnames_abbreviated], [0], [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23], [])
+AT_CLEANUP
+
+AT_SETUP(%B: Month names)
+AT_CHECK([mars_strpmarstime_strpmarstime_monthnames], [0], [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23], [])
+AT_CLEANUP

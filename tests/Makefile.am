@@ -39,7 +39,11 @@ check_PROGRAMS = mars_time \
     mars_strfmarstime_year_without_century \
     mars_strfmarstime_year_with_century \
     mars_strfmarstime_tab \
-    mars_strfmarstime_percent
+    mars_strfmarstime_percent \
+    mars_strpmarstime_strpmarstime_solnames \
+    mars_strpmarstime_strpmarstime_solnames_abbreviated \
+    mars_strpmarstime_strpmarstime_monthnames \
+    mars_strpmarstime_strpmarstime_monthnames_abbreviated
 
 mars_time_SOURCES = mars/time.c
 
@@ -100,6 +104,13 @@ mars_strfmarstime_year_with_century_SOURCES = mars/strfmarstime/year_with_centur
 mars_strfmarstime_newline_SOURCES = mars/strfmarstime/newline.c
 mars_strfmarstime_tab_SOURCES = mars/strfmarstime/tab.c
 mars_strfmarstime_percent_SOURCES = mars/strfmarstime/percent.c
+
+
+
+mars_strpmarstime_strpmarstime_solnames_SOURCES = mars/strpmarstime/strpmarstime_solnames.c
+mars_strpmarstime_strpmarstime_solnames_abbreviated_SOURCES = mars/strpmarstime/strpmarstime_solnames_abbreviated.c
+mars_strpmarstime_strpmarstime_monthnames_SOURCES = mars/strpmarstime/strpmarstime_monthnames.c
+mars_strpmarstime_strpmarstime_monthnames_abbreviated_SOURCES = mars/strpmarstime/strpmarstime_monthnames_abbreviated.c
 
 
 LDADD = $(top_srcdir)/src/libspacetime.la
