@@ -1,6 +1,7 @@
 #include "mars.h"
 #include <ctype.h>
 #include <langinfo.h>
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,8 +34,11 @@ static const char* abbreviated_day_names[7] = {
 };
 
 
+// Implicit function declaration fix
+char* __strpmarstime(const char *restrict str, const char *restrict format, struct mars_tm *restrict tm, locale_t locale);
+
 // Using musl's implementation, while also commenting what is happening for learning purposes.
-char* strpmarstime(const char *restrict str, const char *restrict format, struct mars_tm *restrict tm)
+char* __strpmarstime(const char *restrict str, const char *restrict format, struct mars_tm *restrict tm, locale_t locale)
 {
     // Values we will need later.
     int w, adj, neg, min, dummy, iteration_range, extracted_string_len, *tm_destination;
@@ -113,7 +117,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
             // musl does something clever: in strftime, it calls itself since this is really just a combination of formats
             // so we can o the same here
             case 'c':
-                str = strpmarstime(str, nl_langinfo(D_T_FMT), tm);
+                str = __strpmarstime(str, nl_langinfo_l(D_T_FMT, locale), tm, locale);
                 if (!*str) return 0;
                 break;
 
@@ -133,7 +137,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // %m/%d/%y
             case 'D':
-                str = strpmarstime(str, "%m/%d/%y", tm);
+                str = __strpmarstime(str, "%m/%d/%y", tm, locale);
                 if(!str) return 0;
                 break;
 
@@ -152,7 +156,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
                 tmp[i] = 0; // null terminate
 
                 // TODO: Moved from %12Y to %24Y - see if still works
-                char *p = strpmarstime(tmp, "%24Y-%m-%d", tm);
+                char *p = __strpmarstime(tmp, "%24Y-%m-%d", tm, locale);
                 if(!p) return 0;
                 str -= tmp + i - p; // remove what we found already(?)
                 break;
@@ -202,7 +206,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // AM or PM
             case 'p':
-                extracted_string = nl_langinfo(AM_STR);
+                extracted_string = nl_langinfo_l(AM_STR, locale);
                 extracted_string_len = strlen(extracted_string);
 
                 // See if we got this
@@ -212,7 +216,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
                     break;
                 }
 
-                extracted_string = nl_langinfo(PM_STR);
+                extracted_string = nl_langinfo_l(PM_STR, locale);
                 extracted_string_len = strlen(extracted_string);
 
                 // Also the modulus
@@ -226,12 +230,12 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // AM or PM
             case 'r':
-                str = strpmarstime(str, nl_langinfo(T_FMT_AMPM), tm);
+                str = __strpmarstime(str, nl_langinfo_l(T_FMT_AMPM, locale), tm, locale);
                 if(!str) return 0;
                 break;
 
             case 'R':
-                str = strpmarstime(str, "%H:%M", tm);
+                str = __strpmarstime(str, "%H:%M", tm, locale);
                 if(!str) return 0;
                 break;
 
@@ -251,7 +255,7 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // H:M:S
             case 'T':
-                str = strpmarstime(str, "%H:%M:%S", tm);
+                str = __strpmarstime(str, "%H:%M:%S", tm, locale);
                 if(!str) return 0;
                 break;
 
@@ -294,13 +298,13 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // Date format
             case 'x':
-                str = strpmarstime(str, nl_langinfo(D_FMT), tm);
+                str = __strpmarstime(str, nl_langinfo_l(D_FMT, locale), tm, locale);
                 if(!str) return 0;
                 break;
 
             // Time format
             case 'X':
-                str = strpmarstime(str, nl_langinfo(T_FMT), tm);
+                str = __strpmarstime(str, nl_langinfo_l(T_FMT, locale), tm, locale);
                 if(!str) return 0;
                 break;
 
@@ -416,4 +420,15 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
         // musl then has handling to bump year by 100 for if before 2038, probably unneeded here.
     }
     return (char*)str;
+}
+
+
+char* strpmarstime(const char *restrict str, const char *restrict format, struct mars_tm *restrict tm)
+{
+    // Use this to get the locale
+    locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, ""), NULL);
+
+    char* ret = __strpmarstime(str, format, tm, locale);
+    freelocale(locale);
+    return ret;
 }

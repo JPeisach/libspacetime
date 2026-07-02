@@ -283,3 +283,18 @@ AT_CLEANUP
 AT_SETUP(%B: Month names)
 AT_CHECK([mars_strpmarstime_strpmarstime_monthnames], [0], [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23], [])
 AT_CLEANUP
+
+AT_SETUP(%c: date and time parsed according to locale: Day-Month-Year style)
+AT_SKIP_IF([if locale -a | grep -Fxq "fr_FR.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_strpmarstime_locale_d_t_fmt_dmy], [0], [Me 04 Mak 205 09:06:07], [])
+AT_CLEANUP
+
+AT_SETUP(%c: date and time parsed according to locale: Year-Month-Day style)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Oh, it turns out there are many different versions of this format. Great.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strpmarstime_locale_d_t_fmt_ymd], [0], [205. Mak. 4., Mercurii, 09:06:07 MTC], [])
+AT_CLEANUP
+
+AT_SETUP(%c: date and time parsed according to locale: Freedom format style)
+AT_SKIP_IF([if locale -a | grep -Fxq "POSIX"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
+AT_CHECK_UNQUOTED([LC_ALL="POSIX" mars_strpmarstime_locale_d_t_fmt_posix], [0], [Me Mak  4 09:06:07 205], [])
+AT_CLEANUP
