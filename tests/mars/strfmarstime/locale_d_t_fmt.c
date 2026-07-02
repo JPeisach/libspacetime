@@ -11,6 +11,8 @@ int main()
     tm.mars_tm_sec = 7;
     tm.mars_tm_wsol = 3;
     tm.mars_tm_year = 205;
+    tm.mars_tm_amtoff = 0;
+    tm.mars_tm_zone = "MTC";
 
     char str[128];
     strfmarstime(str, sizeof(str), "%c", &tm);
