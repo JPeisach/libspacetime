@@ -289,6 +289,7 @@ AT_SKIP_IF([if locale -a | grep -Fxq "fr_FR.utf8"; then exit 77; fi]) # TODO: Fi
 AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_strpmarstime_locale_d_t_fmt_dmy], [0], [Me 04 Mak 205 09:06:07], [])
 AT_CLEANUP
 
+# Appears to be broken.. even in strptime itself? Or maybe I'm using it in a way unintended?
 AT_SETUP(%c: date and time parsed according to locale: Year-Month-Day style)
 AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Oh, it turns out there are many different versions of this format. Great.
 AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_strpmarstime_locale_d_t_fmt_ymd], [0], [205. Mak. 4., Mercurii, 09:06:07 MTC], [])
