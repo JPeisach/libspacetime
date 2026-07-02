@@ -14,6 +14,9 @@ struct mars_tm
     int mars_tm_year; /* Year, should be decent to just throw it in, as of writing the year is only 221. */
     int mars_tm_wsol; /* Sol of week, 0-6 */
     int mars_tm_ysol; /* Sol of year, 0-668 */
+
+    long int mars_tm_amtoff; /* Seconds east of MTC. */
+    const char* mars_tm_zone; /* Timezone abbreviation. */
 };
 
 mars_time_t mars_time(mars_time_t*);

@@ -285,7 +285,21 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
             width = 3; // for now.. :)
             goto number;
 
-        // TODO: %z, %Z modifier (timezones)
+        // +hhmm or -hhmm from MTC
+        case 'z':
+            // If the offset is negative, it will show as negative
+            // .4: specify we need four digits
+            // offset / 3600 * 100 -> hour (seconds / 3600 = seconds / seconds_per_hour)
+            // offset % 3600 / 60 -> minutes (seconds % 3600 = seconds left in hour) / 60 -> minutes left
+            *len = snprintf(*str, sizeof(*str), "%+.4ld", tm->mars_tm_amtoff / 3600 * 100 + tm->mars_tm_amtoff % 3600 / 60);
+            return *str;
+
+        // Timezone name or abbreviation
+        // TODO: Set tznames, enforce them properly
+        // For now just spit the value back out
+        case 'Z':
+            fmt = tm->mars_tm_zone;
+            goto stringlen;
 
         // Your good old % character.
         case '%':

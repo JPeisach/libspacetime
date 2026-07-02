@@ -320,8 +320,38 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
 
             // Timezones. Unimplemented for now:
             case 'z':
+                // Calculate the offset
+
+                // Negative or positive, nothing crazy
+                if(*str == '+') neg = 0;
+                else if(*str == '-') neg = 1;
+                else return 0; // I believe it would have to be +00:00 if none
+
+                // Number validation checks. I assume the extra 1 is after for the + or - character.
+                for(i = 0; i < 4; i++) {
+                    if(!isdigit(str[1 + i])) return 0;
+                }
+
+                // actual math
+                // Notes:
+                // Not sure what the - '0' is for
+                // Anyways: Math appears to be matching by tens digit of hour -> then hour -> tens digit of minutes -> minutes
+                tm->mars_tm_amtoff = (str[1] - '0') * 36000 + (str[2] - '0') * 3600 + (str[3] - '0') * 600 + (str[4] - '0') * 60;
+
+                // If negative, account for that
+                if(neg) tm->mars_tm_amtoff = -tm->mars_tm_amtoff;
+
+                // Next characters afterwards
+                str += 5;
+                break;
+
+            // Timezone name.
+            // FIXME: Check on what to do here.
             case 'Z':
-                return 0;
+                // glibc does no action
+                // musl checks to see if DST
+                // for now, no-op.
+                break;
 
             // % character
             case '%':

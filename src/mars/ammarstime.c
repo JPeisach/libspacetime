@@ -79,5 +79,8 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     ret.mars_tm_hour = (int) (24.0 * msd) % 24;     // from marsclock.com
     ret.mars_tm_min = (secs_into_day % 3600) / 60;
     ret.mars_tm_sec = (*timer % 60); // why are we off by a second
+
+    ret.mars_tm_amtoff = 0;
+    ret.mars_tm_zone = "MTC";
     return &ret;
 }
