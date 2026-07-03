@@ -47,7 +47,9 @@ check_PROGRAMS = mars_time \
     mars_strpmarstime_locale_d_t_fmt_dmy \
     mars_strpmarstime_locale_d_t_fmt_posix \
     mars_strpmarstime_locale_d_t_fmt_ymd \
-    mars_strpmarstime_centuries
+    mars_strpmarstime_centuries \
+    mars_strpmarstime_sol_of_month \
+    mars_strpmarstime_sol_of_month_nolz
 
 mars_time_SOURCES = mars/time.c
 
@@ -122,6 +124,9 @@ mars_strpmarstime_locale_d_t_fmt_posix_SOURCES = mars/strpmarstime/locale_d_t_fm
 mars_strpmarstime_locale_d_t_fmt_ymd_SOURCES = mars/strpmarstime/locale_d_t_fmt_ymd.c
 
 mars_strpmarstime_centuries_SOURCES = mars/strpmarstime/centuries.c
+
+mars_strpmarstime_sol_of_month_SOURCES = mars/strpmarstime/strpmarstime_sol_of_month.c
+mars_strpmarstime_sol_of_month_nolz_SOURCES = mars/strpmarstime/strpmarstime_sol_of_month_nolz.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 

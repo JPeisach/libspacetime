@@ -369,7 +369,15 @@ char* __strpmarstime(const char *restrict str, const char *restrict format, stru
             default:
                 return 0;
             numeric_range:
-                // i'm skeptical this will work
+                // TODO: Test musl strptime and contact maintainers
+                // It seems that if there is a trailing space, it just skips (because space is not digit)
+                // Make sure we cut through the space in the string if we are just looking at numbers.
+                // We do check in format for this, but AFAIK it doesn't have to be said in format for %e.
+                // But also on %u, at least on macOS it will punish you for the leading zero?
+                for(; *str && isspace(*str); str++);
+                if(isspace(*str)) str++;  // TODO: Check musl for a bug where if there is a space (eg %e) it is incorrect
+
+
                 if(!isdigit(*str)) return 0;
                 *tm_destination = 0;
                 for(i = 1; i <= min + iteration_range && isdigit(*str); i *= 10) {

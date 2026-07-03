@@ -304,3 +304,12 @@ AT_CLEANUP
 AT_SETUP(%C: Centuries)
 AT_CHECK([mars_strpmarstime_centuries], [0], [0 100 1000], [])
 AT_CLEANUP
+
+
+AT_SETUP(%d: Sol of month)
+AT_CHECK([mars_strpmarstime_sol_of_month], [0], [3 21], [])
+AT_CLEANUP
+
+AT_SETUP(%e: Sol of month - no leading zero)
+AT_CHECK([mars_strpmarstime_sol_of_month_nolz], [0], [3 21], [])
+AT_CLEANUP
