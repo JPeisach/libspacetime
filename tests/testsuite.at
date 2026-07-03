@@ -313,3 +313,17 @@ AT_CLEANUP
 AT_SETUP(%e: Sol of month - no leading zero)
 AT_CHECK([mars_strpmarstime_sol_of_month_nolz], [0], [3 21], [])
 AT_CLEANUP
+
+
+# Not sure if we need more tests since it's ultimately just using %Y, %m, and %d. If those work so should this
+AT_SETUP(%F: Parse YMD)
+AT_CHECK([mars_strpmarstime_parse_ymd], [0], [Year 191 Month 20 Day 4], [])
+AT_CLEANUP
+
+AT_SETUP(%H: 24-Hour parsing)
+AT_CHECK([mars_strpmarstime_24hrs], [0], [2 14], [])
+AT_CLEANUP
+
+AT_SETUP(%I: 12-Hour parsing)
+AT_CHECK([mars_strpmarstime_12hrs], [0], [0 12], [])
+AT_CLEANUP
