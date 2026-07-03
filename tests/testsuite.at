@@ -299,3 +299,8 @@ AT_SETUP(%c: date and time parsed according to locale: Freedom format style)
 AT_SKIP_IF([if locale -a | grep -Fxq "POSIX"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
 AT_CHECK_UNQUOTED([LC_ALL="POSIX" mars_strpmarstime_locale_d_t_fmt_posix], [0], [Me Mak  4 09:06:07 205], [])
 AT_CLEANUP
+
+
+AT_SETUP(%C: Centuries)
+AT_CHECK([mars_strpmarstime_centuries], [0], [0 100 1000], [])
+AT_CLEANUP

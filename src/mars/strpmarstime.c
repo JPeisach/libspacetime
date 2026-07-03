@@ -130,6 +130,7 @@ char* __strpmarstime(const char *restrict str, const char *restrict format, stru
                 tm_destination = &century;
                 if(w < 0) w = 2;
                 want_century |= 2; // Signal we want 2 digit century
+                goto numeric_digits;
 
             // Sol of month
             case 'd':
