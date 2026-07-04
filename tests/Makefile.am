@@ -52,7 +52,9 @@ check_PROGRAMS = mars_time \
     mars_strpmarstime_sol_of_month_nolz \
     mars_strpmarstime_parse_ymd \
     mars_strpmarstime_12hrs \
-    mars_strpmarstime_24hrs
+    mars_strpmarstime_24hrs \
+    mars_strpmarstime_sol_of_year_padding \
+    mars_strpmarstime_month_padding
 
 mars_time_SOURCES = mars/time.c
 
@@ -135,6 +137,9 @@ mars_strpmarstime_parse_ymd_SOURCES = mars/strpmarstime/parse_ymd.c
 
 mars_strpmarstime_12hrs_SOURCES = mars/strpmarstime/strpmarstime_12hrs.c
 mars_strpmarstime_24hrs_SOURCES = mars/strpmarstime/strpmarstime_24hrs.c
+
+mars_strpmarstime_sol_of_year_padding_SOURCES = mars/strpmarstime/strpmarstime_sol_of_year_padding.c
+mars_strpmarstime_month_padding_SOURCES = mars/strpmarstime/strpmarstime_month_padding.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 
