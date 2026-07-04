@@ -55,7 +55,8 @@ check_PROGRAMS = mars_time \
     mars_strpmarstime_24hrs \
     mars_strpmarstime_sol_of_year_padding \
     mars_strpmarstime_month_padding \
-    mars_ammarstime_msd0
+    mars_ammarstime_msd0 \
+    mars_ammarstime_perseverance_landing
 
 mars_time_SOURCES = mars/time.c
 
@@ -147,6 +148,7 @@ mars_strpmarstime_month_padding_SOURCES = mars/strpmarstime/strpmarstime_month_p
 
 
 mars_ammarstime_msd0_SOURCES = mars/ammarstime/ammarstime_msd0.c
+mars_ammarstime_perseverance_landing_SOURCES = mars/ammarstime/ammarstime_perseverance_landing.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 
