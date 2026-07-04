@@ -335,3 +335,17 @@ AT_CLEANUP
 AT_SETUP(%m: Month padding)
 AT_CHECK([mars_strpmarstime_month_padding], [0], [0 9], [])
 AT_CLEANUP
+
+
+
+
+
+
+
+
+# Surely there's a way to separate these into separate files..
+AT_BANNER(ammarstime)
+
+AT_SETUP(MSD 0: Virgo 25 140)
+AT_CHECK([mars_ammarstime_msd0], [0], [140-19-25 00:00:00], [])
+AT_CLEANUP
