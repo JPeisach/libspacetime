@@ -80,7 +80,7 @@ However, there are some challenges to this, most notably the use of double-preci
 | Linux i386           | Untested |
 | Linux amd64 (glibc)  | :white_check_mark: |
 | Linux amd64 (musl)   | :white_check_mark: |
-| Linux arm64          | Untested |
+| Linux arm64          | :white_check_mark: |
 | Linux riscv64        | :white_check_mark: |
 | macOS arm64          | :white_check_mark: |
 | Windows              | Untested |
