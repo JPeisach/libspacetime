@@ -1,6 +1,7 @@
 #include "mars.h"
 
 #include "../const.h"
+#include <math.h>
 
 #define SOLS_PER_2Y (668 + 669)
 #define SOLS_PER_10Y (668*4 + 669*6) // would be even, but skip if divisible by 10
@@ -76,9 +77,16 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     ret.mars_tm_wsol = wsol;
     ret.mars_tm_ysol = ysol;
 
-    ret.mars_tm_hour = (int) (24.0 * msd) % 24;     // from marsclock.com
+    // The source of marsclock.com does these calculations for MSD -> MTC.
+    // For more precision, use fmod.
+    // Whether to round these numbers or not.. still undecided.
+    double mtc = fmod(24 * msd, 24);
+    double x = mtc * 3600;
+    double y = fmod(x, 3600);
+
+    ret.mars_tm_hour = (int) (24 * msd) % 24;     // from marsclock.com
     ret.mars_tm_min = (secs_into_day % 3600) / 60;
-    ret.mars_tm_sec = (*timer % 60); // why are we off by a second
+    ret.mars_tm_sec = fmod(y, 60); // why are we off by a second
 
     ret.mars_tm_amtoff = 0;
     ret.mars_tm_zone = "MTC";

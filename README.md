@@ -7,6 +7,7 @@ libspacetime is a cross-platform C library for date and time operations across m
 To build, you will need:
 - A C compiler
 - The following standard C library functions:
+  - `fmod` (for floating precision)
   - `memcpy`
   - `snprintf`
   - `strlen`
