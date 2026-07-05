@@ -152,7 +152,7 @@ mars_ammarstime_msd0_SOURCES = mars/ammarstime/ammarstime_msd0.c
 mars_ammarstime_perseverance_landing_SOURCES = mars/ammarstime/ammarstime_perseverance_landing.c
 mars_ammarstime_mariner9_enter_orbit_SOURCES = mars/ammarstime/ammarstime_mariner9_enter_orbit.c
 
-LDADD = $(top_srcdir)/src/libspacetime.la
+LDADD = $(top_srcdir)/src/libspacetime.la -lgmp -lmpfr
 
 # Below is taken from the autotools docs
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac

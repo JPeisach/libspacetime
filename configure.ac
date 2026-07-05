@@ -12,6 +12,12 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AC_SEARCH_LIBS(fmod, m, [], [])
 
+# From gmplib docs.
+# FIXME: Should we check specific float functions?
+# TODO: Support MPFR + MPC
+AC_CHECK_LIB(gmp, __gmpz_init, [AC_DEFINE([HAVE_GMP], [1], [Define is GMP is available])])
+AC_CHECK_LIB(mpfr, mpfr_init, [AC_DEFINE([HAVE_MPFR], [1], [Define is MPFR is available])])
+
 AC_PROG_CC
 PKG_PROG_PKG_CONFIG
 
