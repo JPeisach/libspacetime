@@ -57,6 +57,8 @@ check_PROGRAMS = mars_time \
     mars_strpmarstime_sol_of_year_padding \
     mars_strpmarstime_month_padding \
     mars_ammarstime_msd0 \
+    mars_ammarstime_end_2yr_cycle \
+    mars_ammarstime_curiosity_landing \
     mars_ammarstime_mariner9_enter_orbit \
     mars_ammarstime_perseverance_landing
 
@@ -146,11 +148,9 @@ mars_strpmarstime_24hrs_SOURCES = mars/strpmarstime/strpmarstime_24hrs.c
 mars_strpmarstime_sol_of_year_padding_SOURCES = mars/strpmarstime/strpmarstime_sol_of_year_padding.c
 mars_strpmarstime_month_padding_SOURCES = mars/strpmarstime/strpmarstime_month_padding.c
 
-
-
-
-
 mars_ammarstime_msd0_SOURCES = mars/ammarstime/ammarstime_msd0.c
+mars_ammarstime_end_2yr_cycle_SOURCES = mars/ammarstime/end_2yr_cycle.c
+mars_ammarstime_curiosity_landing_SOURCES = mars/ammarstime/ammarstime_curiosity_landing.c
 mars_ammarstime_perseverance_landing_SOURCES = mars/ammarstime/ammarstime_perseverance_landing.c
 mars_ammarstime_mariner9_enter_orbit_SOURCES = mars/ammarstime/ammarstime_mariner9_enter_orbit.c
 

@@ -41,19 +41,24 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     int remdays = days % SOLS_PER_100Y;
     if (remdays < 0) {
         remdays += SOLS_PER_100Y;
-        c_cycles--;
+        // c_cycles--;
     }
 
     int d_cycles = remdays / SOLS_PER_10Y;
-    if(d_cycles == 10) d_cycles--;
+
+    // musl's implementation does this, probably for alignment reasons
+    // but for us it seems to be causing issues.
+    // Commenting it out for now.
+
+    // if(d_cycles == 10) d_cycles--;
     remdays -= d_cycles * SOLS_PER_10Y;
 
     int ty_cycles = remdays / SOLS_PER_2Y;
-    if(ty_cycles == 2) ty_cycles--;
+    // if(ty_cycles == 2) ty_cycles--;
     remdays -= ty_cycles * SOLS_PER_2Y;
 
     int remyears = remdays / 668;
-    if (remyears == 2) remyears--;
+    // if (remyears == 2) remyears--;
     remdays -= remyears * 668;
 
     // Store this for later!

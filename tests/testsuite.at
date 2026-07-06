@@ -354,6 +354,15 @@ AT_SETUP(MSD 0: Virgo 25 140)
 AT_CHECK([mars_ammarstime_msd0], [0], [140-19-25 00:00:00], [])
 AT_CLEANUP
 
+
+AT_SETUP(End of a 2-year cycle: 25 Virgo 142)
+AT_CHECK([mars_ammarstime_end_2yr_cycle], [0], [142-19-25 00:00:00], [])
+AT_CLEANUP
+
+AT_SETUP(Curiosity landing: 13 Rishabha 214 at 05:53:28)
+AT_CHECK([mars_ammarstime_curiosity_landing], [0], [214-12-13 05:53:28], [])
+AT_CLEANUP
+
 AT_SETUP(Perseverance landing: 13 Sagittarius 219 at 10:54:29)
 AT_CHECK([mars_ammarstime_perseverance_landing], [0], [219-01-13 10:54:29], [])
 AT_CLEANUP
