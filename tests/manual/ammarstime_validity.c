@@ -10,8 +10,8 @@ int main()
     time_t a;
     time(&a);
     mars_time_t now = earth_time_to_mars_time(a);
-    printf("%ld", now);
 
+    // You can keep looping until now, or you can set your own constraints
     for(mars_time_t marstime = 0; marstime < now; marstime += 86400)
     {
         struct mars_tm *tm = ammarstime(&marstime);
