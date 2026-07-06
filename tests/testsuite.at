@@ -370,3 +370,13 @@ AT_CLEANUP
 AT_SETUP(Mariner 9 enter orbit: 20 Kanya 192 at 19:19:21)
 AT_CHECK([mars_ammarstime_mariner9_enter_orbit], [0], [192-20-20 19:19:21], [])
 AT_CLEANUP
+
+
+
+AT_SETUP(Leap year: 213 Vrishka 28 at 12:00:00)
+AT_CHECK([mars_ammarstime_leapyr_213], [0], [213-24-28 12:00:00], [])
+AT_CLEANUP
+
+AT_SETUP(NOT a leap year: 213 Sagittarius 1 at 00:00:00 is not shown as 212 Vrishka 28)
+AT_CHECK([mars_ammarstime_leapyr_no_212], [0], [213-01-01 00:00:00], [])
+AT_CLEANUP
