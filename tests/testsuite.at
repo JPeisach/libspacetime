@@ -372,6 +372,13 @@ AT_CHECK([mars_ammarstime_mariner9_enter_orbit], [0], [192-20-20 19:19:21], [])
 AT_CLEANUP
 
 
+AT_SETUP(Leap year: 210 Vrishka 28 at 12:00:00)
+AT_CHECK([mars_ammarstime_leapyr_210], [0], [210-24-28 12:00:00], [])
+AT_CLEANUP
+
+AT_SETUP(Leap year: 211 Vrishka 28 at 12:00:00)
+AT_CHECK([mars_ammarstime_leapyr_211], [0], [211-24-28 12:00:00], [])
+AT_CLEANUP
 
 AT_SETUP(Leap year: 213 Vrishka 28 at 12:00:00)
 AT_CHECK([mars_ammarstime_leapyr_213], [0], [213-24-28 12:00:00], [])
