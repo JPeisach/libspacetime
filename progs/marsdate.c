@@ -1,17 +1,28 @@
 #include <libspacetime/mars.h>
 #include <stdio.h>
+#include <unistd.h>
 
 // TODO: All the features the "date" command in coreutils provides...
-int main()
+int main(int argc, char** argv)
 {
     mars_time_t time = mars_time(NULL);
     struct mars_tm* tm = ammarstime(&time);
+    char* format = "%a %b %e %H:%M:%S %Z %Y";  // Seems to be a default?
 
     // FIXME: Get appropriate size, don't guess
     char buf[50];
 
-    // Seems to be a default?
-    strfmarstime(buf, sizeof(buf), "%a %b %e %H:%M:%S %Z %Y", tm);
+    int optc;
+    while((optc = getopt(argc, argv, "R")) != -1) {
+        switch(optc) {
+            case 'R':
+                // RFC 5322 format
+                format = "%a, %d %b %Y %H:%M:%S %z";
+                break;
+        }
+    }
+
+    strfmarstime(buf, sizeof(buf), format, tm);
     printf("%s", buf);
 
     return 0;
