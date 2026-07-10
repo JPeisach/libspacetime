@@ -34,7 +34,7 @@ static const char* day_names[7] = {
 };
 
 static const char* abbreviated_day_names[7] = {
-    N_("So"), N_("Lu"), N_("Ma"), N_("Me"), N_("Jo"), N_("Ve"), N_("Sa")
+    N_("Sol"), N_("Lun"), N_("Mar"), N_("Mer"), N_("Jov"), N_("Ven"), N_("Sat")
 };
 
 // Implicit function declaration fix
