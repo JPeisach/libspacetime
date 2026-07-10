@@ -19,6 +19,15 @@ struct mars_tm
     const char* mars_tm_zone; /* Timezone abbreviation. */
 };
 
+struct mars_timespec
+{
+    // TODO: glibc actually switches the order of this for big endian platforms. consider doing the same?
+    mars_time_t tv_mars_sec;
+
+    // TODO: put in padding here??
+    long int tv_mars_nsec;
+};
+
 mars_time_t mars_time(mars_time_t*);
 time_t mars_time_to_earth_time(mars_time_t);
 mars_time_t earth_time_to_mars_time(time_t);
