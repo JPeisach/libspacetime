@@ -24,7 +24,7 @@ case "$host_os" in
     ;;
 esac
 
-AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in])
+AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in progs/Makefile])
 AC_CONFIG_FILES([src/libspacetime.pc])
 
 # Testing
