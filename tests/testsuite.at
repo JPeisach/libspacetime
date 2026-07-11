@@ -63,7 +63,7 @@ AT_CLEANUP
 AT_BANNER(strfmarstime)
 
 AT_SETUP(%a: abbreviated weeksol name)
-AT_CHECK([mars_strfmarstime_solnames_abbreviated], [0], [So Lu Ma Me Jo Ve Sa ], [])
+AT_CHECK([mars_strfmarstime_solnames_abbreviated], [0], [Sol Lun Mar Mer Jov Ven Sat ], [])
 AT_CLEANUP
 
 AT_SETUP(%A: Weeksol name)
@@ -83,7 +83,7 @@ AT_CLEANUP
 
 AT_SETUP(%c: date and time formatted according to locale: Day-Month-Year style)
 AT_SKIP_IF([if locale -a | grep -Fxq "fr_FR.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
-AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [Me 04 Mak 205 09:06:07], [])
+AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_strfmarstime_locale_d_t_fmt], [0], [Mer 04 Mak 205 09:06:07], [])
 AT_CLEANUP
 
 AT_SETUP(%c: date and time formatted according to locale: Year-Month-Day style)
@@ -95,7 +95,7 @@ AT_CLEANUP
 # So it's actually POSIX?
 AT_SETUP(%c: date and time formatted according to locale: Freedom format style)
 AT_SKIP_IF([if locale -a | grep -Fxq "POSIX"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
-AT_CHECK_UNQUOTED([LC_ALL="POSIX" mars_strfmarstime_locale_d_t_fmt], [0], [Me Mak  4 09:06:07 205], [])
+AT_CHECK_UNQUOTED([LC_ALL="POSIX" mars_strfmarstime_locale_d_t_fmt], [0], [Mer Mak  4 09:06:07 205], [])
 AT_CLEANUP
 
 
@@ -393,7 +393,7 @@ AT_CLEANUP
 AT_BANNER(wcsfmarstime)
 
 AT_SETUP(%a: abbreviated weeksol name)
-AT_CHECK([mars_wcsfmarstime_solnames_abbreviated_wide], [0], [So Lu Ma Me Jo Ve Sa ], [])
+AT_CHECK([mars_wcsfmarstime_solnames_abbreviated_wide], [0], [Sol Lun Mar Mer Jov Ven Sat ], [])
 AT_CLEANUP
 
 AT_SETUP(%A: Weeksol name)
