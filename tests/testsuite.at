@@ -392,6 +392,10 @@ AT_CLEANUP
 
 AT_BANNER(wcsfmarstime)
 
+AT_SETUP(%C: Centuries)
+AT_CHECK([mars_wcsfmarstime_centuries_wide], [0], [00 01 10], [])
+AT_CLEANUP
+
 AT_SETUP(%H: 24-Hour formatting)
 AT_CHECK([mars_wcsfmarstime_24hours_wide], [0], [02 14], [])
 AT_CLEANUP
