@@ -71,7 +71,9 @@ check_PROGRAMS = mars_time \
     mars_wcsfmarstime_monthnames_abbreviated_wide \
     mars_wcsfmarstime_monthnames_wide \
     mars_wcsfmarstime_solnames_wide \
-    mars_wcsfmarstime_solnames_abbreviated_wide
+    mars_wcsfmarstime_solnames_abbreviated_wide \
+    mars_wcsfmarstime_year_without_century_wide \
+    mars_wcsfmarstime_year_with_century_wide
 
 mars_time_SOURCES = mars/time.c
 
@@ -179,6 +181,9 @@ mars_wcsfmarstime_monthnames_wide_SOURCES = mars/wcsfmarstime/monthnames_wide.c
 mars_wcsfmarstime_monthnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/monthnames_abbreviated_wide.c
 mars_wcsfmarstime_solnames_wide_SOURCES = mars/wcsfmarstime/solnames_wide.c
 mars_wcsfmarstime_solnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/solnames_abbreviated_wide.c
+mars_wcsfmarstime_year_with_century_wide_SOURCES = mars/wcsfmarstime/year_with_century_wide.c
+mars_wcsfmarstime_year_without_century_wide_SOURCES = mars/wcsfmarstime/year_without_century_wide.c
+
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 
