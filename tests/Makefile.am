@@ -64,7 +64,9 @@ check_PROGRAMS = mars_time \
     mars_ammarstime_leapyr_210 \
     mars_ammarstime_leapyr_211 \
     mars_ammarstime_leapyr_213 \
-    mars_ammarstime_leapyr_no_212
+    mars_ammarstime_leapyr_no_212 \
+    mars_wcsfmarstime_12hours_wide \
+    mars_wcsfmarstime_24hours_wide
 
 mars_time_SOURCES = mars/time.c
 
@@ -162,6 +164,11 @@ mars_ammarstime_leapyr_210_SOURCES = mars/ammarstime/ammarstime_leapyr_210.c
 mars_ammarstime_leapyr_211_SOURCES = mars/ammarstime/ammarstime_leapyr_211.c
 mars_ammarstime_leapyr_213_SOURCES = mars/ammarstime/ammarstime_leapyr_213.c
 mars_ammarstime_leapyr_no_212_SOURCES = mars/ammarstime/ammarstime_leapyr_no_212.c
+
+
+
+mars_wcsfmarstime_12hours_wide_SOURCES = mars/wcsfmarstime/12hours_wide.c
+mars_wcsfmarstime_24hours_wide_SOURCES = mars/wcsfmarstime/24hours_wide.c
 
 LDADD = $(top_srcdir)/src/libspacetime.la
 

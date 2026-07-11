@@ -387,3 +387,15 @@ AT_CLEANUP
 AT_SETUP(NOT a leap year: 213 Sagittarius 1 at 00:00:00 is not shown as 212 Vrishka 28)
 AT_CHECK([mars_ammarstime_leapyr_no_212], [0], [213-01-01 00:00:00], [])
 AT_CLEANUP
+
+
+
+AT_BANNER(wcsfmarstime)
+
+AT_SETUP(%H: 24-Hour formatting)
+AT_CHECK([mars_wcsfmarstime_24hours_wide], [0], [02 14], [])
+AT_CLEANUP
+
+AT_SETUP(%I: 12 hour formatting)
+AT_CHECK([mars_wcsfmarstime_12hours_wide], [0], [12 01], [])
+AT_CLEANUP
