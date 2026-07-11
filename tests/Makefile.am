@@ -68,6 +68,8 @@ check_PROGRAMS = mars_time \
     mars_wcsfmarstime_12hours_wide \
     mars_wcsfmarstime_24hours_wide \
     mars_wcsfmarstime_centuries_wide \
+    mars_wcsfmarstime_monthnames_abbreviated_wide \
+    mars_wcsfmarstime_monthnames_wide \
     mars_wcsfmarstime_solnames_wide \
     mars_wcsfmarstime_solnames_abbreviated_wide
 
@@ -173,6 +175,8 @@ mars_ammarstime_leapyr_no_212_SOURCES = mars/ammarstime/ammarstime_leapyr_no_212
 mars_wcsfmarstime_12hours_wide_SOURCES = mars/wcsfmarstime/12hours_wide.c
 mars_wcsfmarstime_24hours_wide_SOURCES = mars/wcsfmarstime/24hours_wide.c
 mars_wcsfmarstime_centuries_wide_SOURCES = mars/wcsfmarstime/centuries_wide.c
+mars_wcsfmarstime_monthnames_wide_SOURCES = mars/wcsfmarstime/monthnames_wide.c
+mars_wcsfmarstime_monthnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/monthnames_abbreviated_wide.c
 mars_wcsfmarstime_solnames_wide_SOURCES = mars/wcsfmarstime/solnames_wide.c
 mars_wcsfmarstime_solnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/solnames_abbreviated_wide.c
 
