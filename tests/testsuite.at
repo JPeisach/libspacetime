@@ -392,6 +392,14 @@ AT_CLEANUP
 
 AT_BANNER(wcsfmarstime)
 
+AT_SETUP(%a: abbreviated weeksol name)
+AT_CHECK([mars_wcsfmarstime_solnames_abbreviated_wide], [0], [So Lu Ma Me Jo Ve Sa ], [])
+AT_CLEANUP
+
+AT_SETUP(%A: Weeksol name)
+AT_CHECK([mars_wcsfmarstime_solnames_wide], [0], [Solis Lunae Martis Mercurii Jovis Veneris Saturni ], [])
+AT_CLEANUP
+
 AT_SETUP(%C: Centuries)
 AT_CHECK([mars_wcsfmarstime_centuries_wide], [0], [00 01 10], [])
 AT_CLEANUP
