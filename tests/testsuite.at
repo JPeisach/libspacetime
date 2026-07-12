@@ -424,6 +424,14 @@ AT_SETUP(%u: Sol name numbers: Lunae being 1)
 AT_CHECK([mars_wcsfmarstime_solnames_numbers_u_wide], [0], [7 1 2 3 4 5 6 ], [])
 AT_CLEANUP
 
+AT_SETUP(%U/%V: Week number)
+AT_CHECK([mars_wcsfmarstime_weeknumbers_U_wide], [0], [01 01 02 02 24 25 49 96], [])
+AT_CLEANUP
+
+AT_SETUP(%W: Week number)
+AT_CHECK([mars_wcsfmarstime_weeknumbers_W_wide], [0], [00 01 01 02 24 24 48 96], [])
+AT_CLEANUP
+
 AT_SETUP(%w: Sol name numbers: Solis being 0)
 AT_CHECK([mars_wcsfmarstime_solnames_numbers_w_wide], [0], [0 1 2 3 4 5 6 ], [])
 AT_CLEANUP
