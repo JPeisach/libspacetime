@@ -408,6 +408,23 @@ AT_SETUP(%B: Month name)
 AT_CHECK([mars_wcsfmarstime_monthnames_wide], [0], [Sagittarius Dhanus Capricornus Makara Aquarius Kumbha Pisces Mina Aries Mesha Taurus Rishabha Gemini Mithuna Cancer Karka Leo Simha Virgo Kanya Libra Tula Scorpius Vrishika ], [])
 AT_CLEANUP
 
+AT_SETUP(%c: date and time formatted according to locale: Day-Month-Year style)
+AT_SKIP_IF([if locale -a | grep -Fxq "fr_FR.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_wcsfmarstime_locale_d_t_fmt_wide], [0], [Mer 04 Mak 205 09:06:07], [])
+AT_CLEANUP
+
+AT_SETUP(%c: date and time formatted according to locale: Year-Month-Day style)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Oh, it turns out there are many different versions of this format. Great.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_wcsfmarstime_locale_d_t_fmt_wide], [0], [205. Mak. 4., Mercurii, 09:06:07 MTC], [])
+AT_CLEANUP
+
+# I say "Freedom format" in a satirical way
+# So it's actually POSIX?
+AT_SETUP(%c: date and time formatted according to locale: Freedom format style)
+AT_SKIP_IF([if locale -a | grep -Fxq "POSIX"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable. Or don't because it's really just America.
+AT_CHECK_UNQUOTED([LC_ALL="POSIX" mars_wcsfmarstime_locale_d_t_fmt]_wide, [0], [Mer Mak  4 09:06:07 205], [])
+AT_CLEANUP
+
 AT_SETUP(%C: Centuries)
 AT_CHECK([mars_wcsfmarstime_centuries_wide], [0], [00 01 10], [])
 AT_CLEANUP
@@ -426,6 +443,36 @@ AT_CLEANUP
 
 AT_SETUP(%m: Month padding)
 AT_CHECK([mars_wcsfmarstime_month_padding_wide], [0], [01 10], [])
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: All caps version)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_wcsfmarstime_locale_am_pm_wide], [0], [AM PM], [])
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: All lowercase version)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_GB.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_GB.utf8" mars_wcsfmarstime_locale_am_pm_wide], [0], [am pm], [])
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: Punctuated version)
+AT_SKIP_IF([if locale -a | grep -Fxq "es_ES.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_wcsfmarstime_locale_am_pm_wide], [0], [a. m. p. m.], []) # FIXME: What's with this weird space character?
+AT_CLEANUP
+
+AT_SETUP(%p: AM/PM formatting according to locale: None)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_wcsfmarstime_locale_am_pm_wide], [0], [ ], [])
+AT_CLEANUP
+
+AT_SETUP(%r: Time formatting according to locale: 12-hr)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_wcsfmarstime_locale_ampm_fmt_wide], [0], [12:00:00 AM 12:00:00 PM], [])
+AT_CLEANUP
+
+AT_SETUP(%r: Time formatting according to locale: 24-hr)
+AT_SKIP_IF([if locale -a | grep -Fxq "hu_HU.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable.
+AT_CHECK_UNQUOTED([LC_ALL="hu_HU.utf8" mars_wcsfmarstime_locale_ampm_fmt_wide], [0], [00:00:00 12:00:00], [])
 AT_CLEANUP
 
 AT_SETUP(%S: Seconds padding)
@@ -447,6 +494,51 @@ AT_CLEANUP
 AT_SETUP(%w: Sol name numbers: Solis being 0)
 AT_CHECK([mars_wcsfmarstime_solnames_numbers_w_wide], [0], [0 1 2 3 4 5 6 ], [])
 AT_CLEANUP
+
+# These really shouldn't be needed, but I guess they help verify locale switching works.
+AT_SETUP(%x: Date format according to locale: Day/Month/2-digit Year style)
+AT_SKIP_IF([if locale -a | grep -Fxq "es_ES.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_wcsfmarstime_locale_d_fmt_wide], [0], [04/03/05], [])
+AT_CLEANUP
+
+AT_SETUP(%x: Date format according to locale: Day/Month/Full Year style)
+AT_SKIP_IF([if locale -a | grep -Fxq "fr_FR.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="fr_FR.utf8" mars_wcsfmarstime_locale_d_fmt_wide], [0], [04/03/205], [])
+AT_CLEANUP
+
+# (Month/Day/Full Year)
+AT_SETUP(%x: Date format according to locale: Freedom format style)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_wcsfmarstime_locale_d_fmt_wide], [0], [03/04/205], [])
+AT_CLEANUP
+
+AT_SETUP(%x: Date format according to locale: Full Year-Month-Day style)
+AT_SKIP_IF([if locale -a | grep -Fxq "lt_LT.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="lt_LT.utf8" mars_wcsfmarstime_locale_d_fmt_wide], [0], [205-03-04], [])
+AT_CLEANUP
+
+
+AT_SETUP(%X: Time format according to locale: 12-hour format including AM)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_wcsfmarstime_locale_t_fmt_12h_wide], [0], [09:06:07 AM], [])
+AT_CLEANUP
+
+AT_SETUP(%X: Time format according to locale: 12-hour format excluding AM)
+AT_SKIP_IF([if locale -a | grep -Fxq "es_ES.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_wcsfmarstime_locale_t_fmt_12h_wide], [0], [09:06:07], [])
+AT_CLEANUP
+
+
+AT_SETUP(%X: Time format according to locale: 24-hour format including PM)
+AT_SKIP_IF([if locale -a | grep -Fxq "en_US.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="en_US.utf8" mars_wcsfmarstime_locale_t_fmt_24h_wide], [0], [09:06:07 PM], [])
+AT_CLEANUP
+
+AT_SETUP(%X: Time format according to locale: 24-hour format excluding PM)
+AT_SKIP_IF([if locale -a | grep -Fxq "es_ES.utf8"; then exit 77; fi]) # TODO: Find a better way to filter these, and make it so the matching one can be set as an env variable
+AT_CHECK_UNQUOTED([LC_ALL="es_ES.utf8" mars_wcsfmarstime_locale_t_fmt_24h_wide], [0], [21:06:07], [])
+AT_CLEANUP
+
 
 AT_SETUP(%y: Year without century)
 AT_CHECK([mars_wcsfmarstime_year_without_century_wide], [0], [03 34 45], [])

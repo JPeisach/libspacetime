@@ -68,6 +68,12 @@ check_PROGRAMS = mars_time \
     mars_wcsfmarstime_12hours_wide \
     mars_wcsfmarstime_24hours_wide \
     mars_wcsfmarstime_centuries_wide \
+    mars_wcsfmarstime_locale_d_fmt_wide \
+    mars_wcsfmarstime_locale_t_fmt_12h_wide \
+    mars_wcsfmarstime_locale_t_fmt_24h_wide \
+    mars_wcsfmarstime_locale_d_t_fmt_wide \
+    mars_wcsfmarstime_locale_am_pm_wide \
+    mars_wcsfmarstime_locale_ampm_fmt_wide \
     mars_wcsfmarstime_monthnames_abbreviated_wide \
     mars_wcsfmarstime_monthnames_wide \
     mars_wcsfmarstime_month_padding_wide \
@@ -187,6 +193,12 @@ mars_ammarstime_leapyr_no_212_SOURCES = mars/ammarstime/ammarstime_leapyr_no_212
 mars_wcsfmarstime_12hours_wide_SOURCES = mars/wcsfmarstime/12hours_wide.c
 mars_wcsfmarstime_24hours_wide_SOURCES = mars/wcsfmarstime/24hours_wide.c
 mars_wcsfmarstime_centuries_wide_SOURCES = mars/wcsfmarstime/centuries_wide.c
+mars_wcsfmarstime_locale_d_fmt_wide_SOURCES = mars/wcsfmarstime/locale_d_fmt_wide.c
+mars_wcsfmarstime_locale_t_fmt_12h_wide_SOURCES = mars/wcsfmarstime/locale_t_fmt_12h_wide.c
+mars_wcsfmarstime_locale_t_fmt_24h_wide_SOURCES = mars/wcsfmarstime/locale_t_fmt_24h_wide.c
+mars_wcsfmarstime_locale_d_t_fmt_wide_SOURCES = mars/wcsfmarstime/locale_d_t_fmt_wide.c
+mars_wcsfmarstime_locale_am_pm_wide_SOURCES = mars/wcsfmarstime/locale_am_pm_wide.c
+mars_wcsfmarstime_locale_ampm_fmt_wide_SOURCES = mars/wcsfmarstime/locale_ampm_fmt_wide.c
 mars_wcsfmarstime_monthnames_wide_SOURCES = mars/wcsfmarstime/monthnames_wide.c
 mars_wcsfmarstime_monthnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/monthnames_abbreviated_wide.c
 mars_wcsfmarstime_month_padding_wide_SOURCES = mars/wcsfmarstime/month_padding_wide.c
