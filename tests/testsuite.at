@@ -420,6 +420,18 @@ AT_SETUP(%I: 12 hour formatting)
 AT_CHECK([mars_wcsfmarstime_12hours_wide], [0], [12 01], [])
 AT_CLEANUP
 
+AT_SETUP(%j: Sol of year padding)
+AT_CHECK([mars_wcsfmarstime_sol_of_year_padding_wide], [0], [001 010 100], [])
+AT_CLEANUP
+
+AT_SETUP(%m: Month padding)
+AT_CHECK([mars_wcsfmarstime_month_padding_wide], [0], [01 10], [])
+AT_CLEANUP
+
+AT_SETUP(%S: Seconds padding)
+AT_CHECK([mars_wcsfmarstime_seconds_padding_wide], [0], [00 10], [])
+AT_CLEANUP
+
 AT_SETUP(%u: Sol name numbers: Lunae being 1)
 AT_CHECK([mars_wcsfmarstime_solnames_numbers_u_wide], [0], [7 1 2 3 4 5 6 ], [])
 AT_CLEANUP

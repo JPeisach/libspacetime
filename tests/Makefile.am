@@ -70,13 +70,16 @@ check_PROGRAMS = mars_time \
     mars_wcsfmarstime_centuries_wide \
     mars_wcsfmarstime_monthnames_abbreviated_wide \
     mars_wcsfmarstime_monthnames_wide \
+    mars_wcsfmarstime_month_padding_wide \
     mars_wcsfmarstime_newline_wide \
     mars_wcsfmarstime_tab_wide \
     mars_wcsfmarstime_percent_wide \
+    mars_wcsfmarstime_seconds_padding_wide \
     mars_wcsfmarstime_solnames_wide \
     mars_wcsfmarstime_solnames_numbers_u_wide \
     mars_wcsfmarstime_solnames_numbers_w_wide \
     mars_wcsfmarstime_solnames_abbreviated_wide \
+    mars_wcsfmarstime_sol_of_year_padding_wide \
     mars_wcsfmarstime_weeknumbers_U_wide \
     mars_wcsfmarstime_weeknumbers_W_wide \
     mars_wcsfmarstime_year_without_century_wide \
@@ -186,10 +189,13 @@ mars_wcsfmarstime_24hours_wide_SOURCES = mars/wcsfmarstime/24hours_wide.c
 mars_wcsfmarstime_centuries_wide_SOURCES = mars/wcsfmarstime/centuries_wide.c
 mars_wcsfmarstime_monthnames_wide_SOURCES = mars/wcsfmarstime/monthnames_wide.c
 mars_wcsfmarstime_monthnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/monthnames_abbreviated_wide.c
+mars_wcsfmarstime_month_padding_wide_SOURCES = mars/wcsfmarstime/month_padding_wide.c
+mars_wcsfmarstime_seconds_padding_wide_SOURCES = mars/wcsfmarstime/seconds_padding_wide.c
 mars_wcsfmarstime_solnames_wide_SOURCES = mars/wcsfmarstime/solnames_wide.c
 mars_wcsfmarstime_solnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/solnames_abbreviated_wide.c
 mars_wcsfmarstime_solnames_numbers_u_wide_SOURCES = mars/wcsfmarstime/solnames_numbers_u_wide.c
 mars_wcsfmarstime_solnames_numbers_w_wide_SOURCES = mars/wcsfmarstime/solnames_numbers_w_wide.c
+mars_wcsfmarstime_sol_of_year_padding_wide_SOURCES = mars/wcsfmarstime/sol_of_year_padding_wide.c
 mars_wcsfmarstime_weeknumbers_U_wide_SOURCES = mars/wcsfmarstime/weeknumbers_U_wide.c
 mars_wcsfmarstime_weeknumbers_W_wide_SOURCES = mars/wcsfmarstime/weeknumbers_W_wide.c
 mars_wcsfmarstime_year_with_century_wide_SOURCES = mars/wcsfmarstime/year_with_century_wide.c
