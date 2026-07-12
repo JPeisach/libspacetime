@@ -13,6 +13,9 @@ To build, you will need:
   - `strlen`
   - `strncasecmp`
   - `time`
+- The following types:
+  - `time_t`
+  - `wchar_t`
 - autoconf
 - automake
 - make
