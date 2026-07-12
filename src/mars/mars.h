@@ -20,6 +20,11 @@ struct mars_tm
     const char* mars_tm_zone; /* Timezone abbreviation. */
 };
 
+#ifdef MARS_TIMESPEC
+
+// Time base value for a future mars_timespec_get, should be nothing too crazy.
+#define TIME_MTC 101
+
 struct mars_timespec
 {
     // TODO: glibc actually switches the order of this for big endian platforms. consider doing the same?
@@ -28,6 +33,7 @@ struct mars_timespec
     // TODO: put in padding here??
     long int tv_mars_nsec;
 };
+#endif
 
 mars_time_t mars_time(mars_time_t*);
 time_t mars_time_to_earth_time(mars_time_t);
