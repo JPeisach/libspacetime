@@ -85,6 +85,8 @@ check_PROGRAMS = mars_time \
     mars_wcsfmarstime_solnames_numbers_u_wide \
     mars_wcsfmarstime_solnames_numbers_w_wide \
     mars_wcsfmarstime_solnames_abbreviated_wide \
+    mars_wcsfmarstime_sol_of_month_wide \
+    mars_wcsfmarstime_sol_of_month_spacelz_wide \
     mars_wcsfmarstime_sol_of_year_padding_wide \
     mars_wcsfmarstime_weeknumbers_U_wide \
     mars_wcsfmarstime_weeknumbers_W_wide \
@@ -207,6 +209,8 @@ mars_wcsfmarstime_solnames_wide_SOURCES = mars/wcsfmarstime/solnames_wide.c
 mars_wcsfmarstime_solnames_abbreviated_wide_SOURCES = mars/wcsfmarstime/solnames_abbreviated_wide.c
 mars_wcsfmarstime_solnames_numbers_u_wide_SOURCES = mars/wcsfmarstime/solnames_numbers_u_wide.c
 mars_wcsfmarstime_solnames_numbers_w_wide_SOURCES = mars/wcsfmarstime/solnames_numbers_w_wide.c
+mars_wcsfmarstime_sol_of_month_wide_SOURCES = mars/wcsfmarstime/sol_of_month_wide.c
+mars_wcsfmarstime_sol_of_month_spacelz_wide_SOURCES = mars/wcsfmarstime/sol_of_month_spacelz_wide.c
 mars_wcsfmarstime_sol_of_year_padding_wide_SOURCES = mars/wcsfmarstime/sol_of_year_padding_wide.c
 mars_wcsfmarstime_weeknumbers_U_wide_SOURCES = mars/wcsfmarstime/weeknumbers_U_wide.c
 mars_wcsfmarstime_weeknumbers_W_wide_SOURCES = mars/wcsfmarstime/weeknumbers_W_wide.c
