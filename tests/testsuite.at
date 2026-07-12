@@ -420,6 +420,14 @@ AT_SETUP(%I: 12 hour formatting)
 AT_CHECK([mars_wcsfmarstime_12hours_wide], [0], [12 01], [])
 AT_CLEANUP
 
+AT_SETUP(%u: Sol name numbers: Lunae being 1)
+AT_CHECK([mars_wcsfmarstime_solnames_numbers_u_wide], [0], [7 1 2 3 4 5 6 ], [])
+AT_CLEANUP
+
+AT_SETUP(%w: Sol name numbers: Solis being 0)
+AT_CHECK([mars_wcsfmarstime_solnames_numbers_w_wide], [0], [0 1 2 3 4 5 6 ], [])
+AT_CLEANUP
+
 AT_SETUP(%y: Year without century)
 AT_CHECK([mars_wcsfmarstime_year_without_century_wide], [0], [03 34 45], [])
 AT_CLEANUP
