@@ -13,8 +13,12 @@ int main(int argc, char** argv)
     char buf[50];
 
     int optc;
-    while((optc = getopt(argc, argv, "R")) != -1) {
+    while((optc = getopt(argc, argv, "IR")) != -1) {
         switch(optc) {
+            case 'I':
+                // ISO 8601 format
+                format = "%Y-%m-%d";
+                break;
             case 'R':
                 // RFC 5322 format
                 format = "%a, %d %b %Y %H:%M:%S %z";
