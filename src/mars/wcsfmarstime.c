@@ -1,5 +1,6 @@
 #include "mars_time_impl.h"
 #include <stdlib.h>
+#include <wchar.h>
 
 size_t __wcsfmarstime(wchar_t *restrict s, size_t count, const wchar_t* restrict format, const struct mars_tm* restrict tm, locale_t locale)
 {
