@@ -1,6 +1,10 @@
 #include <time.h>
 #include <wchar.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef time_t mars_time_t;
 
 // Same as struct tm, but without timezones at the moment, and day is renamed to sol
@@ -46,7 +50,16 @@ struct mars_tm* ammarstime(const mars_time_t*);
 
 mars_time_t mkmarstime(struct mars_tm*);
 
+#ifdef __cplusplus
+size_t strfmarstime(char* __restrict, size_t, const char* __restrict, const struct mars_tm* __restrict);
+char* strpmarstime(const char *__restrict, const char *__restrict, struct mars_tm *__restrict);
+size_t wcsfmarstime(wchar_t *__restrict, size_t, const wchar_t* __restrict, const struct mars_tm* __restrict);
+#else
 size_t strfmarstime(char* restrict, size_t, const char* restrict, const struct mars_tm* restrict);
 char* strpmarstime(const char *restrict, const char *restrict, struct mars_tm *restrict);
-
 size_t wcsfmarstime(wchar_t *restrict, size_t, const wchar_t* restrict, const struct mars_tm* restrict);
+#endif
+
+#ifdef __cplusplus
+}
+#endif
