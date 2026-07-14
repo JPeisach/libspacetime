@@ -3,7 +3,7 @@
 #include "../const.h"
 #include "../earth.h"
 
-inline double __do_earth_time_to_msd(time_t et)
+double earth_time_to_msd(time_t et)
 {
     return ((et + TAI_OFFSET) / 88775.244147) + 34127.2954262;
 }
@@ -11,7 +11,7 @@ inline double __do_earth_time_to_msd(time_t et)
 inline mars_time_t __do_earth_time_to_mars_time(time_t et)
 {
     // martian seconds
-    return (mars_time_t) (__do_earth_time_to_msd(et) * SECONDS_PER_DAY);
+    return (mars_time_t) (earth_time_to_msd(et) * SECONDS_PER_DAY);
 }
 
 
