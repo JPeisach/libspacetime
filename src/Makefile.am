@@ -8,6 +8,7 @@ libspacetime_la_SOURCES = earth.c \
     mars/diffmarstime.c \
     mars/mkmarstime.c \
     mars/ammarstime.c \
+    mars/localmarstime.c \
     mars/strfmarstime.c \
     mars/strpmarstime.c \
     mars/wcsfmarstime.c
