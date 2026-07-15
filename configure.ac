@@ -28,9 +28,23 @@ AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in progs/Makefile])
 AC_CONFIG_FILES([src/libspacetime.pc])
 
 # Testing
+AC_ARG_ENABLE([tests],
+    [AS_HELP_STRING([--disable-tests], [Disables tests])],
+    [enable_tests=$enableval],
+    [enable_tests=yes])
+
+AM_CONDITIONAL([TESTS], [test "x$enable_tests" = "xyes"])
+
+if test "$enable_tests" != no
+then
 AC_CONFIG_TESTDIR([tests])
 AC_CONFIG_FILES([tests/Makefile tests/atlocal])
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
+fi
 
 AC_OUTPUT
 AC_OUTPUT
+
+echo "libspacetime config:"
+echo "Prefix: $prefix"
+echo "Tests: $enable_tests"
