@@ -42,10 +42,9 @@ Then run the resulting `configure` file.
 ./configure
 ```
 
-If you wish to build without NLS:
-```sh
-./configure --disable-nls
-```
+You can pass the following flags to `configure`: the ones of note are:
+- `--disable-nls`: Disable National Language Support
+- `--disable-tests`: Disable running tests 
 
 Some systems will install to a different directory by default (such as /usr/local). You can replace the `PREFIX` by passing the flag to configure:
 
@@ -58,7 +57,7 @@ Build libspacetime:
 make
 ```
 
-Optionally, run the tests:
+Optionally, run the tests, if enabled in configure:
 ```sh
 make check
 ```
