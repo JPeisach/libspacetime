@@ -7,8 +7,15 @@ extern "C" {
 
 typedef time_t mars_time_t;
 
-// Same as struct tm, but without timezones at the moment, and day is renamed to sol
-// Of course, the range of values will depend on Darian calendar
+// Broken down time structure for Martian time using the Darian calendar system.
+//
+// It is the same as struct tm, but with a few changes:
+//  - Ranges are determined by the Darian Calendar (24 months in a year, max 28 sols in a month, max 668 sols in a year)
+//  - No timezones at the moment
+//  - "GMT offset" variable is "AMT offset" (Airy Mean Time)
+//  - The variable names "day" have been replaced with "sol"
+//  - The year starts at Year 0 of the Darian Calendar, unlike struct tm which starts counting from Gregorian Year 1900
+//
 struct mars_tm
 {
     int mars_tm_sec; /* Seconds, 0-59 (TODO: leap seconds?) */
@@ -53,6 +60,7 @@ struct mars_tm* localmarstime(const mars_time_t*);
 
 mars_time_t mkmarstime(struct mars_tm*);
 
+// C++ does not have the restrict keyword, but rather "__restrict", so handle it specially.
 #ifdef __cplusplus
 size_t strfmarstime(char* __restrict, size_t, const char* __restrict, const struct mars_tm* __restrict);
 char* strpmarstime(const char *__restrict, const char *__restrict, struct mars_tm *__restrict);
