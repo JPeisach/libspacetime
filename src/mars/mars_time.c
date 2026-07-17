@@ -35,7 +35,7 @@ time_t mars_time_to_earth_time(mars_time_t mars_time)
     // Martian Days. Try to keep precision
     double msd = mars_time / 86400.0;
 
-    // Same steps in reverse
+    // Same steps in reverse (see earth_time_to_msd function)
     double earth_time = (msd - 34127.2954262) * 88775.244147;
 
     // Subtract leap-second correction and cast to time_t (subtract first to match test expectations)
