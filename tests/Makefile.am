@@ -7,6 +7,7 @@ check_PROGRAMS = mars_time \
     mars_mkmarstime_darian_leap_day_y210 \
     mars_mkmarstime_gregorian_leap_day_2004 \
     mars_mkmarstime_msd0 \
+    mars_mkmarstime_nullcheck \
     mars_mkmarstime_unixepoch \
     mars_mkmarstime_y2k \
     mars_mkmarstime_y2038 \
@@ -104,6 +105,7 @@ mars_important_dates_perseverance_landing_SOURCES = mars/important_dates/perseve
 mars_mkmarstime_darian_leap_day_y210_SOURCES = mars/mkmarstime/darian_leap_day_y210.c
 mars_mkmarstime_gregorian_leap_day_2004_SOURCES = mars/mkmarstime/gregorian_leap_day_2004.c
 mars_mkmarstime_msd0_SOURCES = mars/mkmarstime/msd0.c
+mars_mkmarstime_nullcheck_SOURCES = mars/mkmarstime/nullcheck.c
 mars_mkmarstime_unixepoch_SOURCES = mars/mkmarstime/unixepoch.c
 
 mars_mkmarstime_y2k_SOURCES = mars/mkmarstime/y2k.c

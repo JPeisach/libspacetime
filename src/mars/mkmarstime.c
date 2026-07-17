@@ -5,6 +5,10 @@
 // Returns the number of Martian Seconds since MSD 0 that equate to the broken down martian time structure (tm).
 mars_time_t mkmarstime(struct mars_tm* tm)
 {
+    // NULL -> undefined.
+    if(!tm)
+        return -1;
+
     // TODO: Timezones
     mars_time_t base = __mars_tm_to_secs(tm);
 
