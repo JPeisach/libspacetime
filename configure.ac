@@ -24,7 +24,20 @@ case "$host_os" in
     ;;
 esac
 
-AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in progs/Makefile])
+# Programs
+AC_ARG_ENABLE([programs],
+    [AS_HELP_STRING([--disable-programs], [Disables programs])],
+    [enable_programs=$enableval],
+    [enable_programs=yes])
+
+AM_CONDITIONAL([PROGRAMS], [test "x$enable_programs" = "xyes"])
+
+if test "$enable_programs" != no
+then
+AC_CONFIG_FILES([progs/Makefile])
+fi
+
+AC_CONFIG_FILES([Makefile src/Makefile po/Makefile.in])
 AC_CONFIG_FILES([src/libspacetime.pc])
 
 # Testing
@@ -48,3 +61,4 @@ AC_OUTPUT
 echo "libspacetime config:"
 echo "Prefix: $prefix"
 echo "Tests: $enable_tests"
+echo "Programs: $enable_programs"
