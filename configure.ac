@@ -55,10 +55,24 @@ AC_CONFIG_FILES([tests/Makefile tests/atlocal])
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 fi
 
+# Documentation
+AC_ARG_ENABLE([docs],
+    [AS_HELP_STRING([--disable-docs], [Disables documentation])],
+    [enable_docs=$enableval],
+    [enable_docs=yes])
+
+AM_CONDITIONAL([DOCS], [test "x$enable_docs" = "xyes"])
+
+if test "$enable_docs" != no
+then
+AC_CONFIG_FILES([doc/Makefile])
+fi
+
 AC_OUTPUT
 AC_OUTPUT
 
 echo "libspacetime config:"
 echo "Prefix: $prefix"
 echo "Tests: $enable_tests"
+echo "Documentation: $enable_docs"
 echo "Programs: $enable_programs"
