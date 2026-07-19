@@ -1,1 +1,41 @@
+\input libspacetime
+@settitle libspacetime Documentation
+
+@copying
 TODO
+@end copying
+
+@titlepage
+@title Hello World
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@node Top
+@top libspacetime: timekeeping beyond Earth
+
+libspacetime is a cross-platform library for date and time operating
+across multiple planets, while matching the current standards and
+specifications for date and time functions as best as possible.
+
+Currently, only Mars is supported. Other planets may be supported in
+the future. (Of course, this may be difficult, as years become longer
+the farther the planets are from the sun. But maybe other systems,
+being relative to a planet's moons or systems of other orbital bodies
+could be considered).
+
+
+@menu
+* Index::   Complete index.
+@end menu
+
+
+@node Index
+@unnumbered Index
+
+@printindex cp
+
+@bye
