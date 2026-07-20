@@ -6,7 +6,7 @@ TODO
 @end copying
 
 @titlepage
-@title Hello World
+@title libspacetime Documentation
 @page
 @vskip 0pt plus 1filll
 @insertcopying
