@@ -31,13 +31,15 @@ could be considered).
 
 @menu
 * Index::   Complete index.
-* Mars::    Documentation for timekeeping on mars.
+* Earth::   Documentation for timekeeping on Earth.
+* Mars::    Documentation for timekeeping on Mars.
 @end menu
 
 
 @node Index
 @unnumbered Index
 
+@include earth.texi
 @include mars.texi
 
 @printindex cp

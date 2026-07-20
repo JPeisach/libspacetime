@@ -1,0 +1,15 @@
+@node Earth
+@nodedescription Documentation for timekeeping on Earth
+
+libspacetime does not provide any functions for timekeeping on
+Earth. It expects the platform to be able to have handling for date
+and time functions.
+
+Conversions across other planets are based off of current Earth time,
+recorded in seconds since the Unix Epoch. If the values returned are
+incorrect, so will output values by libspacetime.
+
+The functions that are created for other planets are based off the
+existing functions used on Earth in the standard C library. These
+should be used for calculations specific to Earth. libspacetime does
+provide functions to convert time from other planets to Earth.
