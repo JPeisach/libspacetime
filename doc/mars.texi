@@ -1,0 +1,27 @@
+@node Mars
+@nodedescription Documentation for timekeeping on Mars
+
+@menu
+* Definitions:: Useful definitions.
+* Darian Calendar:: An introduction to the Darian Calendar system.
+@end menu
+
+@node Definitions
+@nodedescription Useful definitions.
+
+There is some special language used around timekeeping on Mars.
+
+@bullet{} Sol: A day on Mars - that is, the amount of time it takes for Mars
+to complete its rotation.
+
+@bullet{} MSD: Mars Sol Date - the amount of sols since approximately
+12:00 UTC, December 29th 1873 on Earth.
+
+@node Darian Calendar
+@nodedescription An introduction to the Darian Calendar system.
+
+@c TODO
+The Darian Calendar is a proposed calendar system for Mars by Thomas
+Gangale.
+
+@bye

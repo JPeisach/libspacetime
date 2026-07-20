@@ -28,13 +28,17 @@ being relative to a planet's moons or systems of other orbital bodies
 could be considered).
 
 
+
 @menu
 * Index::   Complete index.
+* Mars::    Documentation for timekeeping on mars.
 @end menu
 
 
 @node Index
 @unnumbered Index
+
+@include mars.texi
 
 @printindex cp
 
