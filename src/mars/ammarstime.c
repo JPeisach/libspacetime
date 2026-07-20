@@ -4,15 +4,30 @@
 #include <math.h>
 
 #define SOLS_PER_2Y (668 + 669)
-#define SOLS_PER_10Y (668*4 + 669*6) // would be even, but skip if divisible by 10
-#define SOLS_PER_100Y ((10 * SOLS_PER_10Y) - 1) // skip if divisible by 100, so subtract 1
+#define SOLS_PER_10Y (668*10 + 5)
+#define SOLS_PER_100Y (66859)
 // TODO: support 1000Y+
 
-static const int __sols_in_month[24] = {
-    28, 28, 28, 28, 28, 27,
-    28, 28, 28, 28, 28, 27,
-    28, 28, 28, 28, 28, 27,
-    28, 28, 28, 28, 28, 27,
+inline int is_leap_year(int year)
+{
+    if(year % 2 == 1) {
+        return 1;
+    }
+
+    if(year % 10 == 0) {
+        if(year % 100 == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    return 0;
+}
+
+// Space vs. time tradeoff for leap years.
+static const int __sols_in_month[2][24] = {
+    {28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 27},
+    {28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 27, 28, 28, 28, 28, 28, 28},
 };
 
 // This is basically written based off of musl's secs_to_tm function.
@@ -42,41 +57,108 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     // Going based off how musl calculates secs to tm via "cycles"
     // Instead of 4Y -> 100Y -> 400Y, will do 2Y -> 10Y -> 100Y
     int c_cycles = days / SOLS_PER_100Y;
-    int remdays = days % SOLS_PER_100Y;
-    if (remdays < 0) {
-        remdays += SOLS_PER_100Y;
-        // c_cycles--;
-    }
+    int remdays = days;
+    remdays -= c_cycles * SOLS_PER_100Y;
 
-    int d_cycles = remdays / SOLS_PER_10Y;
-
-    // musl's implementation does this, probably for alignment reasons
-    // but for us it seems to be causing issues.
-    // Commenting it out for now.
-
-    // if(d_cycles == 10) d_cycles--;
+    // TODO: when decade year 0 is not a leap year
+    int d_cycles = remdays / (SOLS_PER_10Y);
     remdays -= d_cycles * SOLS_PER_10Y;
 
-    int ty_cycles = remdays / SOLS_PER_2Y;
-    // if(ty_cycles == 2) ty_cycles--;
-    remdays -= ty_cycles * SOLS_PER_2Y;
+    // unfortunately from here we are going to have to go by one
+    // You see, in the Gregorian Calendar, every leap year is 4 years apart (2020-2016)
+    // And for the years that aren't, it is divisible by 4 anyway (2104-2096) = 8
+    // With the Darian Calendar, you can't guarantee this.
+    // The distance between leap years can be 1 or 2.
+    // So... closest place of normalcy is the decades.
+    int single_years = 0;
 
-    int remyears = remdays / 668;
-    // if (remyears == 2) remyears--;
-    remdays -= remyears * 668;
+    // We can find the base year, and determine if the year after that is a leap or not.
+    int base_year = (c_cycles * 100L) + (d_cycles * 10L);
+    int done_itering = 0;
+
+    int can_leap_on_base_year = is_leap_year(base_year);
+
+    // TODO: try to clean this up, I did try using a "base_leap_delta" but I think I still had weird things going on
+    // Two cases
+    // First, we are on a decade that does start with a leap year
+    if(can_leap_on_base_year) {
+        if(remdays >= 6016) {
+            single_years += 9;
+            remdays -= 6016;
+        } else if(remdays >= 5349) {
+            single_years += 8;
+            remdays -= 5349;
+        } else if(remdays >= 4680) {
+            single_years += 7;
+            remdays -= 4680;
+        } else if(remdays >= 4012) {
+            single_years += 6;
+            remdays -= 4012;
+        } else if(remdays >= 3343) {
+            single_years += 5;
+            remdays -= 3343;
+        } else if(remdays >= 2675) {
+            single_years += 4;
+            remdays -= 2675;
+        } else if(remdays >= 2006) {
+            single_years += 3;
+            remdays -= 2006;
+        } else if(remdays >= 1338) {
+            single_years += 2;
+            remdays -= 1338;
+        } else if (remdays >= 669) {
+            single_years += 1;
+            remdays -= 669;
+        }
+    } else {
+        if(remdays >= 6685) {
+            single_years += 10;
+            remdays -= 6685;
+        } else if(remdays >= 6016) {
+            single_years += 9;
+            remdays -= 6016;
+        } else if(remdays >= 5348) {
+            single_years += 8;
+            remdays -= 5348;
+        } else if(remdays >= 4679) {
+            single_years += 7;
+            remdays -= 4679;
+        } else if(remdays >= 4011) {
+            single_years += 6;
+            remdays -= 4011;
+        } else if(remdays >= 3342) {
+            single_years += 5;
+            remdays -= 3342;
+        } else if(remdays >= 2674) {
+            single_years += 4;
+            remdays -= 2674;
+        } else if(remdays >= 2005) {
+            single_years += 3;
+            remdays -= 2005;
+        } else if(remdays >= 1337) {
+            single_years += 2;
+            remdays -= 1337;
+        } else if (remdays >= 668) {
+            single_years += 1;
+            remdays -= 668;
+        }
+    }
+
+
+    int years = single_years + base_year;
+    int is_leap = is_leap_year(years);
 
     // Store this for later!
-    int ysol = remdays; // TODO: Handle leap day in leap years
+    int ysol = remdays; // TODO: Handle leap day in leap years if needed
 
     // Stolen from musl
     int wsol = (3 + remdays) % 7;
 	if (wsol < 0) wsol += 7;
 
-    int years = remyears + (c_cycles * 100L) + (d_cycles * 10) + (ty_cycles * 2);
 
     // Now we go backwards
-    for(months = 0; __sols_in_month[months] <= remdays; months++) {
-        remdays -= __sols_in_month[months];
+    for(months = 0; __sols_in_month[is_leap][months] <= remdays; months++) {
+        remdays -= __sols_in_month[is_leap][months];
     }
 
     ret.mars_tm_year = years;
