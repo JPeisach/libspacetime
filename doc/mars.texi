@@ -20,8 +20,93 @@ to complete its rotation.
 @node Darian Calendar
 @nodedescription An introduction to the Darian Calendar system.
 
-@c TODO
+@c TODO hyperlinks, fill out section.
 The Darian Calendar is a proposed calendar system for Mars by Thomas
 Gangale.
+
+There is a website that lists all the information, including a date
+conversion tool.
+
+As a brief overview, the year has 24 months. Each year contains four
+seasons. Each month is 28 sols, except for the last month of the
+season, which contains 27 sols. The only exception is the last month
+of the year, Vrishika, when the year is a leap year.
+
+Leap years occur when the year is an odd number, or divisible by 10
+unless the year is also divisible by 100. So, for example, the years
+191, 193, and 195 are leap years. 190 is also a leap year as it is
+divisible by 10. The year 200, however, is not a leap year, as it is
+divisible by 100.
+
+The month names are as follows:
+
+@enumerate
+@item
+Sagittarius
+@item
+Dhanus
+@item
+Capricornus
+@item
+Makara
+@item
+Aquarius
+@item
+Kumbha
+@item
+Pisces
+@item
+Mina
+@item
+Aries
+@item
+Mesha
+@item
+Taurus
+@item
+Rishabha
+@item
+Gemini
+@item
+Mithuna
+@item
+Cancer
+@item
+Karka
+@item
+Leo
+@item
+Simha
+@item
+Virgo
+@item
+Kanya
+@item
+Libra
+@item
+Tula
+@item
+Scorpius
+@item
+Vrishika
+@end enumerate
+
+And the sol names of the week are as follows:
+@enumerate
+@item
+Solis
+@item
+Lunae
+@item
+Martis
+@item
+Mercurii
+@item
+Jovis
+@item
+Veneris
+@item
+Saturni
+@end enumerate
 
 @bye
