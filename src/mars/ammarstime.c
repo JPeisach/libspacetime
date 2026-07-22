@@ -4,8 +4,8 @@
 #include <math.h>
 
 #define SOLS_PER_2Y (668 + 669)
-#define SOLS_PER_10Y (668*10 + 5)
-#define SOLS_PER_100Y (66859)
+#define SOLS_PER_10Y (668*10 + 6)
+#define SOLS_PER_100Y (66859) // Keep this, otherwise MSD 0 will be in the wrong place
 // TODO: support 1000Y+
 
 inline int is_leap_year(int year)
@@ -62,7 +62,14 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
 
     // TODO: when decade year 0 is not a leap year
     int d_cycles = remdays / (SOLS_PER_10Y);
-    remdays -= d_cycles * SOLS_PER_10Y;
+    if(remdays <= 6686) {
+        // in the entire century, we are not past the
+        // first decade, which has one less sol per 10y
+        d_cycles = remdays / (SOLS_PER_10Y - 1);
+        remdays -= d_cycles * (SOLS_PER_10Y - 1);
+    } else {
+        remdays -= d_cycles * SOLS_PER_10Y;
+    }
 
     // unfortunately from here we are going to have to go by one
     // You see, in the Gregorian Calendar, every leap year is 4 years apart (2020-2016)
@@ -81,8 +88,13 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     // TODO: try to clean this up, I did try using a "base_leap_delta" but I think I still had weird things going on
     // Two cases
     // First, we are on a decade that does start with a leap year
+
+    // FIXME: Still an extra day added.. (220-01-01)
     if(can_leap_on_base_year) {
-        if(remdays >= 6016) {
+        if(remdays >= 6685) {
+            single_years += 10;
+            remdays -= 6685;
+        } else if(remdays >= 6016) {
             single_years += 9;
             remdays -= 6016;
         } else if(remdays >= 5349) {
