@@ -94,9 +94,9 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
         if(remdays >= 6685) {
             single_years += 10;
             remdays -= 6685;
-        } else if(remdays >= 6016) {
+        } else if(remdays >= 6017) {
             single_years += 9;
-            remdays -= 6016;
+            remdays -= 6017;
         } else if(remdays >= 5349) {
             single_years += 8;
             remdays -= 5349;
