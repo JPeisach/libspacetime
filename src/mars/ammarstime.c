@@ -91,9 +91,9 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
 
     // FIXME: Still an extra day added.. (220-01-01)
     if(can_leap_on_base_year) {
-        if(remdays >= 6685) {
+        if(remdays >= 6686) {
             single_years += 10;
-            remdays -= 6685;
+            remdays -= 6686;
         } else if(remdays >= 6017) {
             single_years += 9;
             remdays -= 6017;
