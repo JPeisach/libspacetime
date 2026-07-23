@@ -4,6 +4,7 @@
 @menu
 * Definitions:: Useful definitions.
 * Darian Calendar:: An introduction to the Darian Calendar system.
+* Types:: Types for working with Martian time.
 @end menu
 
 @node Definitions
@@ -108,5 +109,52 @@ Veneris
 @item
 Saturni
 @end enumerate
+
+@node Types
+@nodedescription Types for working with Mars time.
+
+@c AI disclosure: searched up which commands to use
+@c TODO: How to best show this
+@bullet {} mars_time_t type: represents the number of Martian seconds
+since approximately 12:00 UTC, December 29th 1873, or Virgo 25th 140.
+When using, be aware that mars_time_t should not be confused with
+time_t. Early values of mars_time_t will represent negative time_t
+values as it predates the Unix Epoch.
+
+@deftypevr {Struct} struct mars_tm
+The **mars_tm** structure is similar to the **tm** structure, which
+represents "broken-down" time.
+@deftypevar {int} mars_tm_sec
+Martian seconds, 0-59
+@end deftypevar
+@deftypevar {int} mars_tm_min
+Minutes, 0-59
+@end deftypevar
+@deftypevar {int} mars_tm_hour
+Hours, 0-23
+@end deftypevar
+@deftypevar {int} mars_tm_msol
+Sol of month, 1-28
+@end deftypevar
+@deftypevar {int} mars_tm_mon
+Month, 0-23
+@end deftypevar
+@deftypevar {int} mars_tm_year
+Year, starting from Darian Calendar Year 0
+@end deftypevar
+@deftypevar {int} mars_tm_wsol
+Sol of week, 0-6
+@end deftypevar
+@deftypevar {int} mars_tm_ysol
+Sol of year, 0-668
+@end deftypevar
+
+@end deftypevr
+
+@node Numerical time
+@nodedescription TODO
+
+@node String functions
+@nodedescription Functions for working with string representation. TODO
 
 @bye
