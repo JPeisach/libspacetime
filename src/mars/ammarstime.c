@@ -3,9 +3,7 @@
 #include "../const.h"
 #include <math.h>
 
-#define SOLS_PER_2Y (668 + 669)
-#define SOLS_PER_10Y (668*10 + 6)
-#define SOLS_PER_100Y (66859) // Keep this, otherwise MSD 0 will be in the wrong place
+#define SOLS_PER_100Y (66859) // Try to keep this, otherwise MSD 0 will be in the wrong place
 // TODO: support 1000Y+
 
 inline int is_leap_year(int year)
@@ -60,104 +58,71 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     int remdays = days;
     remdays -= c_cycles * SOLS_PER_100Y;
 
-    // TODO: when decade year 0 is not a leap year
-    int d_cycles = remdays / (SOLS_PER_10Y);
-    if(remdays <= 6686) {
-        // in the entire century, we are not past the
-        // first decade, which has one less sol per 10y
-        d_cycles = remdays / (SOLS_PER_10Y - 1);
-        remdays -= d_cycles * (SOLS_PER_10Y - 1);
-    } else {
-        remdays -= d_cycles * SOLS_PER_10Y;
-    }
-
-    // unfortunately from here we are going to have to go by one
-    // You see, in the Gregorian Calendar, every leap year is 4 years apart (2020-2016)
-    // And for the years that aren't, it is divisible by 4 anyway (2104-2096) = 8
-    // With the Darian Calendar, you can't guarantee this.
-    // The distance between leap years can be 1 or 2.
-    // So... closest place of normalcy is the decades.
-    int single_years = 0;
-
     // We can find the base year, and determine if the year after that is a leap or not.
-    int base_year = (c_cycles * 100L) + (d_cycles * 10L);
-    int done_itering = 0;
+    int years = (c_cycles * 100L);
 
-    int can_leap_on_base_year = is_leap_year(base_year);
 
-    // TODO: try to clean this up, I did try using a "base_leap_delta" but I think I still had weird things going on
-    // Two cases
-    // First, we are on a decade that does start with a leap year
+    // ---------
+    // The ammarstime story
+    //
+    // When I created the function, I did what I was doing for other
+    // functions: basically recreate based off musl or glibc's
+    // implementation.
+    //
+    // musl, for it's calculations, uses a "cycle" system, where
+    // it takes the amount of seconds that have passed per 400 years,
+    // then 100 years, then 4 years. This is consistent with Gregorian
+    // Calendar leap year rules.
+    //
+    // For the Darian Calendar, this system does not quite work,
+    // because the only constant cycles are decades and centuries.
+    // Because the start of a decade year is a leap year (unless
+    // divisible by 100), there could be three back-to-back leap years.
+    // To confuse things even more, the handling of the "days per decade"
+    // would lead to situations where an extra day would be added (such
+    // as a false "25-01" day) or because of modulus boundaries, multiple
+    // dates would share the same "24-28" or "01-01" day, and sometimes
+    // days would be missing entirely.
+    //
+    // I've probably spent about 10 hours trying to debug this without
+    // AI. I eventually folded and asked for what was wrong, and the
+    // LLM suggested removing the "optimization" and calculating years
+    // manually.
+    //
+    // This does in fact fix everything. It makes the current date
+    // consistent. The only issue is that I thought MSD 0 started on
+    // 140 Virgo 25, but it may actually be the 26. I'll need to check that.
+    //
+    // I spent a lot of time just trying to fix the issue and document
+    // what the code was doing (because I didn't want to just plainly
+    // copy and paste), but didn't really understand *why* I was doing
+    // it this way. I was thinking too close minded. It's kind of a
+    // shame an AI had to tell me.
+    //
+    // The "why" for the cycles, is really because you can prevent
+    // loops (and probably save runtime) by trying to position the
+    // offset by a cycle-system instead of manually looping through
+    // everything.
+    //
+    // I will try to revisit this, but I want to get this library
+    // released.
+    // -July 23 2026
+    //
+    // Oh: And MSD 0 actually starts 3 minutes before 140 Virgo 26.
+    // So that explains the confusion. Probably MSD offset above is
+    // slightly off.
+    //
+    // TODO: Optimize.
+    while(remdays >= 668) {
+        int year_len = is_leap_year(years) ? 669 : 668;
 
-    // FIXME: Still an extra day added.. (220-01-01)
-    if(can_leap_on_base_year) {
-        if(remdays >= 6686) {
-            single_years += 10;
-            remdays -= 6686;
-        } else if(remdays >= 6017) {
-            single_years += 9;
-            remdays -= 6017;
-        } else if(remdays >= 5349) {
-            single_years += 8;
-            remdays -= 5349;
-        } else if(remdays >= 4680) {
-            single_years += 7;
-            remdays -= 4680;
-        } else if(remdays >= 4012) {
-            single_years += 6;
-            remdays -= 4012;
-        } else if(remdays >= 3343) {
-            single_years += 5;
-            remdays -= 3343;
-        } else if(remdays >= 2675) {
-            single_years += 4;
-            remdays -= 2675;
-        } else if(remdays >= 2006) {
-            single_years += 3;
-            remdays -= 2006;
-        } else if(remdays >= 1338) {
-            single_years += 2;
-            remdays -= 1338;
-        } else if (remdays >= 669) {
-            single_years += 1;
-            remdays -= 669;
-        }
-    } else {
-        if(remdays >= 6685) {
-            single_years += 10;
-            remdays -= 6685;
-        } else if(remdays >= 6016) {
-            single_years += 9;
-            remdays -= 6016;
-        } else if(remdays >= 5348) {
-            single_years += 8;
-            remdays -= 5348;
-        } else if(remdays >= 4679) {
-            single_years += 7;
-            remdays -= 4679;
-        } else if(remdays >= 4011) {
-            single_years += 6;
-            remdays -= 4011;
-        } else if(remdays >= 3342) {
-            single_years += 5;
-            remdays -= 3342;
-        } else if(remdays >= 2674) {
-            single_years += 4;
-            remdays -= 2674;
-        } else if(remdays >= 2005) {
-            single_years += 3;
-            remdays -= 2005;
-        } else if(remdays >= 1337) {
-            single_years += 2;
-            remdays -= 1337;
-        } else if (remdays >= 668) {
-            single_years += 1;
-            remdays -= 668;
-        }
+        if (remdays < year_len)
+            break;
+
+        remdays -= year_len;
+        years++;
     }
 
-
-    int years = single_years + base_year;
     int is_leap = is_leap_year(years);
 
     // Store this for later!
@@ -174,7 +139,6 @@ struct mars_tm* ammarstime(const mars_time_t* timer)
     }
 
     ret.mars_tm_year = years;
-    // TODO: Test on other months, especially first and last
     ret.mars_tm_mon = months;
     ret.mars_tm_msol = remdays + 1;
     ret.mars_tm_wsol = wsol;
