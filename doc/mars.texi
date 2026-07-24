@@ -5,6 +5,7 @@
 * Definitions:: Useful definitions.
 * Darian Calendar:: An introduction to the Darian Calendar system.
 * Types:: Types for working with Martian time.
+* Numerical time functions:: I need a better name
 @end menu
 
 @node Definitions
@@ -151,10 +152,58 @@ Sol of year, 0-668
 
 @end deftypevr
 
-@node Numerical time
+@node Numerical time functions
 @nodedescription TODO
+
+@c surely there's a better way to do this
+@defun ammarstime (mars_time_t* @var{timer})
+Analagous to gmtime. Returns a broken down time structure
+(struct mars_tm) representing the amount of time since the time stored
+in @var{TIMER}.
+
+WARNING: Probably due to float modulus operations, there appears
+to be usually 1-2, but sometimes up to 4 seconds of variance in
+conversions. This is being investigated.
+@end defun
+
+@defun diffmarstime (mars_time_t @var{time_end}, mars_time_t @var{time_start})
+Returns the amount of time since time_end and time_start.
+
+It is literally basic subtraction.
+
+This function exists for the sake of matching "standards" because the
+difftime function exists.
+@end defun
+
+@defun localmarstime (mars_time_t* @var{timer})
+The same as ammarstime, except returns the time relative to the
+timezone.
+
+NOTE: Timezones are currently unimplemented. This returns MTC for now.
+@end defun
+
+@defun mars_time (mars_time_t* @var{timer})
+Returns the current value of time elapsed in Martian seconds since MSD
+0, and sets @var{timer} to that value if not NULL.
+@end defun
+
+@defun mkmarstime (struct mars_tm* @var{tm})
+Returns the number of Martian Seconds (mars_time) given the broken down
+time structure in @var{tm}.
+
+If @var{tm} is NULL, -1 is returned.
+@end defun
 
 @node String functions
 @nodedescription Functions for working with string representation. TODO
+
+@defun strfmarstime (char* @var{s}, size_t @var{count}, char* @var{format}, struct mars_tm* @var{tm})
+Returns a string format representation of a broken down time structure
+(@var{tm}).
+
+This is the equivalent of the strftime function.
+
+@c TODO: explain format specifiers
+@end defun
 
 @bye

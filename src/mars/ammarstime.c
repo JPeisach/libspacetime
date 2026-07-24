@@ -29,7 +29,7 @@ static const int __sols_in_month[2][24] = {
 };
 
 // This is basically written based off of musl's secs_to_tm function.
-// TODO: Testcases for this
+// TODO: Fix variance in seconds
 struct mars_tm* ammarstime(const mars_time_t* timer)
 {
     static struct mars_tm ret;
