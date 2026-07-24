@@ -6,6 +6,7 @@
 * Darian Calendar:: An introduction to the Darian Calendar system.
 * Types:: Types for working with Martian time.
 * Numerical time functions:: I need a better name
+* String functions:: Functions for working with string representations
 @end menu
 
 @node Definitions
@@ -206,4 +207,21 @@ This is the equivalent of the strftime function.
 @c TODO: explain format specifiers
 @end defun
 
+@defun strpmarstime (char* @var{str}, char* @var{format}, struct mars_tm* @var{tm})
+Parses a string format representation of a broken down time structure
+(@var{tm}).
+
+This is the inverse of strfmarstime.
+
+This is the equivalent of the strptime function.
+@c TODO: fill
+@end defun
+
+
+@defun wcsfmarstime (wchar_t* @var{wcs}, size_t @var{count}, wchar_t* @var{format}, struct mars_tm* @var{tm})
+This is the same as strfmarstime but for wide characters (wchar_t).
+
+This is the equivalent of the wcsftime function.
+@c TODO: that is basically it right?
+@end defun
 @bye
