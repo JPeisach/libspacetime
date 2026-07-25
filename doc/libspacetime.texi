@@ -29,7 +29,7 @@ This is the libspacetime documentation manual.
 
 
 @node Overview
-@chapter Welcome
+@chapter Overview
 @nodedescription Welcome to libspacetime!
 
 libspacetime is a cross-platform library for date and time operating

@@ -7,3 +7,8 @@
 @unnumbered Function Index
 
 @printindex fn
+
+@node Data Type Index
+@unnumbered Data Type Index
+
+@printindex tp

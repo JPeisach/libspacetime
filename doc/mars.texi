@@ -1,4 +1,5 @@
 @node Mars
+@chapter Mars
 @nodedescription Documentation for timekeeping on Mars
 
 @menu
@@ -10,6 +11,7 @@
 @end menu
 
 @node Definitions
+@section Definitions
 @nodedescription Useful definitions.
 
 There is some special language used around timekeeping on Mars.
@@ -21,6 +23,7 @@ to complete its rotation.
 12:00 UTC, December 29th 1873 on Earth.
 
 @node Darian Calendar
+@section Darian Calendar
 @nodedescription An introduction to the Darian Calendar system.
 
 @c TODO hyperlinks, fill out section.
@@ -113,15 +116,17 @@ Saturni
 @end enumerate
 
 @node Types
+@section Types for Mars
 @nodedescription Types for working with Mars time.
 
 @c AI disclosure: searched up which commands to use
-@c TODO: How to best show this
-@bullet {} mars_time_t type: represents the number of Martian seconds
-since approximately 12:00 UTC, December 29th 1873, or Virgo 25th 140.
-When using, be aware that mars_time_t should not be confused with
-time_t. Early values of mars_time_t will represent negative time_t
-values as it predates the Unix Epoch.
+@deftp {Data type} mars_time_t
+Represents the number of Martian seconds since approximately 12:00 UTC,
+December 29th 1873, or Virgo 25th 140. When using, be aware that
+mars_time_t should not be confused with time_t. Early values of
+mars_time_t will represent negative time_t values as it predates the
+Unix Epoch.
+@end deftp
 
 @deftypevr {Struct} struct mars_tm
 The **mars_tm** structure is similar to the **tm** structure, which
@@ -154,6 +159,7 @@ Sol of year, 0-668
 @end deftypevr
 
 @node Numerical time functions
+@section Numerical time functions for Mars
 @nodedescription TODO
 
 @c surely there's a better way to do this
@@ -196,6 +202,7 @@ If @var{tm} is NULL, -1 is returned.
 @end defun
 
 @node String functions
+@section String functions for Mars
 @nodedescription Functions for working with string representation. TODO
 
 @defun strfmarstime (char* @var{s}, size_t @var{count}, char* @var{format}, struct mars_tm* @var{tm})
