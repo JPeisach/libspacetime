@@ -224,4 +224,3 @@ This is the same as strfmarstime but for wide characters (wchar_t).
 This is the equivalent of the wcsftime function.
 @c TODO: that is basically it right?
 @end defun
-@bye

@@ -17,6 +17,21 @@ TODO
 @node Top
 @top libspacetime: timekeeping beyond Earth
 
+This is the libspacetime documentation manual.
+
+@menu
+* Overview::   About libspacetime and its goals.
+* Earth::   Documentation for timekeeping on Earth.
+* Mars::    Documentation for timekeeping on Mars.
+* Index::   Complete index.
+* Function Index::   Complete function index.
+@end menu
+
+
+@node Overview
+@chapter Welcome
+@nodedescription Welcome to libspacetime!
+
 libspacetime is a cross-platform library for date and time operating
 across multiple planets, while matching the current standards and
 specifications for date and time functions as best as possible.
@@ -27,21 +42,8 @@ the farther the planets are from the sun. But maybe other systems,
 being relative to a planet's moons or systems of other orbital bodies
 could be considered).
 
-
-
-@menu
-* Index::   Complete index.
-* Earth::   Documentation for timekeeping on Earth.
-* Mars::    Documentation for timekeeping on Mars.
-@end menu
-
-
-@node Index
-@unnumbered Index
-
 @include earth.texi
 @include mars.texi
-
-@printindex cp
+@include index.texi
 
 @bye

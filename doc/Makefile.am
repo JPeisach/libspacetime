@@ -1,3 +1,4 @@
 info_TEXINFOS = libspacetime.texi
 libspacetime_TEXINFOS = earth.texi \
-    mars.texi
+    mars.texi \
+    index.texi

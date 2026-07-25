@@ -1,0 +1,9 @@
+@node Index
+@unnumbered Index
+
+@printindex cp
+
+@node Function Index
+@unnumbered Function Index
+
+@printindex fn
