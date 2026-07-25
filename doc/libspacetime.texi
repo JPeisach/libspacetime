@@ -30,6 +30,7 @@ This is the libspacetime documentation manual.
 
 @node Overview
 @chapter Overview
+@section Welcome
 @nodedescription Welcome to libspacetime!
 
 libspacetime is a cross-platform library for date and time operating
@@ -41,6 +42,54 @@ the future. (Of course, this may be difficult, as years become longer
 the farther the planets are from the sun. But maybe other systems,
 being relative to a planet's moons or systems of other orbital bodies
 could be considered).
+
+@node Philosophy
+@section Philosophy
+
+When initially creating this library, there was the question of "why?".
+After all, it was 2026, and no standard for timekeeping beyond Earth
+had been created.
+
+That year, the Artemis II mission was a success. The later goals of the
+Artemis mission is to setup a moon base to then be used to bring humans
+to Mars.
+
+It was the perfect time to start preparing computers to assist humanity
+with timekeeping on Mars. The Darian Calendar system, has been notable
+enough to have its own Wikipedia page, and there are various
+implementations in other programming languages, but not in C.
+
+Again, although the Darian Calendar had not been declared "official",
+it seemed to have the most potential.
+
+Thomas Gangale, who proposed the Darian Calendar, also proposed a
+system for Jupiter and Titan. Although those would definitely be years
+away, and likely work differently due to the length of orbit, there was
+thought being put into humans tracking time in space. For this reason,
+the library was named "libspacetime" instead of "libdarian" to allow
+for future expansion.
+
+In the more immediate future, the reasoning for a C implementation of
+the Darian Calendar would allow for integration with other parts of
+a UNIX-based system, and eventually, all other kinds of software.
+Language bindings could be made to work with space time at a performant
+low level.
+
+In addition, to help ease support of developers adopting the new
+calendar system, the library would conform to existing practices and
+APIs to make its use trivial. For C programs, it would be as if they
+were calling functions directly from the C standard library, although
+they are not. This allows for the "proposed" time systems to be
+separate from the existing, relevant, and more important Earth systems
+in the C standard library.
+
+Timekeeping for Mars would be alongside timekeeping for Earth, and make
+tracking both easy. The idea of timekeeping for Mars has not been
+exclusive to hobbyists or thinkers: NASA has included a local clock for
+certain locations in Mars24. With other calendar systems being
+developed beyond Mars, it makes sense to lay the foundation for future
+timekeeping in a way that is similar to what humans are already
+familiar with.
 
 @include earth.texi
 @include mars.texi
