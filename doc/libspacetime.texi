@@ -91,6 +91,57 @@ developed beyond Mars, it makes sense to lay the foundation for future
 timekeeping in a way that is similar to what humans are already
 familiar with.
 
+@node Practices
+@section Practices
+
+@subsection Standard Compliance
+
+Since the goal of libspacetime is to provide timekeeping for other
+planets while being as conformant as possible to existing standards,
+any non-deprecated function will get its implementation in the other
+timekeeping system.
+
+@c TODO: Go into detail about ISO C and whatnot.
+
+@subsection Portability
+
+libspacetime should attempt to be as portable as possible, and work on
+as many systems as possible. This may be difficult given mathematical
+requirements, like needing to use double floating-point precision for
+calculations, but best effort will be made.
+
+@subsection Dependencies
+
+libspacetime should try to be as easy to build, test, and use on any
+device. Dependencies should be minimized as much as possible. Any
+dependency should not be something required for a system to have.
+
+If a dependency is added, there should be an option, if possible, to
+not use that dependency, via providing another implementation or an
+alternative method of achieving the intended functionality.
+
+@subsection Autotools
+
+For the previous subsection on dependencies, libspacetime uses
+Autotools as its build system. Tests use the Autotest system, although
+it is a bit clunky. The reasoning is that any system capable of
+compiling other libraries should not have to install other tooling to
+use libspacetime. Autotools is old enough and respected that most
+platforms should be able to work with it, and most systems should be
+able to install it with no issue.
+
+@subsection Unix Philosophy and Simplicity
+
+The Unix Philosophy is applied as much as possible, along with the
+following other ideas:
+
+@bullet{} KISS (Keep it simple stupid)
+
+@bullet{} Less is more.
+
+Design and program with care, thoughtfulness, testing, and
+documentation :)
+
 @include earth.texi
 @include mars.texi
 @include index.texi
