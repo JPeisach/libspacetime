@@ -130,6 +130,11 @@ use libspacetime. Autotools is old enough and respected that most
 platforms should be able to work with it, and most systems should be
 able to install it with no issue.
 
+@subsection Texinfo for Documentation
+
+Just like Autotools, the usage of Texinfo for documentation is due to
+its long history and use for info pages.
+
 @subsection Unix Philosophy and Simplicity
 
 The Unix Philosophy is applied as much as possible, along with the

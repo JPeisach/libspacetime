@@ -10,17 +10,18 @@
 * String functions:: Functions for working with string representations
 @end menu
 
-@node Definitions
+@node Definitions for Mars
 @section Definitions
 @nodedescription Useful definitions.
 
 There is some special language used around timekeeping on Mars.
 
-@bullet{} Sol: A day on Mars - that is, the amount of time it takes for Mars
+@cindex Martian Sol
+A day on Mars - that is, the amount of time it takes for Mars
 to complete its rotation.
 
-@bullet{} MSD: Mars Sol Date - the amount of sols since approximately
-12:00 UTC, December 29th 1873 on Earth.
+@cindex MSD: Mars Sol Date
+The amount of sols since approximately 12:00 UTC, December 29th 1873 on Earth.
 
 @node Darian Calendar
 @section Darian Calendar
