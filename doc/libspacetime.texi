@@ -168,6 +168,24 @@ names. There may also be functions that call multiple functions and
 perform operations on the results. This is fine, as long as the best
 effort to match the API is made.
 
+
+@node Acknowledgements
+@section Acknowledgements
+
+This would not have been possible without the likes of many people:
+
+@itemize
+@item Thomas Gangale, proposer of the Darian Calendar system
+
+@item James Tauber, for marsclock.com
+
+@item The teams behind both musl and glibc, for being a code reference for
+existing date and time implementations. libspacetime code is based off
+of these implementations.
+@end itemize
+
+@c TODO: Licensing
+
 @include earth.texi
 @include mars.texi
 @include index.texi
