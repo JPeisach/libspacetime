@@ -17,10 +17,12 @@
 There is some special language used around timekeeping on Mars.
 
 @cindex Martian Sol
+@dfn {Martian Sol}
 A day on Mars - that is, the amount of time it takes for Mars
 to complete its rotation.
 
 @cindex MSD: Mars Sol Date
+@dfn {MSD: Mars Sol Date}
 The amount of sols since approximately 12:00 UTC, December 29th 1873 on Earth.
 
 @node Darian Calendar
