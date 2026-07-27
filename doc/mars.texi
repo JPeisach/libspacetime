@@ -3,7 +3,7 @@
 @nodedescription Documentation for timekeeping on Mars
 
 @menu
-* Definitions:: Useful definitions.
+* Definitions for Mars:: Useful definitions.
 * Darian Calendar:: An introduction to the Darian Calendar system.
 * Types:: Types for working with Martian time.
 * Numerical time functions:: I need a better name
