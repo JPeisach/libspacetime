@@ -147,6 +147,27 @@ following other ideas:
 Design and program with care, thoughtfulness, testing, and
 documentation :)
 
+@subsection Bindings/wrappers/working with other programming languages
+
+With the philosophy of being able to make libspacetime easily usable
+by programmers, bindings, wrappers, or other tools to work with
+programming languages should match the target language's own library
+API for date and time, if possible. It should be as if the code was
+official.
+
+For example, the Python wrapper, when returning mars_time, should
+return the time as a floating point number, instead of an integer like
+the C function does. This matches the behavior of the time function in
+Python.
+
+Additionally, Python does not have a wcsftime function, so the need to
+make a wrapper for wcsfmarstime is unnecessary.
+
+A language's API may call the underlying functions but under different
+names. There may also be functions that call multiple functions and
+perform operations on the results. This is fine, as long as the best
+effort to match the API is made.
+
 @include earth.texi
 @include mars.texi
 @include index.texi
