@@ -1,4 +1,5 @@
 @node Earth
+@chapter Earth
 @nodedescription Documentation for timekeeping on Earth
 
 libspacetime does not provide any functions for timekeeping on
