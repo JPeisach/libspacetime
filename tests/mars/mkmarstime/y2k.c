@@ -1,5 +1,5 @@
-#include <libspacetime/earth.h>
-#include <libspacetime/mars.h>
+#include "earth.h"
+#include "mars/mars.h"
 #include <stdio.h>
 
 // Verify we can make Y2K - 1/1/00, 2000

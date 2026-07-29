@@ -1,5 +1,5 @@
-#include <libspacetime/earth.h>
-#include <libspacetime/mars.h>
+#include "earth.h"
+#include "mars/mars.h"
 #include <stdio.h>
 
 // Verify we can make Y2038, 1/1/38, 03:14:07 UTC

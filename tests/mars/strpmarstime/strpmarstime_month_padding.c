@@ -1,4 +1,4 @@
-#include <libspacetime/mars.h>
+#include "mars/mars.h"
 #include <stdio.h>
 
 int main()

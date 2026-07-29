@@ -1,5 +1,5 @@
-#include <libspacetime/earth.h>
-#include <libspacetime/mars.h>
+#include "earth.h"
+#include "mars/mars.h"
 #include <stdio.h>
 
 // Verify we can make equivalence with a Gregorian Leap Day - 2004, midnight UTC

@@ -229,6 +229,7 @@ mars_wcsfmarstime_percent_wide_SOURCES = mars/wcsfmarstime/percent_wide.c
 
 
 LDADD = $(top_srcdir)/src/libspacetime.la
+AM_CPPFLAGS = -I$(top_builddir)/src/
 
 # Below is taken from the autotools docs
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac

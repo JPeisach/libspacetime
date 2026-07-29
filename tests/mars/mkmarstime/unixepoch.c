@@ -1,5 +1,5 @@
-#include <libspacetime/earth.h>
-#include <libspacetime/mars.h>
+#include "earth.h"
+#include "mars/mars.h"
 #include <stdio.h>
 
 // Verify we can make the Unix Epoch - 1/1/1970 00:00:00 UTC
