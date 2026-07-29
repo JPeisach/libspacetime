@@ -37,7 +37,8 @@ autom4te.cache
 
 # http://www.gnu.org/software/texinfo
 
-/texinfo.tex
+doc/texinfo.tex
+doc/*.info
 
 # http://www.gnu.org/software/m4/
 
@@ -47,6 +48,9 @@ m4/ltsugar.m4
 m4/ltversion.m4
 m4/lt~obsolete.m4
 
+# I am keeping other m4 files in case you may need it.
+
+# Generated files
 # Generated Makefile
 # (meta build system like autotools,
 # can automatically generate from config.status script
@@ -65,9 +69,33 @@ testsuite
 atconfig
 atlocal
 testsuite.log
+testsuite.dir
+tests/mars_*
 
 # hopefully i'm right about this
 test/package.m4
 
 # old configure file
 configure~
+
+# Gettext
+## Installed by autoreconf
+po/boldquot.seq
+po/Makevars.template
+po/Rules-quot
+
+## Output
+*.gmo
+*.mo
+
+# use msginit for new languages
+*.pot
+POTFILES
+stamp-po
+
+## We don't do anything.
+*.header
+*.sed
+
+# Programs
+progs/marsdate

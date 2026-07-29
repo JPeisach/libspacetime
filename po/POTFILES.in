@@ -1,2 +1,4 @@
 # List of source files which contain translatable strings.
-src/mars/mars.h
+src/mars/strfmarstime.c
+src/mars/strpmarstime.c
+src/mars/wcsfmarstime.c

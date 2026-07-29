@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libspacetime 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-26 08:58-0400\n"
-"PO-Revision-Date: 2026-06-26 08:47-0400\n"
+"POT-Creation-Date: 2026-07-29 10:44-0400\n"
+"PO-Revision-Date: 2026-07-29 10:46-0400\n"
 "Last-Translator: Joshua Peisach <jpeisach@ubuntu.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -17,98 +17,247 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Sagittarius"
 msgstr "Sagittarius"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Dhanus"
 msgstr "Dhanus"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Capricornus"
 msgstr "Capricornus"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Makara"
 msgstr "Makara"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Aquarius"
 msgstr "Aquarius"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Kumbha"
 msgstr "Kumbha"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Pisces"
 msgstr "Pisces"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Mina"
 msgstr "Mina"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Aries"
 msgstr "Aries"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Mesha"
 msgstr "Mesha"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Taurus"
 msgstr "Taurus"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Rishabha"
 msgstr "Rishabha"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Gemini"
 msgstr "Gemini"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Mithuna"
 msgstr "Mithuna"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Cancer"
 msgstr "Cancer"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Karka"
 msgstr "Karka"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strfmarstime.c:29
+#: src/mars/strpmarstime.c:25 src/mars/strpmarstime.c:29
 msgid "Leo"
 msgstr "Leo"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Simha"
 msgstr "Simha"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Virgo"
 msgstr "Virgo"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Kanya"
 msgstr "Kanya"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Libra"
 msgstr "Libra"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Tula"
 msgstr "Tula"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Scorpius"
 msgstr "Scorpius"
 
-#: src/mars/mars.h:25
+#: src/mars/strfmarstime.c:25 src/mars/strpmarstime.c:25
 msgid "Vrishika"
 msgstr "Vrishika"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Sag"
+msgstr "Sag"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Dha"
+msgstr "Dha"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Cap"
+msgstr "Cap"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Mak"
+msgstr "Mak"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Aqu"
+msgstr "Aqu"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Kum"
+msgstr "Kum"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Pis"
+msgstr "Pis"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Min"
+msgstr "Min"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Ari"
+msgstr "Ari"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Mes"
+msgstr "Mes"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Tau"
+msgstr "Tau"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Ris"
+msgstr "Ris"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Gem"
+msgstr "Gem"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Mit"
+msgstr "Mit"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Can"
+msgstr "Can"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Kar"
+msgstr "Kar"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Sim"
+msgstr "Sim"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Vir"
+msgstr "Vir"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Kan"
+msgstr "Kan"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Lib"
+msgstr "Lib"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Tul"
+msgstr "Tul"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Sco"
+msgstr "Sco"
+
+#: src/mars/strfmarstime.c:29 src/mars/strpmarstime.c:29
+msgid "Vri"
+msgstr "Vri"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Solis"
+msgstr "Solis"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Lunae"
+msgstr "Lunae"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Martis"
+msgstr "Martis"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Mercurii"
+msgstr "Mercurii"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Jovis"
+msgstr "Jovis"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Veneris"
+msgstr "Veneris"
+
+#: src/mars/strfmarstime.c:33 src/mars/strpmarstime.c:33
+msgid "Saturni"
+msgstr "Saturni"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Sol"
+msgstr "Sol"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Lun"
+msgstr "Lun"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Mar"
+msgstr "Mar"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Mer"
+msgstr "Mer"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Jov"
+msgstr "Jov"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Ven"
+msgstr "Ven"
+
+#: src/mars/strfmarstime.c:37 src/mars/strpmarstime.c:37
+msgid "Sat"
+msgstr "Sat"
