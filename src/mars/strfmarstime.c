@@ -305,6 +305,9 @@ const char* __strfmarstime_fmt_item(char (*str)[100], size_t *len, int op, const
         case '%':
             *len = 1;
             return "%";
+
+        default:
+            return 0;
     }
 
 number:
