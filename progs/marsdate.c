@@ -1,5 +1,7 @@
 #include <libspacetime/mars.h>
 #include <getopt.h>
+#include <langinfo.h>
+#include <locale.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -8,10 +10,12 @@ int main(int argc, char** argv)
 {
     mars_time_t time = mars_time(NULL);
     struct mars_tm* tm = ammarstime(&time);
-    char* format = "%a %b %e %H:%M:%S %Z %Y";  // Seems to be a default?
+    char* format = nl_langinfo(_DATE_FMT);
 
     // FIXME: Get appropriate size, don't guess
-    char buf[50];
+    char buf[128];
+
+    setlocale(LC_ALL, "");
 
     int optc;
     while((optc = getopt(argc, argv, "IR")) != -1) {
@@ -50,8 +54,15 @@ int main(int argc, char** argv)
         }
     }
 
+    if(!format) {
+        // done in util-linux for a case when LC_ALL is unset and LANG
+        // is Korean
+        // https://github.com/coreutils/coreutils/blob/04befb136a7f1c50b18be322995f3a2906d41e74/src/date.c#L715
+        format = "%a %b %e %H:%M:%S %Z %Y";
+    }
+
     strfmarstime(buf, sizeof(buf), format, tm);
-    printf("%s", buf);
+    printf("%s\n", buf);
 
     return 0;
 }
