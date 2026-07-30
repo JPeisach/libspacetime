@@ -1,0 +1,11 @@
+Thank you to:
+
+    The developers of glibc for library implementation reference
+
+    The developers of musl for library implementation reference
+
+    The developers of coreutils for marsdate implementation reference
+
+    Thomas Gangale for the Darian Calendar system
+
+    James Tauber for Mars Clock calculation reference (marsclock.com)
