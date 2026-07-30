@@ -1,11 +1,592 @@
-2026-06-26  gettextize  <bug-gnu-gettext@gnu.org>
+2026-07-30  Joshua Peisach  <jpeisach@ubuntu.com>
 
-	* configure.ac (AM_GNU_GETTEXT_VERSION): Bump to 0.23.2.
+	configure: add PKG_INSTALLDIR to ensure .pc is installed
 
-2026-06-26  gettextize  <bug-gnu-gettext@gnu.org>
+	disable some strpmarstime test cases for release, warn in docs.
 
-	* Makefile.am (SUBDIRS): Add po.
-	(ACLOCAL_AMFLAGS): New variable.
-	(EXTRA_DIST): New variable.
-	* configure.ac (AC_CONFIG_FILES): Add po/Makefile.in.
+	Create NEWS file for 0.0.1
 
+	Add .mailmap
+
+	doc: fix warnings, add mars conversion functions
+
+	autoconf: define package vars
+
+	add AUTHORS, THANKS
+
+	doc: add FDL license
+
+	README: update configure, important notes
+
+	doc: AI usage
+
+	configure: add program checks for tests and documentation
+	Tests will need grep, docs will need makeinfo.
+
+2026-07-30  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	fix segfaults on systems without defined locale
+	Easily can be found in a chroot environment. If the locale does not
+	exist, don't free it.
+
+	In marsdate, initialize the locale early before calling nl_langinfo.
+
+2026-07-30  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	marsdate: fix variable for DATE_FMT on macOS
+
+2026-07-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	autogen.sh: run libtoolize, autoreconf without -i
+
+	Add ABOUT-NLS file
+
+	Add relevant m4, update po files
+	I was debating whether to keep a lot of these in. I decided I would
+	just in case a system didn't have it.
+
+2026-07-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tree-built programs: use srcdir reference includes
+	This fixes building on systems without the library installed.
+
+	There is probably a better way to do this.
+
+2026-07-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	marsdate: small fixes
+	- Keep consistency with nextline ending the program
+	- use nl_langinfo _DATE_FMT as default format
+
+	strfmarstime item formatting: have default case
+	Fixes buffer overflows and trying to handle just a "%"
+
+2026-07-27  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	marsdate: support custom formatting
+
+2026-07-26  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	doc: acknowledgements
+
+	doc: mars - fix definitions with dfn
+
+	doc: earth - title chapter
+
+	doc: mars - fix node name for definitions
+
+	testsuite: ammarstime - xfail for conversion errors
+	we'll get them one day..
+
+	doc: practices - bindings/wrappers
+
+	doc: make MSD/sol a concept, explain doc reasoning
+
+2026-07-25  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	doc: practices
+
+	doc: philosophy
+
+	doc: fix title
+
+	doc: use sections
+
+2026-07-24  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	doc: start to organize things
+
+	doc: place base info for string functions
+
+	doc: Document numerical functions in mars + warn of ammarstime
+	There appears to be that variance. Oof.
+
+2026-07-23  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: manually count years
+	see comment in code
+
+2026-07-22  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Fix COPYING
+
+	ammarstime: fix last day of decade offset math
+
+	doc/mars: define data types for martian timekeeping
+
+	ammarstime: fix number of days in 8 years offset
+
+2026-07-21  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: fix SOLS_PER_100Y/try to handle d_cycles on non-leap decade
+
+2026-07-20  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: ammarstime: add some more leap year tests
+
+2026-07-20  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime.c: manually handle years based on decades
+	Unfortunately, the "2 year" cycle does not work. Sometimes there are
+	years where there are 3 leap years back to back.
+
+	So, manually dig it out.
+
+	This comes after *hours* of work. Hopefully it is correct.
+
+2026-07-19  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	doc: mars: explain darian calendar
+
+	doc: add Earth documentation (which is basically, use stdlib functions)
+
+	doc: create mars.texi
+
+	doc: main introduction
+
+	Add doc folder (empty for now)
+	From what I can tell, this will be more about usage
+	and technical explanations (on top of man pages)
+
+2026-07-18  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	configure: add option to disable programs tests
+
+2026-07-16  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mkmarstime: return -1 when NULL is passed as struct mars_tm
+	Prevents a crash.
+
+	At least on Darwin/macOS, it will return -1, and I think glibc also
+	returns -1 for invalid structures.
+
+2026-07-16  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Document mkmarstime
+
+	mars.h: document struct mars_tm, explain C++ ifdef
+
+	mars_time: improve comment referring to previous steps from another func
+
+	mars_time: document and comment code
+
+2026-07-14  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Update README for configure options
+
+	mars: add localmarstime (ammarstime stub for now without timezones)
+
+	configure: allow disabling tests, print out end conf options
+
+2026-07-13  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars: make earth_time_to_msd a public function
+	This was kind of inevitable based on how other functions seemed to use
+	it (or functionality similar).
+
+	Python has the time() function which returns time in *float*. Let's let
+	it use that and then it won't lose precision.
+
+2026-07-12  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars.h: add ifdefs for use in C++
+	Restrict keyword -> __restrict
+
+	and extern "C" everything
+
+2026-07-12  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	marsdate: support %I (ISO 8601 format)
+
+	wcsfmarstime: include wchar.h specifically
+	Fixes build on Linux
+
+	Update README to reflect widechar functions
+
+	ifdef out mars_timespec for now
+	This would require, probably platform-specific things? Which may
+	already be available (and more useful?) with the clock_getres
+	functions? So ifdef out for now - I won't even add a configure option.
+	If it's needed in the future (or if I decide to get to it), I'll move
+	on it.
+
+	tests: wcsfmarstime: sol of month tests from strfmarstime
+
+	tests: wcsfmarstime: locale-related tests from strfmarstime
+
+	tests: wcsfmarstime: padding tests from strfmarstime
+
+2026-07-11  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: wcsfmarstime: %U/%V, %W
+
+	tests: wcsfmarstime: test %u, %w
+
+	tests: wcsfmarstime - newline, tab, percent
+
+	tests: wcsfmarstime %y: fix format specifier
+
+	tests: wcsfmarstime: add %y, %Y tests
+
+	tests: wcsfmarstime - monthname tests (%b, %B)
+
+	tests: use three day abbreviated sol names
+
+	tests: wcsfmarstime - add %a, %A
+
+	tests: wcsfmarstime - %C (centuries)
+	I should later split up the strfmarstime %C tests
+	into one result. I was thinking more verbosity
+	would be better, but honestly, less files to compile
+	the better.
+
+	tests: add wcsfmarstime %H, %I
+
+	Implement wcsfmarstime
+
+2026-07-10  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars.h: define mars_timespec
+	will need it eventually... I am scared about time bases
+
+	marsdate: add -R option for RFC 5322 format
+	Fun fact, this is the first time I've actually
+	written a program in C, and this includes using
+	getopt.
+
+	strpmarstime, strfmarstime: make abbreviated day names 3 characters
+
+	add marsdate program
+
+2026-07-07  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: ammarstime: leap yr 210, 211
+
+2026-07-07  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: get seconds into day through fmod
+	I assumed that secs_into_day was fine. But I found that - and I don't
+	know what was going on - the secs_into_day would be greater than just
+	multiplying the remainder of the MSD by 86400 seconds.
+
+	Don't even bother using the original timer. Just take the MSD and
+	run with it.
+
+2026-07-06  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: add tests for leap days registering as new year
+	Currently, not fixed, but I need to get these tests down... even though
+	I will still be off by 2 seconds. Ugh.
+
+2026-07-06  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime manual validity test: don't print out current date
+	Was a leftover from my local test file.
+
+	The script seems to pickup leap days being incorrectly shown as
+	two separate first days of the following year.
+
+2026-07-06  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: comment out some cycle match realignment
+	Whenever the cycles divide evenly, the "remaining" counter of the cycle
+	is decremented. However, this appears to cause problems.
+
+	The Curiosity landing was.. very incorrect. For some reason, days
+	would register past the 24th month.
+
+	These seem to not be an issue if commented out. I still need to verify
+	this with more testcases.
+
+	See tests/manual/ammarstime_validity.c
+
+2026-07-06  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: add curiosity landing date
+	Apple what did you do, why is everything segfaulting?
+
+	macOS moment.
+
+2026-07-05  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	ammarstime: Use fmod for more precisions at seconds
+	This appears to be the issue for being off by a couple of seconds.
+
+	I think it's very possible Gangale's online converter may still
+	be incorrect, but this brings us within 2 seconds for the Mariner 9
+	orbit and 1 second of the Perseverance landing.
+
+2026-07-04  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: ammarstime - Add mariner9 enter orbit test
+	Currently fails because we are off by a few seconds
+
+	tests: add ammarstime perseverance landing test
+	It appears we are off by ~1-2 seconds.
+
+	README: mark linux arm64 as supported (thanks raspi)
+
+	README: mark linux riscv64 as supported
+
+	tests: introduce ammarstime tests, starting with MSD 0
+
+	Update README
+
+	strpmarstime tests: month and sol of year padding
+
+2026-07-03  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strpmarstime tests: YMD (%F), 12hr (%I), 24hr (%H)
+
+	strpmarstime: Fix parsing with leading spaces
+	This may be a musl bug - I think some C libraries will be generous with
+	how much space you can place in the original string, but with musl's
+	implementation, since the space is not a digit, when evaluating for
+	numeric ranges it will stop immediately.
+
+	strpmarstime: Fix centuries (%C) format specifier
+	Missing goto statement.
+
+	strpmarstime: fix macOS compilation
+
+2026-07-02  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Add comment marking strpmarstime %c YMD as broken
+
+	strpmarstime: Be able to parse by locales
+	This appears to be a build-time optional thing in glibc? musl doesn't
+	look at locale, but there are some ifdef statements in my time.h header
+	about if on GNU to have a locale supporting version.
+
+	tests: add strpmarstime tests for sol and month names
+
+	Fix tests for strfmarstime with timezone (Assume MTC for now)
+
+	mars: add AMT offset and timezone fields
+	For now, no use until timezone names are defined.
+	But it helps "complete" the mars_tm structure.
+
+2026-07-01  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime tests: Test %y, %Y
+
+	strfmarstime tests: %x, %X
+
+	strfmarstime: Fix %W
+	Needed proper logic with shifting seasons
+
+	strfmarstime: Implement week number formatting logic and add tests
+
+	strmarstime tests: %u, %w, %%
+
+	tests: Add more tests for strfmarstime
+
+	Fix month formatting
+
+	test (sol of year padding): fix incorrect field assignment
+
+	strfmarstime: %j - set width to 3, add +1 to ysol
+
+	Fix build on macOS - use xlocale.h
+
+2026-06-30  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Create initial strpmarstime implementation, based off musl
+	Same approach taken as strfmarstime. Testing and verification are
+	still needed - long way to go
+
+2026-06-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime: add 12, 24hr tests
+
+	strmarstime: fix %e, add sol of month tests
+
+	strfmarstime tests: %C (century)
+
+	Add YMD and MDY style tests
+
+	strfmarstime: fix locale detection
+	while adding tests for %c, it turns out that for some reason, "" works
+	instead of NULL as 2nd argument to setlocale?
+
+	tests: test strftime sol and month name
+
+2026-06-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	tests: add strfmarstime solnames (abbreviated)
+	I was able to use this to test that:
+
+	- (by accident), this won't write beyond buffer length
+	- trailing spaces are not trimmed from the output (matches strftime)
+
+2026-06-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime: %S/T/w/x/X/y/Y/%, placeholders for u/U/V/W
+	This completes the strfmarstime implementation.. before testing for
+	verification.
+
+	Some things not done:
+
+	- The "week numbering" is a bit confusing at first - I don't want
+	to just pull musl as truth. Until I understand it with confidence,
+	and get ot the test cases to really check these, I'm passing on them
+	for now.
+
+	- Timezone formatting - we don't have timezones yet.
+
+2026-06-29  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime: support %s format
+	Also bump __mars_tm_to_secs to const struct
+
+	strfmarstime: move gettext include to inside C file
+	It won't be accessible to others in the header file.
+
+	Move __mars_tm_to_secs to its own file
+	This is needed in strfmarstime - I guess it could call mkmarstime
+	but mkmarstime I think will eventually get to timezones, so
+	separate it for now
+
+	strfmarstime: %p, %r, %R
+
+	strfmarstime: %g, %G, %H, %I, %j, %m, %M, %n
+
+	strfmarstime: implement %e, %d, %D, %F
+
+2026-06-27  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strftime: implement %C formatting
+
+	strfmarstime: use locale for c format handling
+
+	strfmarstime: fix memcpy size that was causing stack smashes
+
+2026-06-27  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime: Get the locale
+	We will need it for certain format operations.
+
+	I hope I didn't break things for non NLS builds but we will see.
+
+2026-06-27  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	strfmarstime: support %h, %b, %B
+
+2026-06-27  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Create basic strfmarstime, based off musl implementation
+	See https://github.com/kraj/musl/blob/kraj/master/src/time/strftime.c
+
+	Just did the 'a' format op for now.
+
+2026-06-26  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars.h: only include libintl if nls enabled
+
+2026-06-26  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	gettextize
+	GNU documentation website at the moment is unaccessible.. probably AI
+	crawlers.
+
+	Did my best for a basic start. Hopefully I did things correctly. Not
+	sure whether to .gitignore the copied m4 folder and the other po/
+	files.
+
+2026-06-25  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Create initial ammarstime implementation
+	Made with *some* AI help for math calculations, but mostly referred
+	to musl's __secs_to_tm and tried to adapt it to work with a local
+	test, checking current Gregorian date to Darian date.
+
+	Still has some spots to work out. Spent a long time on this.
+
+	Will create test suites once string formatting for struct mars_tm is
+	done, as it will be easier to do so for validation (of course, the
+	string formatting is going to take a long time to do..)
+
+2026-06-23  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars_time: match function argument as time()
+
+	mars: move each function to its own file
+
+	Implement diffmarstime
+
+	define TAI_OFFSET and SECONDS_PER_DAY
+
+2026-06-22  Joshua Peisach  <itzswirlz2020@outlook.com>
+
+	Darian 210 - Leap year test
+
+2026-06-22  Joshua Peisach  <itzswirlz2020@outlook.com>
+
+	mkmarstime: Add missing month 8 offset, fix leap years calculation
+	The 8th item in the array was missing, and also the leap years turned
+	out to be calculated a little off.
+
+	After letting AI run its exhaustive, almost in circles, testing and
+	debugging (like, 20 minutes), it came to the simple change of how the
+	intercalation is calculated.
+
+	It should still be the same as what Gangale intended - if I am
+	understanding it correctly, the fact is, we are determining if the year
+	prior was a leap year, not a current one - so the (Y-1) may not be
+	necessary. However, testing will also be needed.
+
+	Assisted-by: GPT-5 mini
+
+2026-06-21  Joshua Peisach  <itzswirlz2020@outlook.com>
+
+	Add gregorian Y2038 tests (and they're all failing.. yay.)
+
+2026-06-21  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Add perseverance landing, gregorian leap day and y2k tests
+
+2026-06-21  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Introduce mkmarstime
+	Took about an hour and a half. Verified the leap year calculation,
+	and then its just addition.
+
+	Glibc has an array to check days passed since start of current month,
+	which is good for performance, I guess (instead of needing to manually
+	do something along the lines of (month * 28) + (month mod 6 == 0.. etc)
+
+	Starting epoch: The calendar starts before MSD 0. See the comment
+	on my best interpretation of the offset.
+
+	Testsuites: Got MSD 0 and also Unix Epoch, but because of the current
+	1 second loss in Mars -> Earth, unixepoch test fails.
+
+2026-06-21  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	mars: rename __do_earth_time_to_msd to __do_earth_time_to_mars_time
+	This actually gets mars time, not MSD - well it gets MSD * 86400
+	instead of just MSD.
+
+2026-06-20  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Add earth time to mars time conversion, and testcase
+
+2026-06-19  Joshua Peisach  <jpeisach@ubuntu.com>
+
+	Create testsuite
+
+2026-06-16  Joshua Peisach  <itzswirlz2020@outlook.com>
+
+	create readme
+
+	define struct mars_tm
+
+	Add mars -> earth conversion
+
+2026-04-02  Joshua Peisach  <itzswirlz2020@outlook.com>
+
+	Initial commit
+
+2025-12-21  Joshua Peisach (ItzSwirlz)  <itzswirlz2020@outlook.com>
+
+	Initial commit
