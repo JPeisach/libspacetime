@@ -226,6 +226,9 @@ Parses a string format representation of a broken down time structure
 This is the inverse of strfmarstime.
 
 This is the equivalent of the strptime function.
+
+@strong {WARNING: There are bugs with this function. It may not work.}
+
 @c TODO: fill
 @end defun
 
