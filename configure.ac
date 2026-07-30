@@ -1,9 +1,9 @@
-AC_INIT(libspacetime, 0.0.0, [jpeisach@ubuntu.com], [libspacetime], [https://github.com/jpeisach/libspacetime])
+AC_INIT(libspacetime, 0.0.1, [jpeisach@ubuntu.com], [libspacetime], [https://github.com/jpeisach/libspacetime])
 AT_INIT
 LT_INIT
 
 PACKAGE=libspacetime
-VERSION=0.0.0
+VERSION=0.0.1
 
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
