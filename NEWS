@@ -1,0 +1,6 @@
+Version 0.0.1 (30 July 2026)
+* Initial release.
+* Basic implementation of Darian Calendar for Mars timekeeping.
+  No timezones.
+* There are some bugs, notably in strpmarstime.
+* Please read the documentation.
