@@ -101,7 +101,8 @@ planets while being as conformant as possible to existing standards,
 any non-deprecated function will get its implementation in the other
 timekeeping system.
 
-@c TODO: Go into detail about ISO C and whatnot.
+Specific goals to align with are what is currently used in glibc and
+musl, and POSIX.1 and ISO C.
 
 @subsection Portability
 
@@ -168,6 +169,54 @@ names. There may also be functions that call multiple functions and
 perform operations on the results. This is fine, as long as the best
 effort to match the API is made.
 
+@subsection AI and LLM usage and disclosures
+
+As of writing, there are many concerns over the usage of AI. While use
+of AI or LLMs to assist in coding is not banned, it should be used as
+little as necessary.
+
+One of the best parts of being a human is the ability to *think*. This
+should not be taken for granted.
+
+The use of an AI, which must be used as an **assistant** and not a
+**replacement**, can be used when:
+
+@bullet{} A lot of time has been spent trying to solve a bug that has
+proven no success
+
+@bullet{} The problem is too complex and there are many reasons that
+solving it may be too challenging
+
+@bullet{} When too much time is being spent fixing a problem that is
+important that it wastes time or prevents further progress.
+
+Another acceptable usage of AI is line autocompletion or completion
+recommendations. For example, this was helpful in making the testsuites
+(tests/Makefile.am and tests/testsuite.at) where lots of the code is
+basically the same but with unique changes to each line. This made
+creating new testcases easier.
+
+A request to be made is that if you are not entirely creating new code
+(as in, making code based off an existing implementation), that you
+turn off any AI tools. Most of the functions implemented were based
+off of implementations by glibc and musl. It is respectful to not let
+that information be potentially sent for use in model training. When
+debugging, AI tools can be reenabled.
+
+Here is a list of AI usages in development of libspacetime, so far:
+
+@bullet{} Line autocompletion, in the use of testcases
+
+@bullet{} Setting up the Autotools build system, working with Automake,
+Autotest (like template code)
+
+@bullet{} Debugging: Fixing mkmarstime and the inline __mars_tm_to_secs
+function, which is crucial for the project and was too complex to fix
+(finding MSD 0 offsets while doing leap year intercalation correctly,
+along with second conversion rounding or truncation errors)
+
+@bullet{} Debugging: ammarstime, fixing general calculations due to
+the leap year cycle
 
 @node Acknowledgements
 @section Acknowledgements
