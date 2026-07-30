@@ -36,6 +36,9 @@ This is the libspacetime documentation manual.
 * Mars::    Documentation for timekeeping on Mars.
 * Index::   Complete index.
 * Function Index::   Complete function index.
+* Data Type Index::  Data type index.
+* GNU Free Documentation License:: A copy of the GNU FDL that comes
+with this manual.
 @end menu
 
 

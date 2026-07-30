@@ -6,8 +6,10 @@
 * Definitions for Mars:: Useful definitions.
 * Darian Calendar:: An introduction to the Darian Calendar system.
 * Types:: Types for working with Martian time.
-* Numerical time functions:: I need a better name
+* Numerical time functions:: Functions for working with numerical
+representations
 * String functions:: Functions for working with string representations
+* Conversion functions:: Functions for converting between planets
 @end menu
 
 @node Definitions for Mars
@@ -233,4 +235,33 @@ This is the same as strfmarstime but for wide characters (wchar_t).
 
 This is the equivalent of the wcsftime function.
 @c TODO: that is basically it right?
+@end defun
+
+@node Conversion functions
+@section Conversion functions
+@strong {WARNING: Still a work in progress.}
+
+These are functions that can be used to convert between timekeeping
+systems.
+
+@strong {THESE NAMES ARE ESPECIALLY SUBJECT TO CHANGE!}
+
+@defun earth_time_to_msd(time_t @var{et})
+Calculates the MSD (Mars Sol Date) given the amount of seconds since
+the Unix Epoch (@var{et}).
+
+If programming in C, use of this function is discouraged. It is for use
+in a Python binding for libspacetime to match the behavior of Python's
+time function, which returns time as a floating point number instead of
+an integer.
+@end defun
+
+@defun earth_time_to_mars_time(time_t @var{et})
+Converts Earth Time (@var{et}) to Martian Time, represented
+in seconds since MSD 0.
+@end defun
+
+@defun mars_time_to_earth_time(mars_time_t @var{mars_time})
+Converts Martian Time (@var{mars_time}) to Earth Time, represented
+in seconds since the Unix Epoch.
 @end defun
