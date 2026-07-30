@@ -50,6 +50,8 @@ AM_CONDITIONAL([TESTS], [test "x$enable_tests" = "xyes"])
 
 if test "$enable_tests" != no
 then
+AC_PROG_GREP
+
 AC_CONFIG_TESTDIR([tests])
 AC_CONFIG_FILES([tests/Makefile tests/atlocal])
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
@@ -65,6 +67,13 @@ AM_CONDITIONAL([DOCS], [test "x$enable_docs" = "xyes"])
 
 if test "$enable_docs" != no
 then
+
+AC_CHECK_PROG(makeinfo_found, makeinfo, 1, 0)
+if test "$makeinfo_found" != 1
+then
+AC_MSG_ERROR([Makeinfo is needed for building documentation.])
+fi
+
 AC_CONFIG_FILES([doc/Makefile])
 fi
 
