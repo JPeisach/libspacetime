@@ -1,4 +1,4 @@
-AC_INIT
+AC_INIT(libspacetime, 0.0.0, [jpeisach@ubuntu.com], [libspacetime], [https://github.com/jpeisach/libspacetime])
 AT_INIT
 LT_INIT
 
