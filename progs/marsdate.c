@@ -5,12 +5,21 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#ifdef MACOS
+#include <xlocale.h>
+#endif
+
 // TODO: All the features the "date" command in coreutils provides...
 int main(int argc, char** argv)
 {
     mars_time_t time = mars_time(NULL);
     struct mars_tm* tm = ammarstime(&time);
+
+#ifdef MACOS
+    char* format = nl_langinfo(D_T_FMT);
+#else
     char* format = nl_langinfo(_DATE_FMT);
+#endif
 
     // FIXME: Get appropriate size, don't guess
     char buf[128];
