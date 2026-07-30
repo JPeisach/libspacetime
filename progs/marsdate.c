@@ -15,6 +15,9 @@ int main(int argc, char** argv)
     mars_time_t time = mars_time(NULL);
     struct mars_tm* tm = ammarstime(&time);
 
+    // Set before calling nl_langinfo
+    setlocale(LC_ALL, "");
+
 #ifdef MACOS
     char* format = nl_langinfo(D_T_FMT);
 #else
@@ -23,8 +26,6 @@ int main(int argc, char** argv)
 
     // FIXME: Get appropriate size, don't guess
     char buf[128];
-
-    setlocale(LC_ALL, "");
 
     int optc;
     while((optc = getopt(argc, argv, "IR")) != -1) {

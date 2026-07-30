@@ -453,6 +453,6 @@ size_t strfmarstime(char* restrict s, size_t count, const char* restrict format,
     locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, ""), NULL);
 
     size_t ret = __strfmarstime(s, count, format, tm, locale);
-    freelocale(locale);
+    if(locale) freelocale(locale);
     return ret;
 }

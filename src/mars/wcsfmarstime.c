@@ -117,7 +117,7 @@ size_t wcsfmarstime(wchar_t *restrict wcs, size_t count, const wchar_t* restrict
     locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, ""), NULL);
 
     size_t ret = __wcsfmarstime(wcs, count, format, tm, locale);
-    freelocale(locale);
+    if(locale) freelocale(locale);
 
     return ret;
 }

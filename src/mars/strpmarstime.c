@@ -442,6 +442,6 @@ char* strpmarstime(const char *restrict str, const char *restrict format, struct
     locale_t locale = newlocale(LC_ALL, setlocale(LC_ALL, ""), NULL);
 
     char* ret = __strpmarstime(str, format, tm, locale);
-    freelocale(locale);
+    if(locale) freelocale(locale);
     return ret;
 }
